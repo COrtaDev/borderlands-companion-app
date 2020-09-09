@@ -32,26 +32,15 @@ const Login = () => {
     return (
         <>
             <form action="sign-up" method="POST" onSubmit={submitLogin}>
-                <div className="field">
-                    <label className="label">Email address</label>
-                    <div className="control">
-                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">Password</label>
-                    <div className="control">
-                        <input className="input is-info" type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field is-grouped">
-                    <div className="control">
-                        <button className="button is-link">Login</button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-link is-light" onClick={loginDemoUser}>Login as Demo User</button>
-                    </div>
-                </div>
+                <span>
+                    <label>Email address:</label>
+                    <div><input type="email" autoComplete="email" name="email" required value={email} onChange={setField} /></div>
+                </span>
+                <span>
+                    <label >Password:</label>
+                    <div><input type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} /></div>
+                </span>
+                <div><button>Login</button></div>
             </form>
 
         </>

@@ -28,39 +28,28 @@ const SignUp = () => {
         };
     };
 
-    if (token) {
-        return <Redirect to="/users"></Redirect>;
-    };
+    // if (token) {
+    //     return <Redirect to="/users"></Redirect>;
+    // };
 
     return (
         <>
             <form action="sign-up" method="POST" onSubmit={submitSignUp}>
-                <div className="field">
-                    <label className="label">Hi there! My name is</label>
-                    <div className="control">
-                        <input className="input is-info" type="text" name="name" required value={name} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">Here's my email address:</label>
-                    <div className="control">
-                        <input className="input is-info" type="email" autoComplete="email" name="email" required value={email} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field">
-                    <label className="label">And here's my password:</label>
-                    <div className="control">
-                        <input className="input is-info" type="password" autoComplete="new-password" name="password" required value={password} onChange={setField} />
-                    </div>
-                </div>
-                <div className="field is-grouped">
-                    <div className="control">
-                        <button className="button is-link" type="submit">Sign me up!</button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-link is-light">Sign up as Demo User</button>
-                    </div>
-                </div>
+                <span>
+                    <label>Email address:</label>
+                    <div><input type="email" autoComplete="email" name="email" required value={email} onChange={setField} /></div>
+                </span>
+                <span>
+                    <label>Create User Name:</label>
+                    <div><input name="name" required value={name} onChange={setField} /></div>
+                </span>
+                <span>
+                    <label>Password:</label>
+                    <div><input type="password" autoComplete="new-password" name="password" required value={password} onChange={setField} /></div>
+                </span>
+                <span>
+                    <div><button type="submit">Sign me up!</button></div>
+                </span>
             </form>
         </>
     );
