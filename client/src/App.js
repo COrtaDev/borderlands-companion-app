@@ -1,25 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import { ACCESS_TOKEN, LOG_OUT } from "./actions/auth";
+// import { ACCESS_TOKEN, LOG_OUT } from "./actions/auth";
 
 import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import Feed from './components/Feed';
+import LogoutButton from './components/sub-components/LogoutButton'
 
-import { hasAccessToken } from "./actions/auth";
+// import { hasAccessToken } from "./actions/auth";
 
-function App() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(hasAccessToken());
-    });
-    const logOut = (e) => {
-        document.cookie = `${ACCESS_TOKEN}=; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
-        dispatch({ type: LOG_OUT });
-    };
-
-
+const App = () => {
     return (
         <BrowserRouter>
             <nav>
@@ -27,7 +19,7 @@ function App() {
                     <li><NavLink to="/" activeclass="active">Home</NavLink></li>
                     <li><NavLink to="/landing" activeclass="active">Landing</NavLink></li>
                     <li><NavLink to="/feed" activeclass="active">Feed</NavLink></li>
-                    <li><button type='button' onClick={logOut}>Log Out</button></li>
+                    <LogoutButton />
                 </ul>
             </nav>
             <Switch>

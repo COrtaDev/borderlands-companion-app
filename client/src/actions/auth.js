@@ -52,7 +52,7 @@ function getCookieValue(value) {
 export const hasAccessToken = () => async (dispatch) => {
     const token = getCookieValue(ACCESS_TOKEN);
     try {
-        const res = await fetch(`${usersUrl}`, {
+        const res = await fetch(`${restoreUrl}`, {
             headers: { Authorization: "Bearer " + token },
         });
         if (res.ok) {
@@ -67,4 +67,3 @@ export const hasAccessToken = () => async (dispatch) => {
         throw new Error(e)
     };
 };
-
