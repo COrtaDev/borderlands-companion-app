@@ -6,22 +6,27 @@ from app.auth import create_jwt, validate_jwt
 user_routes = Blueprint('users', __name__)
 
 
-# def combined_routes():
-#     # if method=get, call index(), else call sign_up()
-#     if request.method == "GET":
-#         index()
-#     else:
-#         sign_up()
-
-# @user_routes.route('', methods=['GET', 'POST'])
-# def index():
-#     response = User.query.all()
-#     return {"users": [user.to_dict() for user in response]}
+@user_routes.route('/', methods=['GET', 'POST'])
+def handle_signup():
+    if request.method == "POST":
+        return signup()
+    elif request.method == "GET":
+        return restore()
+        pass
 
 
-@user_routes.route('', methods=['POST'])
-def sign_up():
+@ user_routes.route('/login', methods=['GET', 'POST'])
+def handle_login():
+    if request.method == "POST":
+        return login()
+    elif request.method == "GET":
+        return restore()
+
+
+def signup():
     data = request.json
+    if not data:
+        return ('Failed Request')
     # Create a hashed password
     password = data['password'].encode()
     hashed_password = bcrypt.hashpw(
@@ -40,14 +45,13 @@ def sign_up():
     return jsonify({"user": user, "token": str(jwt)})
 
 
-@ user_routes.route('/login', methods=['post'])
 def login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
-    print(user)
+    # print(user)
     hashed_password = user.hashed_password
     if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
-
+        # print(user)
         user_data = user.to_dict()
         jwt = create_jwt(user_data)
         return jsonify({"user": user_data, "token": str(jwt)})
@@ -56,11 +60,13 @@ def login():
         return jsonify('Bad Login')
 
 
-@ user_routes.route('/restore')
+@ user_routes.route('login/restore')
+def handle_restore():
+    restore()
+
+
 def restore():
-    # auth_header = request.headers['Authorization']
-    # print(auth_header)
-    # print(auth_header[7:])
+    auth_header = request.headers['Authorization']
     validated = validate_jwt(request)
     if (validated):
         return validated

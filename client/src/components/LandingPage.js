@@ -8,9 +8,9 @@ export const LandingPage = () => {
     const { token } = useSelector(state => state.auth);
 
     if (token) {
-        return <Redirect to="/users"></Redirect>;
+        return <Redirect to="/feed"></Redirect>;
     };
-    
+
     return (
         <>
             <span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', }}>

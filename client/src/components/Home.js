@@ -6,7 +6,7 @@ export const Home = () => {
     const { token } = useSelector(state => state.auth);
 
     if (token) {
-        return <Redirect to="/users"></Redirect>;
+        return <Redirect to="/feed"></Redirect>;
     };
 
     return (
