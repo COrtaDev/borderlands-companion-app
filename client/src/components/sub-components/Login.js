@@ -10,20 +10,26 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
 
-    const submitLogin = (event) => {
-        event.stopPropagation();
-        event.preventDefault();
+    const submitLogin = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         dispatch(login(email, password))
     };
 
-    const setField = (event) => {
-        const name = event.target.name;
+    const setField = (e) => {
+        const name = e.target.name;
         if (name === 'email') {
-            setEmail(event.target.value);
+            setEmail(e.target.value);
         } else if (name === 'password') {
-            setPassword(event.target.value);
+            setPassword(e.target.value);
         };
     };
+
+    const loginAsDemoUser = (e) => {
+        setEmail("DemoUserEmail@demo.com");
+        setPassword("demopassword");
+        dispatch(login(email, password))
+    }
 
     if (token) {
         return <Redirect to="/users"></Redirect>
@@ -40,7 +46,10 @@ const Login = () => {
                     <label >Password:</label>
                     <div><input type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} /></div>
                 </span>
-                <div><button>Login</button></div>
+                <span style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div><button>Login</button></div>
+                    <div><button onClick={loginAsDemoUser}>Login As Demo User</button></div>
+                </span>
             </form>
 
         </>

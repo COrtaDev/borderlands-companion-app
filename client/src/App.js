@@ -18,8 +18,8 @@ function App() {
             <nav>
                 <ul>
                     <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                    {/* <li><NavLink to="/users" activeclass="active">Users</NavLink></li> */}
                     <li><NavLink to="/landing" activeclass="active">Landing</NavLink></li>
+                    {/* <li><NavLink to="/users" activeclass="active">Users</NavLink></li> */}
                 </ul>
             </nav>
             <Switch>
