@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_migrate import Migrate
@@ -11,13 +11,14 @@ from app.api.user_routes import user_routes
 
 from app.config import Config
 
-logging.getLogger('flask_cors').level = logging.DEBUG
+# csrf = CSRFProtect()
 app = Flask(__name__, static_url_path='')
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 
 db.init_app(app)
+# csrf.init_app(app)
 migrate = Migrate(app, db)
 
 # Application Security

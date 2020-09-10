@@ -24,13 +24,11 @@ const SignUp = () => {
             setPassword(event.target.value);
         };
     };
-    console.log(userName)
-    console.log(email)
-    console.log(password)
 
     return (
         <>
-            <form action="sign-up" method="POST" onSubmit={submitSignUp}>
+            <form action="" method="POST" onSubmit={submitSignUp}>
+            {/* <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/> */}
                 <span>
                     <label>Email address:</label>
                     <div><input type="email" autoComplete="email" name="email" required value={email} onChange={setField} /></div>
