@@ -12,6 +12,7 @@ def handle_signup():
         return signup()
     elif request.method == "GET":
         return restore()
+        pass
 
 
 @ user_routes.route('/login', methods=['GET', 'POST'])

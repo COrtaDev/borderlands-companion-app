@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { ACCESS_TOKEN, SIGN_IN } from '../../actions/auth';
 import { loginUrl } from '../../config';
 // loginUrl = 'http://localhost:5000/api/users/login'
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    // We define a function to post the login information to the database
+    /* We define a function to post the login information to the database
+    based on the state of the component and update the store with the user's information*/
     const loginUser = async () => {
         // loginUrl = 'http://localhost:5000/api/users/login'
         const res = await fetch(loginUrl, {
@@ -21,13 +23,15 @@ const Login = () => {
             dispatch({ type: SIGN_IN, token: data.token, user: data.user });
         }
     };
-    // Here we define a function to sumbit the login information from the state of the component which will fire once they click the 'submit' button
+    /* Here we define a function to sumbit the login information from the
+    state of the component which will fire once they click the 'submit' button*/
     const submitLogin = (e) => {
         e.stopPropagation();
         e.preventDefault();
         loginUser(email, password)
     };
-    // Here we define a function to login as the demo user which fires when the user clicks the 'login as demo user' button
+    /*Here we define a function to login as the demo user which
+    fires when the user clicks the 'login as demo user' button*/
     const loginAsDemoUser = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -35,13 +39,14 @@ const Login = () => {
         setPassword("demopassword");
         loginUser(email, password)
     }
-    // Here we define a funtion to update the state of the component with the userName and password as the user types.
+    /*Here we define a funtion to update the state of the
+    component with the userName and password as the user types.*/
     const setField = (e) => {
         const name = e.target.name;
         if (name === 'email') { setEmail(e.target.value); }
         else if (name === 'password') { setPassword(e.target.value); };
     };
-
+    /*We return a form for the user to login as an existing user or using a demo login account*/
     return (
         <>
             <form action="" method="POST" onSubmit={submitLogin}>
