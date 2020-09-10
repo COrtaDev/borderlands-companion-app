@@ -1,43 +1,50 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
-import { login } from '../../actions/auth';
-
+import { useDispatch } from 'react-redux';
+import { loginUrl } from '../../config';
+// loginUrl = 'http://localhost:5000/api/users/login'
 const Login = () => {
-    const { token } = useSelector(state => state.auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-
+    // We define a function to post the login information to the database
+    const loginUser = async () => {
+        // loginUrl = 'http://localhost:5000/api/users/login'
+        const res = await fetch(loginUrl, {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+        if (res.ok) {
+            const data = await res.json();
+            data.token = data.token.slice(2, data.token.length - 1);
+            document.cookie = `${ACCESS_TOKEN}=${data.token}`;
+            dispatch({ type: SIGN_IN, token: data.token, user: data.user });
+        }
+    };
+    // Here we define a function to sumbit the login information from the state of the component which will fire once they click the 'submit' button
     const submitLogin = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        dispatch(login(email, password))
+        loginUser(email, password)
     };
-
-    const setField = (e) => {
-        const name = e.target.name;
-        if (name === 'email') {
-            setEmail(e.target.value);
-        } else if (name === 'password') {
-            setPassword(e.target.value);
-        };
-    };
-
+    // Here we define a function to login as the demo user which fires when the user clicks the 'login as demo user' button
     const loginAsDemoUser = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         setEmail("DemoUserEmail@demo.com");
         setPassword("demopassword");
-        dispatch(login(email, password))
+        loginUser(email, password)
     }
-
-    if (token) {
-        return <Redirect to="/users"></Redirect>
+    // Here we define a funtion to update the state of the component with the userName and password as the user types.
+    const setField = (e) => {
+        const name = e.target.name;
+        if (name === 'email') { setEmail(e.target.value); }
+        else if (name === 'password') { setPassword(e.target.value); };
     };
 
     return (
         <>
-            <form action="sign-up" method="POST" onSubmit={submitLogin}>
+            <form action="" method="POST" onSubmit={submitLogin}>
                 <span>
                     <label>Email address:</label>
                     <div><input type="email" autoComplete="email" name="email" required value={email} onChange={setField} /></div>
@@ -47,15 +54,12 @@ const Login = () => {
                     <div><input type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} /></div>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div><button>Login</button></div>
-                    <div><button onClick={loginAsDemoUser}>Login As Demo User</button></div>
+                    <div><button type='submit'>Login</button></div>
+                    <div><button type='submit' onClick={loginAsDemoUser}>Login As Demo User</button></div>
                 </span>
             </form>
-
         </>
     );
 };
-
-
 
 export default Login
