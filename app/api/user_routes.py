@@ -6,14 +6,21 @@ from app.auth import create_jwt, validate_jwt
 user_routes = Blueprint('users', __name__)
 
 
-# @user_routes.route('/')
+# def combined_routes():
+#     # if method=get, call index(), else call sign_up()
+#     if request.method == "GET":
+#         index()
+#     else:
+#         sign_up()
+
+# @user_routes.route('', methods=['GET', 'POST'])
 # def index():
 #     response = User.query.all()
 #     return {"users": [user.to_dict() for user in response]}
 
 
 @user_routes.route('', methods=['POST'])
-def sign_up(request):
+def sign_up():
     data = request.json
     # Create a hashed password
     password = data['password'].encode()
@@ -33,33 +40,32 @@ def sign_up(request):
     return jsonify({"user": user, "token": str(jwt)})
 
 
-# @ user_routes.route('/login', methods=['post'])
-# def login():
-#     data = request.json
-#     user = User.query.filter(User.email == data['email']).first()
-#     print(user)
-#     hashed_password = user.hashed_password
-#     if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
+@ user_routes.route('/login', methods=['post'])
+def login():
+    data = request.json
+    user = User.query.filter(User.email == data['email']).first()
+    print(user)
+    hashed_password = user.hashed_password
+    if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
 
-#         user_data = user.to_dict()
-#         jwt = create_jwt(user_data)
-#         return jsonify({"user": user_data, "token": str(jwt)})
-#     else:
+        user_data = user.to_dict()
+        jwt = create_jwt(user_data)
+        return jsonify({"user": user_data, "token": str(jwt)})
+    else:
 
-#         return jsonify('Bad Login')
+        return jsonify('Bad Login')
 
 
-# @ user_routes.route('/restore')
-# # @cross_origin(allow_headers=['Content-Type'])
-# def restore():
-#     # auth_header = request.headers['Authorization']
-#     # print(auth_header)
-#     # print(auth_header[7:])
-#     validated = validate_jwt(request)
-#     if (validated):
-#         return validated
-#     else:
-#         return jsonify(None)
+@ user_routes.route('/restore')
+def restore():
+    # auth_header = request.headers['Authorization']
+    # print(auth_header)
+    # print(auth_header[7:])
+    validated = validate_jwt(request)
+    if (validated):
+        return validated
+    else:
+        return jsonify(None)
 
 
 # @user_routes.route('/query/<user_id>/<query>')

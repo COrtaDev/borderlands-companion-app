@@ -4,13 +4,16 @@ import { apiUrl } from '../config';
 import { Redirect } from 'react-router-dom'
 import User from './User';
 
+
+
+// please delete me at some point and put me out of my misery...
 function UsersList(props) {
     const { token } = useSelector(state => state.auth);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(apiUrl + '/users/');
+            const response = await fetch(apiUrl + '/users');
             const responseData = await response.json();
             setUsers(responseData.users);
         }
@@ -18,7 +21,7 @@ function UsersList(props) {
     }, []);
 
     const userComponents = users.map((user) => <User key={user.id} user={user} />)
-    if (!token) return <Redirect to='/' />;
+    if (!token) return <Redirect to='/users' />;
     return (
         <>
             <h1>User List: </h1>

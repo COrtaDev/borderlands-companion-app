@@ -11,14 +11,12 @@ from app.api.user_routes import user_routes
 
 from app.config import Config
 
-# csrf = CSRFProtect()
 app = Flask(__name__, static_url_path='')
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 
 db.init_app(app)
-# csrf.init_app(app)
 migrate = Migrate(app, db)
 
 # Application Security
