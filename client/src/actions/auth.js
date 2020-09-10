@@ -4,14 +4,12 @@ export const SIGN_IN = "SIGNED_IN";
 export const LOG_OUT = "LOG_OUT";
 
 export const signUp = (userName, email, password) => async (dispatch) => {
-    // console.log('incoming signUp')
     try {
         const res = await fetch(`${apiUrl}/users`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userName, email, password }),
         });
-        // console.log('give me the cors')
         if (res.ok) {
             const data = await res.json();
             data.token = data.token.slice(2, data.token.length - 1);
@@ -32,7 +30,6 @@ export const login = (email, password) => async (dispatch) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
         });
-
         if (res.ok) {
             const data = await res.json();
             if (data === "Bad Login") return;
@@ -54,7 +51,6 @@ function getCookieValue(value) {
 
 export const hasAccessToken = () => async (dispatch) => {
     const token = getCookieValue(ACCESS_TOKEN);
-    // console.log(token)
     try {
         const res = await fetch(`${apiUrl}/users/restore`, {
             method: "get",
@@ -62,7 +58,6 @@ export const hasAccessToken = () => async (dispatch) => {
                 Authorization: "Bearer " + token,
             },
         });
-
         if (res.ok) {
             const data = await res.json();
             if (data !== null) {
