@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import { signUp } from '../../actions/auth';
 
 const SignUp = () => {
-    const { token } = useSelector(state => state.auth);
-    const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -14,23 +11,22 @@ const SignUp = () => {
     const submitSignUp = (event) => {
         event.stopPropagation();
         event.preventDefault();
-        dispatch(signUp(name, email, password));
+        dispatch(signUp(userName, email, password));
     };
 
     const setField = (event) => {
         const name = event.target.name;
-        if (name === 'name') {
-            setName(event.target.value);
+        if (name === 'userName') {
+            setUserName(event.target.value);
         } else if (name === 'email') {
             setEmail(event.target.value);
         } else if (name === 'password') {
             setPassword(event.target.value);
         };
     };
-
-    // if (token) {
-    //     return <Redirect to="/users"></Redirect>;
-    // };
+    console.log(userName)
+    console.log(email)
+    console.log(password)
 
     return (
         <>
@@ -41,7 +37,7 @@ const SignUp = () => {
                 </span>
                 <span>
                     <label>Create User Name:</label>
-                    <div><input name="name" required value={name} onChange={setField} /></div>
+                    <div><input name="userName" autoComplete="userName" required value={userName} onChange={setField} /></div>
                 </span>
                 <span>
                     <label>Password:</label>

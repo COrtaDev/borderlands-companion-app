@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify, request
 import bcrypt
+from flask import Blueprint, jsonify, request
+from flask_cors import cross_origin
 from app.models import db, User
 from app.auth import create_jwt, validate_jwt
 
@@ -11,31 +12,34 @@ def index():
     response = User.query.all()
     return {"users": [user.to_dict() for user in response]}
 
+
 @user_routes.route('', methods=['post'])
+@cross_origin(resources={r"/api/*": {"origins": "localhost"}})
 def sign_up():
     data = request.json
+    print(data)
     # Create a hashed password
     password = data['password'].encode()
     hashed_password = bcrypt.hashpw(
         password, bcrypt.gensalt(14)).decode('utf-8')
-
     # Generate and add new user to db
-    new_user = User(username=data['name'],
-                    email=data['email'],
-                    hashed_password=hashed_password)
-    db.session()
-    db.session.add(new_user)
-    db.session.commit()
-
+    try:
+        new_user = User(username=data['userName'],
+                        email=data['email'],
+                        hashed_password=hashed_password)
+        db.session.add(new_user)
+        db.session.flush()
+    except:
+        raise RuntimeError("Bad Submission")
     # get user and create jwt to return
     user = User.query.filter(User.email == data['email']).first().to_dict()
-
     jwt = create_jwt(user)
-
+    # only commit the new user after everything passes with no errors
+    db.session.commit()
     return jsonify({"user": user, "token": str(jwt)})
 
 
-@user_routes.route('/login', methods=['post'])
+@ user_routes.route('/login', methods=['post'])
 def login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
@@ -51,11 +55,12 @@ def login():
         return jsonify('Bad Login')
 
 
-@user_routes.route('/restore')
+@ user_routes.route('/restore')
+# @cross_origin(allow_headers=['Content-Type'])
 def restore():
-    # auth_header= request.headers['Authorization']
-    # print(auth_header)
-    # print(auth_header[7:])
+    auth_header = request.headers['Authorization']
+    print(auth_header)
+    print(auth_header[7:])
     validated = validate_jwt(request)
     if (validated):
         return validated

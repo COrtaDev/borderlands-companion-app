@@ -10,7 +10,7 @@ const auth = (state = defaultState, action) => {
                 token: action.token,
                 userId: action.user.id,
                 email: action.user.email,
-                name: action.user.name,
+                userName: action.user.userName,
                 loggedOut: false
             }
         }
