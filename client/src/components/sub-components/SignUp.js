@@ -9,7 +9,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     // We define a function to post the signup information to the database and dispatch the new users information to the store
-    const signUpUser = async () => {
+    const signUpUser = async (userName, email, password) => {
         // usersUrl = 'http://localhost:5000/api/users/'
         const res = await fetch(usersUrl, {
             method: "post",

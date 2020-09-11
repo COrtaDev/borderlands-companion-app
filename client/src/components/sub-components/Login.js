@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, SIGN_IN } from '../../actions/auth';
 import { loginUrl } from '../../config';
 // loginUrl = 'http://localhost:5000/api/users/login'
@@ -9,8 +10,9 @@ const Login = () => {
     const dispatch = useDispatch();
     /* We define a function to post the login information to the database
     based on the state of the component and update the store with the user's information*/
-    const loginUser = async () => {
+    const loginUser = async (email, password) => {
         // loginUrl = 'http://localhost:5000/api/users/login'
+        console.log(JSON.stringify({ email, password }))
         const res = await fetch(loginUrl, {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -21,22 +23,24 @@ const Login = () => {
             data.token = data.token.slice(2, data.token.length - 1);
             document.cookie = `${ACCESS_TOKEN}=${data.token}`;
             dispatch({ type: SIGN_IN, token: data.token, user: data.user });
+            return <Redirect to='/feed'></Redirect>
         }
     };
     /* Here we define a function to sumbit the login information from the
     state of the component which will fire once they click the 'submit' button*/
     const submitLogin = (e) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         e.preventDefault();
         loginUser(email, password)
     };
     /*Here we define a function to login as the demo user which
     fires when the user clicks the 'login as demo user' button*/
     const loginAsDemoUser = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+        // e.stopPropagation();
+        // e.preventDefault();
         setEmail("DemoUserEmail@demo.com");
         setPassword("demopassword");
+        console.log(email, password)
         loginUser(email, password)
     }
     /*Here we define a funtion to update the state of the
@@ -60,7 +64,7 @@ const Login = () => {
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'row' }}>
                     <div><button type='submit'>Login</button></div>
-                    <div><button type='submit' onClick={loginAsDemoUser}>Login As Demo User</button></div>
+                    <div><button onClick={loginAsDemoUser}>Login As Demo User</button></div>
                 </span>
             </form>
         </>

@@ -1,15 +1,13 @@
 import React from "react";
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { ACCESS_TOKEN, getCookieValue } from '../actions/auth'
 import Login from './sub-components/Login';
 import SignUp from './sub-components/SignUp';
 
 export const LandingPage = () => {
-    const { token } = useSelector(state => state.auth);
+    const token = getCookieValue(ACCESS_TOKEN);
 
-    if (token) {
-        return <Redirect to="/feed"></Redirect>;
-    };
+    if (token) { return <Redirect to="/feed"></Redirect>; };
 
     return (
         <>

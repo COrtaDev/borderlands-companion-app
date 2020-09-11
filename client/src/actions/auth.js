@@ -44,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 };
 
-function getCookieValue(value) {
+export const getCookieValue = (value) => {
     const match = document.cookie.match("(^|;)\\s*" + value + "\\s*=\\s*([^;]+)");
     return match ? match.pop() : null;
 }
@@ -67,3 +67,4 @@ export const hasAccessToken = () => async (dispatch) => {
         throw new Error(e)
     };
 };
+export default getCookieValue;
