@@ -1,13 +1,11 @@
 import React from "react";
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { ACCESS_TOKEN, getCookieValue } from '../actions/auth'
 
 export const Home = () => {
-    const { token } = useSelector(state => state.auth);
+    const token = getCookieValue(ACCESS_TOKEN);
 
-    if (token) {
-        return <Redirect to="/feed"></Redirect>;
-    };
+    if (token) { return <Redirect to="/feed"></Redirect>; };
 
     return (
         <>

@@ -1,15 +1,12 @@
 import React from "react";
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-// import { ACCESS_TOKEN, LOG_OUT } from "./actions/auth";
 
 import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import Feed from './components/Feed';
 import LogoutButton from './components/sub-components/LogoutButton'
 
-// import { hasAccessToken } from "./actions/auth";
+
 
 const App = () => {
     return (

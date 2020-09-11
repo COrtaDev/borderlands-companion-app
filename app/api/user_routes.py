@@ -1,32 +1,26 @@
 import bcrypt
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, session
 from app.models import db, User
 from app.auth import create_jwt, validate_jwt
 
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/', methods=['GET', 'POST'])
+@user_routes.route('', methods=['GET', 'POST'])
 def handle_signup():
     if request.method == "POST":
         return signup()
-    elif request.method == "GET":
-        return restore()
-        pass
-
-
-@ user_routes.route('/login', methods=['GET', 'POST'])
-def handle_login():
-    if request.method == "POST":
-        return login()
-    elif request.method == "GET":
-        return restore()
+    else:
+        session['request'] = request.json
+        req = session.get('request')
+        print("Is is what it is", req)
+        return("You are here")
 
 
 def signup():
     data = request.json
     if not data:
-        return ('Failed Request')
+        return ('You are here: Failed Request')
     # Create a hashed password
     password = data['password'].encode()
     hashed_password = bcrypt.hashpw(
@@ -43,8 +37,24 @@ def signup():
     jwt = create_jwt(user)
     # only commit the new user after everything passes with no errors
     return jsonify({"user": user, "token": str(jwt)})
+##########################################
+# def handle_signup():
+#     if request.method == "POST":
+#         return signup()
+#     else:
+#         return restore()
+#         pass
+##########################################
 
 
+# def handle_login():
+#     if request.method == "POST":
+#         return login()
+#     else:
+#         pass
+
+
+@user_routes.route('/login', methods=['POST'])
 def login():
     data = request.json
     user = User.query.filter(User.email == data['email']).first()
