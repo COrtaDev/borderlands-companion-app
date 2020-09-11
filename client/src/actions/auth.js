@@ -1,4 +1,5 @@
 import { usersUrl, loginUrl, restoreUrl } from "../config";
+// import { useDispatch } from 'react-redux';
 export const ACCESS_TOKEN = "ACCESS_TOKEN";
 export const SIGN_IN = "SIGNED_IN";
 export const LOG_OUT = "LOG_OUT";
@@ -67,4 +68,18 @@ export const hasAccessToken = () => async (dispatch) => {
         throw new Error(e)
     };
 };
-export default getCookieValue;
+// export const setCookie = (data, dispatch) => {
+//     // const dispatch = useDispatch()
+//     // let data, token, cookie;
+//     const cookiePromise = new Promise((resolve, reject) => {
+//         resolve(document.cookie = cookie);
+//     });
+//     cookiePromise
+//         // .then(data = await res.json())
+//         .then(token = data.token.slice(2, data.token.length - 1))
+//         .then(cookie = `${ACCESS_TOKEN}=${token}`)
+//         .then(dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
+//         .then(window.location.reload())
+// };
+// export default getCookieValue;
+// export default setCookie;

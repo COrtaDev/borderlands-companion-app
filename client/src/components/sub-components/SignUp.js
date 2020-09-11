@@ -20,9 +20,14 @@ const SignUp = () => {
         or the user so they do not have to log backin if they leave the page and return later*/
         if (res.ok) {
             const data = await res.json();
-            data.token = data.token.slice(2, data.token.length - 1);
-            document.cookie = `${ACCESS_TOKEN}=${data.token}`;
-            dispatch({ type: SIGN_IN, token: data.token, user: data.user });
+            const token = await data.token.slice(2, data.token.length - 1);
+            const cookie = `${ACCESS_TOKEN}=${token}`;
+            const setCookie = new Promise((resolve, reject) => {
+                resolve(document.cookie = cookie);
+            });
+            setCookie
+                .then(dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
+                .then(window.location.reload())
         }
     }
     /*Here we define a function to submit the information from the for
@@ -57,7 +62,7 @@ const SignUp = () => {
                     <div><input type="password" autoComplete="new-password" name="password" required value={password} onChange={setField} /></div>
                 </span>
                 <span>
-                    <div><button type="submit">Sign me up!</button></div>
+                    <div><button type="submit" disabled>Sign me up!</button></div>
                 </span>
             </form>
         </>
