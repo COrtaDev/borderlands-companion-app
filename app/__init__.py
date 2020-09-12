@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 import logging
 
 
-from app.models import db, User
+from app.models.users import db, User
 from app.api.user_routes import user_routes
 
 from app.config import Config
