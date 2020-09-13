@@ -14,7 +14,10 @@ class Comments(db.Model):
         db.DateTime(timezone=True), server_default=func.now())
     update_at = db.Column(
         db.DateTime(timezone=True), server_onupdate=func.now())
-
+    ##################################################################
+    # here are the necessary association tables:
+    # ----------------------------------------------------------------
+    # we can return all the information about a the user who left a comment
     commentor = db.relationship('User', foreign_keys=[commentor_id])
 
     def to_dict(self):
@@ -22,8 +25,8 @@ class Comments(db.Model):
             "id": self.id,
             "comment": self.comment,
             "loot_drop_id": self.loot_drop_id,
-            "commentor_id": self.commentor_id,
             "loot_drop_id": self.loot_drop_id,
             "created_at": self.created_at,
             "update_at": self.update_at,
+            "commentor_id": self.commentor_id.to_dict(),
         }
