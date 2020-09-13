@@ -7,9 +7,6 @@ class Loot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
-    manufacturer_id = db.Column(
-        db.Integer, db.ForeignKey('manufacturers.id'), nullable=False)
-    splash_dmg = db.Column(db.Boolean, nullable=False)
     # the following line was my previous idea for storing elemental data of each item:
     # element_id = db.Column(db.ARRAY, db.ForeignKey('elemental_types.id'))
     # -------NEW IDEA------------
@@ -20,6 +17,12 @@ class Loot(db.Model):
     # instead of a string, any array could accomodate any combination of elemental types that change over
     # time, should the game decide to change what varieties may spawn....
     elemental_types = db.Column(db.ARRAY, nullable=False)
+    # manufacturer_id = db.Column(
+    #     db.Integer, db.ForeignKey('manufacturers.id'), nullable=False)
+    # We have decided to change manufacturers for the same reasons as elemental types, some items may spawn
+    # with one or many different manufacuters so we can simple seed them as arrays and map them where they need to go
+    manufacturers = db.Column(db.ARRAY, nullable=False)
+    splash_dmg = db.Column(db.Boolean, nullable=False)
     world_drop = db.Column(db.Boolean, nullable=False)
     dropped_from = db.Column(db.String)
     reward_for = db.Column(db.String)
@@ -29,10 +32,11 @@ class Loot(db.Model):
             "id": self.id,
             "item_name": self.item_name,
             "type": self.type,
-            "manufacturer_id": self.manufacturer_id,
             "splash_dmg": self.splash_dmg,
             # "element_id": self.element_id,
             "elemental_types": self.elemental_types,
+            # "manufacturer_id": self.manufacturer_id,
+            "manufacturers": self.manufacturers,
             "world_drop": self.world_drop,
             "dropped_from": self.dropped_from,
             "reward_for": self.reward_for,
