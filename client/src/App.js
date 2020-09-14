@@ -5,7 +5,7 @@ import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import Feed from './components/Feed';
 import LogoutButton from './components/sub-components/LogoutButton';
-import LootDrop from './components/sub-components/LootDrop';
+import LootDropMockup from './components/sub-components/LootDropMockup';
 
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/landing" component={LandingPage} />
                 <Route path="/feed" component={Feed} />
-                <Route path="/lootdrop" component={LootDrop} />
+                <Route path="/lootdrop" component={LootDropMockup} />
             </Switch>
         </BrowserRouter>
     );

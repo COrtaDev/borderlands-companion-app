@@ -11,7 +11,9 @@ from app.models.loot_drops import Loot_Drop
 from app.models.loot import Loot
 from app.models.likes import Like
 from app.models.follows import Follow
+
 from app.api.user_routes import user_routes
+from app.api.loot_drops_routes import loot_drops_routes
 
 from app.config import Config
 
@@ -19,6 +21,7 @@ app = Flask(__name__, static_url_path='')
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(loot_drops_routes, url_prefix='/api/loot_drops')
 
 db.init_app(app)
 migrate = Migrate(app, db)

@@ -11,7 +11,7 @@ const name = "Zane F. Flynt";
 const handle = "zFerocityFlynt";
 const timestamp = "1:56PM | Sep 9, 2020"
 
-const LootDrop = (props) => {
+const LootDropMockup = () => {
 
 
     return (
@@ -65,4 +65,4 @@ const LootDrop = (props) => {
     )
 }
 
-export default LootDrop;
+export default LootDropMockup;
