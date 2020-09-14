@@ -65,7 +65,7 @@ const Login = () => {
                     <div><input type="email" autoComplete="email" name="email" required value={email} onChange={setField} /></div>
                 </span>
                 <span>
-                    <label >Password:</label>
+                    <label>Password:</label>
                     <div><input type="password" autoComplete="current-password" name="password" required value={password} onChange={setField} /></div>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'row' }}>

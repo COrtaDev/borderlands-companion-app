@@ -3,10 +3,14 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_migrate import Migrate
-import logging
 
-
-from app.models.users import db, User
+from app.models import db
+from app.models.users import User
+from app.models.comments import Comments
+from app.models.loot_drops import Loot_Drop
+from app.models.loot import Loot
+from app.models.likes import Like
+from app.models.follows import Follow
 from app.api.user_routes import user_routes
 
 from app.config import Config
