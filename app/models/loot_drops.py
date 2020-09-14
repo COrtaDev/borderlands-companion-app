@@ -1,4 +1,5 @@
 from . import db, func
+from app.models.loot import Loot
 
 
 class Loot_Drop(db.Model):
@@ -25,6 +26,7 @@ class Loot_Drop(db.Model):
     #######################################################################
     # here are the necessary association tables:
     # ----------------------------------------------------------------------
+    loot = db.relationship('Loot', foreign_keys=[loot_id])
     # we can return a list of all the comments posted to the loot_drop
     # comments = db.relationship('Comments', foreign_keys=[comments_id])
     # we can get the total number of comments a loot_drop has by taking the length of the list returned
@@ -38,6 +40,7 @@ class Loot_Drop(db.Model):
             "loot_id": self.loot_id,
             # "prefix_id": self.prefix_id,
             "level": self.level,
+            "loot": self.loot.to_dict(),
             # "comments_id": self.comments_id,
             # "like_id": self.like_id
             "created_at": self.created_at.__str__(),

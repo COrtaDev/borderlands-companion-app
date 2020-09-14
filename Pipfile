@@ -26,6 +26,7 @@ flask-migrate = "*"
 bcrypt = "*"
 psycopg2-binary = "*"
 alembic = "*"
+wikia = "*"
 
 [requires]
 python_version = "3.8"

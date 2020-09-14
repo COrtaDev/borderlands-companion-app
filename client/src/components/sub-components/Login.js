@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, SIGN_IN } from '../../actions/auth';
-// import setCookie from '../../actions/auth';
 import { loginUrl } from '../../config';
 // loginUrl = 'http://localhost:5000/api/users/login'
 const Login = () => {
@@ -21,22 +20,28 @@ const Login = () => {
         });
         if (res.ok) {
             const data = await res.json();
+            console.log(data.user);
             const token = await data.token.slice(2, data.token.length - 1);
             const cookie = `${ACCESS_TOKEN}=${token}`;
             const setCookie = new Promise((resolve, reject) => {
                 resolve(document.cookie = cookie);
             });
             setCookie
-                .then(dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
-                .then(window.location.reload());
-
+                .then(console.log("fucking dispatch you whore!"),
+                    dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
+                .then(console.log("get fucked"));
+            // .then(window.location = 'http://localhost:3000/feed');
+            // .then(window.location.reload());
+            console.log('why the fuck do you not redirect')
         }
+        // if(useStore) <Redirect to='/feed'></Redirect>
+
     };
     /* Here we define a function to sumbit the login information from the
     state of the component which will fire once they click the 'submit' button*/
     const submitLogin = (e) => {
         e.preventDefault();
-        loginUser(email, password)
+        loginUser(email, password);
     };
     /*Here we define a function to login as the demo user which
     fires when the user clicks the 'login as demo user' button*/

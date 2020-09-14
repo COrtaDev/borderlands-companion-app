@@ -12,7 +12,10 @@ const handle = "zFerocityFlynt";
 const timestamp = "1:56PM | Sep 9, 2020"
 
 const LootDrop = (props) => {
-
+    console.log(props)
+    const { loot, item_info } = props.loot;
+    console.log(loot[0])
+    console.log(item_info)
 
     return (
         <>
