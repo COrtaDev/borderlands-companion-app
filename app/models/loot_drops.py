@@ -40,8 +40,8 @@ class Loot_Drop(db.Model):
             "level": self.level,
             # "comments_id": self.comments_id,
             # "like_id": self.like_id
-            "created_at": self.created_at,
-            "update_at": self.update_at,
+            "created_at": self.created_at.__str__(),
+            "update_at": self.update_at.__str__(),
             # "comments": self.comments.to_dict(),
             # "total_comments": self.total_comments,
         }

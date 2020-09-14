@@ -12,7 +12,7 @@ def create_jwt(user):
         new_jwt = jwt.encode(user, Config.JWT_SECRET, algorithm='HS256')
         return new_jwt
     except:
-        raise RuntimeError("SignUp Failed")
+        raise RuntimeError("Operation: 'create_jwt' Failed")
 
 
 def validate_jwt(request):

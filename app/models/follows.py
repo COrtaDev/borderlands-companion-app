@@ -22,5 +22,5 @@ class Follow(db.Model):
             "id": self.id,
             "follower_id": self.follower_id,
             "followed_id": self.followed_id,
-            "created_at": self.created_at,
+            "created_at": self.created_at.__str__(),
         }

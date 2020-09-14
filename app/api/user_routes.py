@@ -62,8 +62,9 @@ def login():
     # print(user)
     hashed_password = user.hashed_password
     if bcrypt.checkpw(data['password'].encode(), hashed_password.encode()):
-        # print(user)
+        print(user)
         user_data = user.to_dict()
+        print(user_data)
         jwt = create_jwt(user_data)
         return jsonify({"user": user_data, "token": str(jwt)})
     else:

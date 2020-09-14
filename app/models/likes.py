@@ -29,7 +29,7 @@ class Like(db.Model):
             "liker_id": self.liker_id,
             "loot_drop_creator_id": self.loot_drop_creator_id,
             "loot_drop_id": self.loot_drop_id,
-            "created_at": self.created_at,
+            "created_at": self.created_at.__str__(),
             "liker": self.liker.to_dict(),
             "loot_drop": self.loot_drop.to_dict(),
             "loot_drop_creator": self.loot_drop_creator.to_dict(),
