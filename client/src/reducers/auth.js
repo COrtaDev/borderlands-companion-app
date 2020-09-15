@@ -3,10 +3,8 @@ import { SIGN_IN, LOG_OUT } from '../actions/auth'
 const defaultState = { loggedOut: true }
 
 const auth = (state = defaultState, action) => {
-    console.log("I have been dispatched here...")
     switch (action.type) {
         case SIGN_IN: {
-            console.log("yo")
             return {
                 ...state,
                 token: action.token,

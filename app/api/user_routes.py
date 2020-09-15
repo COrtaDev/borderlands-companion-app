@@ -14,7 +14,6 @@ def handle_signup():
     else:
         session['request'] = request.json
         req = session.get('request')
-        print("Is is what it is", req)
         return("You are here")
 
 
@@ -38,21 +37,6 @@ def signup():
     jwt = create_jwt(user)
     # only commit the new user after everything passes with no errors
     return jsonify({"user": user, "token": str(jwt)})
-##########################################
-# def handle_signup():
-#     if request.method == "POST":
-#         return signup()
-#     else:
-#         return restore()
-#         pass
-##########################################
-
-
-# def handle_login():
-#     if request.method == "POST":
-#         return login()
-#     else:
-#         pass
 
 
 @user_routes.route('/login', methods=['POST'])
@@ -72,39 +56,12 @@ def login():
         return jsonify('Bad Login')
 
 
-@user_routes.route('login/restore')
-def handle_restore():
-    restore()
-
-
+@user_routes.route('/restore')
 def restore():
     auth_header = request.headers['Authorization']
     validated = validate_jwt(request)
+    print(validated)
     if (validated):
-        return validated
+        return jsonify(validated)
     else:
         return jsonify(None)
-
-
-# @user_routes.route('/query/<user_id>/<query>')
-# def query_matching_users(user_id, query):
-
-#     # get list of frienships
-#     friendships = Friend.query.filter(
-#         or_(Friend.user1_id == int(user_id), Friend.user2_id == int(user_id))).all()
-#     friendship_dict = [friendship.to_dict() for friendship in friendships]
-
-#     # get list of all ids
-#     all_ids = []
-#     for friendship in friendship_dict:
-#         all_ids.append(friendship["user1_id"])
-#         all_ids.append(friendship["user2_id"])
-#     # filter to where id not queried id
-#     all_friend_ids = [
-#         friend_id for friend_id in all_ids if friend_id != int(user_id)]
-
-#     matches = User.query.filter(User.name.contains(query),
-#                                 User.id.in_(all_friend_ids) == False,
-#                                 User.id != int(user_id)).limit(10)
-#     matches_dict = [user.to_dict() for user in matches]
-#     return jsonify({'matches': matches_dict, 'query': query})

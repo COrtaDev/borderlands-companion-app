@@ -23,19 +23,20 @@ const Login = () => {
             console.log(data.user);
             const token = await data.token.slice(2, data.token.length - 1);
             const cookie = `${ACCESS_TOKEN}=${token}`;
-            const setCookie = new Promise((resolve, reject) => {
-                resolve(document.cookie = cookie);
-            });
-            setCookie
-                .then(console.log("fucking dispatch you whore!"),
-                    dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
-                .then(console.log("get fucked"));
+            document.cookie = cookie;
+            dispatch({ type: SIGN_IN, token: data.token, user: data.user })
+            
+            // const setCookie = new Promise((resolve, reject) => {
+            //     resolve(document.cookie = cookie);
+            // });
+            // setCookie
+            //     .then(dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
+            //     .then(console.log('another thing'));
             // .then(window.location = 'http://localhost:3000/feed');
             // .then(window.location.reload());
-            console.log('why the fuck do you not redirect')
         }
         // if(useStore) <Redirect to='/feed'></Redirect>
-
+        // console.lot('token')
     };
     /* Here we define a function to sumbit the login information from the
     state of the component which will fire once they click the 'submit' button*/
