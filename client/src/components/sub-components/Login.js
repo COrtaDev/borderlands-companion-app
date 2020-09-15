@@ -12,7 +12,6 @@ const Login = () => {
     based on the state of the component and update the store with the user's information*/
     const loginUser = async (email, password) => {
         // loginUrl = 'http://localhost:5000/api/users/login'
-        console.log(JSON.stringify({ email, password }))
         const res = await fetch(loginUrl, {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -20,23 +19,12 @@ const Login = () => {
         });
         if (res.ok) {
             const data = await res.json();
-            console.log(data.user);
+            // console.log(data.user);
             const token = await data.token.slice(2, data.token.length - 1);
             const cookie = `${ACCESS_TOKEN}=${token}`;
             document.cookie = cookie;
             dispatch({ type: SIGN_IN, token: data.token, user: data.user })
-            
-            // const setCookie = new Promise((resolve, reject) => {
-            //     resolve(document.cookie = cookie);
-            // });
-            // setCookie
-            //     .then(dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
-            //     .then(console.log('another thing'));
-            // .then(window.location = 'http://localhost:3000/feed');
-            // .then(window.location.reload());
         }
-        // if(useStore) <Redirect to='/feed'></Redirect>
-        // console.lot('token')
     };
     /* Here we define a function to sumbit the login information from the
     state of the component which will fire once they click the 'submit' button*/

@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue, SIGN_IN } from '../actions/auth';
-import { getLootDrops } from '../actions/user';
-import { restoreUrl } from '../config';
-
-import { lootDropsUrl } from '../config';
+import { getLootDrops } from '../actions/lootDrops';
 
 import LootDrop from './sub-components/LootDrop';
 
@@ -14,13 +11,14 @@ const Feed = (props) => {
     const token = getCookieValue(ACCESS_TOKEN);
     // const [feedUpdated, setFeedUpdated] = useState();
     // const { userId, username } = useSelector(state => state.auth);
-    const { loot } = useSelector(state => state.user);
+    const { loot } = useSelector(state => state.lootDrops);
     const { userId, username } = props;
-    useEffect(()=>{
+    useEffect(() => {
+        if (!userId) return;
+        dispatch(getLootDrops(userId))
+    }, [userId])
 
-    })
-
-    if (!token) { return <Redirect to="/"></Redirect> };
+    if (!token) { return <Redirect to="/landing"></Redirect> };
     // From the feed we will render the Loot Drop components.
     if (loot) {
         //begin rendering loot components for the feed
