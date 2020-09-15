@@ -16,16 +16,17 @@ class Loot(db.Model):
     # and we would be able to map these values where they need to go. It would also become easier to seed,
     # instead of a string, any array could accomodate any combination of elemental types that change over
     # time, should the game decide to change what varieties may spawn....
-    elemental_types = db.Column(db.ARRAY, nullable=False)
+    elemental_types = db.Column(db.ARRAY(db.String), nullable=False)
     # manufacturer_id = db.Column(
     #     db.Integer, db.ForeignKey('manufacturers.id'), nullable=False)
     # We have decided to change manufacturers for the same reasons as elemental types, some items may spawn
     # with one or many different manufacuters so we can simple seed them as arrays and map them where they need to go
-    manufacturers = db.Column(db.ARRAY, nullable=False)
+    manufacturers = db.Column(db.ARRAY(db.String), nullable=False)
     splash_dmg = db.Column(db.Boolean, nullable=False)
     world_drop = db.Column(db.Boolean, nullable=False)
     dropped_from = db.Column(db.String)
     reward_for = db.Column(db.String)
+    location = db.Column(db.String)
 
     def to_dict(self):
         return {
@@ -40,4 +41,5 @@ class Loot(db.Model):
             "world_drop": self.world_drop,
             "dropped_from": self.dropped_from,
             "reward_for": self.reward_for,
+            "location": self.location,
         }

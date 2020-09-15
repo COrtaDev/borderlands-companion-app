@@ -26,7 +26,7 @@ class Comments(db.Model):
             "comment": self.comment,
             "loot_drop_id": self.loot_drop_id,
             "loot_drop_id": self.loot_drop_id,
-            "created_at": self.created_at,
-            "update_at": self.update_at,
+            "created_at": self.created_at.__str__(),
+            "update_at": self.update_at.__str__(),
             "commentor_id": self.commentor_id.to_dict(),
         }

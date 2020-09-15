@@ -24,6 +24,9 @@ WTForms = "==2.3.3"
 Flask-JWT-Extended = "==3.24.1"
 flask-migrate = "*"
 bcrypt = "*"
+psycopg2-binary = "*"
+alembic = "*"
+wikia = "*"
 
 [requires]
 python_version = "3.8"

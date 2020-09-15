@@ -3,4 +3,5 @@ export const imageUrl = `${baseUrl}`;
 export const apiUrl = `${baseUrl}/api`;
 export const usersUrl = `${apiUrl}/users/`;
 export const loginUrl = `${apiUrl}/users/login`;
-export const restoreUrl = `${apiUrl}/users/login/restore`;
+export const restoreUrl = `${apiUrl}/users/restore`;
+export const lootDropsUrl = `${baseUrl}/api/loot_drops`;

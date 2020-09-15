@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import Feed from './components/Feed';
 import LogoutButton from './components/sub-components/LogoutButton';
-import LootDrop from './components/sub-components/LootDrop';
+import LootDropMockup from './components/sub-components/LootDropMockup';
 
 
 const App = () => {
+    const { userId, username } = useSelector(state => state.auth);
     return (
         <BrowserRouter>
             <nav>
@@ -23,8 +24,8 @@ const App = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/landing" component={LandingPage} />
-                <Route path="/feed" component={Feed} />
-                <Route path="/lootdrop" component={LootDrop} />
+                <Route path="/feed"><Feed userId={userId} username={username} /></Route>
+                <Route path="/lootdrop" component={LootDropMockup} />
             </Switch>
         </BrowserRouter>
     );
