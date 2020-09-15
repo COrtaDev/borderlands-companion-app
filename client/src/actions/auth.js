@@ -9,19 +9,19 @@ export const getCookieValue = (value) => {
     return match ? match.pop() : null;
 }
 
-// export const hasAccessToken = () => async (dispatch) => {
-//     const token = getCookieValue(ACCESS_TOKEN);
-//     console.log(token)
-//         const res = await fetch(`${restoreUrl}`, {
-//             headers: { Authorization: "Bearer " + token },
-//         });
-//         if (res.ok) {
-//             const data = await res.json();
-//             if (data !== null) {
-//                 dispatch({ type: SIGN_IN, token: data.token, user: data.user });
-//             };
-//         };
-
+export const hasAccessToken = () => async (dispatch) => {
+    const token = getCookieValue(ACCESS_TOKEN);
+    // console.log(token)
+    const res = await fetch(`${restoreUrl}`, {
+        headers: { Authorization: "Bearer " + token },
+    });
+    if (res.ok) {
+        const data = await res.json();
+        if (data !== null) {
+            dispatch({ type: SIGN_IN, token: data.token, user: data.user });
+        };
+    };
+}
 // };
 // export const signUp = (userName, email, password) => async (dispatch) => {
     //     try {

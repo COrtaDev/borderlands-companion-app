@@ -1,6 +1,6 @@
-import { LOOT_DROPS } from '../actions/user';
+import { LOOT_DROPS } from '../actions/lootDrops';
 
-const user = (state = {}, action) => {
+const lootDrops = (state = {}, action) => {
     switch (action.type) {
         case LOOT_DROPS: {
             return {
@@ -12,4 +12,4 @@ const user = (state = {}, action) => {
             return { ...state };
     }
 };
-export default user;
+export default lootDrops;
