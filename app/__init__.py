@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 
 from app.models import db
 from app.models.users import User
-from app.models.comments import Comments
+from app.models.comments import Comment
 from app.models.loot_drops import Loot_Drop
 from app.models.loot import Loot
 from app.models.likes import Like
