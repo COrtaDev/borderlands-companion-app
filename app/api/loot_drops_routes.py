@@ -1,50 +1,54 @@
 from flask import Blueprint, jsonify, request, session
 from app.models import db
 from app.models.loot_drops import Loot_Drop
+from app.models.likes import Like
+from app.models.comments import Comment
+from collections import Counter
 import wikia
 loot_drops_routes = Blueprint('loot_drops', __name__)
 
 
 @loot_drops_routes.route('/<id>')
 def get_loot_drops(id):
+    # We need to query for the number of likes a user has
+    total_likes_on_all_drops = Like.query.with_entities(Like.loot_drop_id).filter(
+        Like.loot_drop_creator_id == int(id)).all()
+    likes = Counter(total_likes_on_all_drops)
+    # We query the loot_drop table and return all the users loot drops
     loot_drops = Loot_Drop.query.filter(Loot_Drop.creator_id == int(id)).all()
-    # print('\n\n\n\n***THESE ARE OUR LOOT DROPS***\n\n', loot_drops, '\n')
-    loot = [drop.to_dict() for drop in loot_drops]
-    # print('\n\n\n\n***THESE ARE OUR LOOT DROPS***\n\n', loot, '\n')
+    loot_drop_list = [drop.to_dict() for drop in loot_drops]
+    # We call the wiki api for each the loot_items in the user has
     additional_info = []
-    for loot_drop in loot:
-        print(loot_drop)
+    # We append the data from the api to the additional_info queue
+    for loot_item in loot_drop_list:
+        # we grab the loot drops id so we can count the likes/comments
+        drop_id = loot_item['id']
+        total_likes = dict(likes=likes[(drop_id,)])
+        # We need to query for the number of comments a user has
+        total_comments_on_all_drops = Comment.query.with_entities(
+            Comment.loot_drop_id).filter(Comment.loot_drop_id == drop_id).all()
+        comments = Counter(total_comments_on_all_drops)
+        total_comments = dict(comments=comments[(drop_id,)])
+        # an item is the weapon, mod, shield, or artifact
+        item = loot_item['loot_item']
+        # we extract the name of the item here for use in the api
+        item_name = item['item_name']
+        # call to the api and append the data to the queue
+        additional_info.append(fetch_additional_info(item_name))
+        additional_info.append(total_likes)
+        additional_info.append(total_comments)
+    # loot_drop_list.append(total_likes)
+    # Once the queue is full we update it into the loot drop list
+    for loot_drop in loot_drop_list:
+        # We pop the 3 things we pushed into the queue into the lootdrop
+        loot_drop.update(additional_info.pop(0))
+        loot_drop.update(additional_info.pop(0))
+        loot_drop.update(additional_info.pop(0))
+    return jsonify(loot=loot_drop_list)
 
-    return jsonify(loot=loot)
-    # print(loot_drops.loot)
-    # print('\n***THIS IS OUR LOOT DROP***\n\n', loot[0]['loot_item'], '\n')
-    # We would like to fetch additional info for each piece of loot in our loot drops
-    # We have a helper function that will grab the
-    # loot_items = [fetch_additional_info(item) for item in loot]
-    # item = loot[0]['loot_item']
-    ########################################################################################
-    ########################################################################################
-    ########################################################################################
-    # originally, we wanted to ping the aditional info at the time of this query,
-    # but it may be better to ping the additional information later
 
-    # Here we create a list of items from the loot drops returned from the query
-    # We will them pass each to the helper function
-    # items = [loot['loot_item'] for loot in loot]
-    # print('\n***THESE ARE ITEMS***\n\n', items, '\n\n\n')
-    # loot_info = [fetch_additional_info(item) for item in items]
-    # print('\n***THESE IS THE MORE INFO LIST***\n\n', loot_info, '\n\n\n')
-
-    # item_info = fetch_additional_info(item)
-    # print('\n***THIS IS OUR ITEM INFO***\n\n', item_info, '\n\n\n')
-
-    # return jsonify(loot=loot, loot_info=loot_info)
-
-
-def fetch_additional_info(item):
-    print('***this is inside the function***\n',
-          item, '\n', item['item_name'], '\n')
-    item_wikia = wikia.page("Borderlands", item['item_name'])
+def fetch_additional_info(item_name, all=False):
+    item_wikia = wikia.page("Borderlands", item_name)
     item_page_url = item_wikia.url
     item_img_url = item_wikia.images[0]
     item_content = item_wikia.content
@@ -54,5 +58,6 @@ def fetch_additional_info(item):
             'itemUrl': item_page_url,
             'imgUrl': item_img_url,
             'content': item_content,
-            'summary': item_summary}}
+            'summary': item_summary
+        }}
     return item_info

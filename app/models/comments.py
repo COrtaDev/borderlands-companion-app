@@ -1,7 +1,7 @@
 from . import db, func
 
 
-class Comments(db.Model):
+class Comment(db.Model):
     __tablename__ = 'comments'
     # We can return all the comments a user had made by querying all entries for the users.id as the commentor_id
     id = db.Column(db.Integer, primary_key=True)
