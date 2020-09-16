@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from app import app
+import app
 from app.models import db
 from app.models.users import User
 from app.models.loot import Loot
