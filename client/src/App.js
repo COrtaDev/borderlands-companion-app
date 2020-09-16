@@ -7,7 +7,7 @@ import Portal from './components/Portal';
 import Feed from './components/Feed';
 import LogoutButton from './components/sub-components/LogoutButton';
 import LootDropMockup from './components/sub-components/LootDropMockup';
-
+import Home from './components/Home';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const App = () => {
                 <ul>
                     <li><NavLink to="/landing" activeclass="active">Landing</NavLink></li>
                     <li><NavLink to="/portal" activeclass="active">Login/Signup Portal</NavLink></li>
-                    <li><NavLink to="/feed" activeclass="active">Feed</NavLink></li>
+                    <li><NavLink to="/home" activeclass="active">Feed</NavLink></li>
                     <li><NavLink to="/lootdrop" activeclass="active">Loot Drop</NavLink></li>
                     <LogoutButton />
                 </ul>
@@ -31,7 +31,7 @@ const App = () => {
             <Switch>
                 <Route exact path="/landing" component={Landing} />
                 <Route path="/portal" component={Portal} />
-                <Route path="/feed"><Feed userId={userId} userName={userName} /></Route>
+                <Route path="/home"><Home userId={userId} userName={userName} /></Route>
                 <Route path="/lootdrop"><LootDropMockup userId={userId} userName={userName} /></Route>
             </Switch>
         </BrowserRouter>

@@ -26,7 +26,7 @@ const Feed = (props) => {
         const lootDropComponents = loot.loot.map((loot) => <LootDrop key={loot.id} loot={loot} userName={userName} />)
         return (
             <>
-                <h1>Welcome to your feed Vault Hunter {userName}!</h1>
+                {/* <h1>Welcome to your feed Vault Hunter {userName}!</h1> */}
                 {lootDropComponents}
             </>
         );
