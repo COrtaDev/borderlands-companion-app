@@ -12,7 +12,7 @@ import LootDropMockup from './components/sub-components/LootDropMockup';
 const App = () => {
     const dispatch = useDispatch();
     const token = getCookieValue(ACCESS_TOKEN);
-    const { userId, username } = useSelector(state => state.auth);
+    const { userId, userName } = useSelector(state => state.auth);
     // console.log(userId)
     if (!userId) {
         dispatch(hasAccessToken())
@@ -31,8 +31,8 @@ const App = () => {
             <Switch>
                 <Route exact path="/landing" component={Landing} />
                 <Route path="/portal" component={Portal} />
-                <Route path="/feed"><Feed userId={userId} username={username} /></Route>
-                <Route path="/lootdrop"><LootDropMockup userId={userId} username={username} /></Route>
+                <Route path="/feed"><Feed userId={userId} userName={userName} /></Route>
+                <Route path="/lootdrop"><LootDropMockup userId={userId} userName={userName} /></Route>
             </Switch>
         </BrowserRouter>
     );
