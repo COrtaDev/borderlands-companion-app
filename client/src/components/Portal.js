@@ -6,7 +6,7 @@ import SignUp from './sub-components/SignUp';
 
 export const Portal = () => {
     const token = getCookieValue(ACCESS_TOKEN);
-    if (token) { return <Redirect to="/feed"></Redirect>; };
+    if (token) { return <Redirect to="/home"></Redirect>; };
     return (
         <>
             <span style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', }}>

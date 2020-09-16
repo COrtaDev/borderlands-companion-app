@@ -23,7 +23,7 @@ const App = () => {
                 <ul>
                     <li><NavLink to="/landing" activeclass="active">Landing</NavLink></li>
                     <li><NavLink to="/portal" activeclass="active">Login/Signup Portal</NavLink></li>
-                    <li><NavLink to="/home" activeclass="active">Feed</NavLink></li>
+                    <li><NavLink to="/home" activeclass="active">Home</NavLink></li>
                     <li><NavLink to="/lootdrop" activeclass="active">Loot Drop</NavLink></li>
                     <LogoutButton />
                 </ul>
