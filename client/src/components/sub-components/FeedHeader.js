@@ -1,6 +1,8 @@
 import React from 'react';
-const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMeteor, faDiceD20, faCity, faIndustry, faHandHoldingUsd, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 
+const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 const FeedHeader = () => {
 
 
@@ -22,12 +24,23 @@ const FeedHeader = () => {
                                 <input style={{ width: '100%', height: '35px', boxSizing: 'border-box', background: 'black', border: 'unset' }} type="text" placeholder="Share your loot drop..."></input>
                             </div>
                             <div>
-                                <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding:'8px 4px 0px 4px' }}>
-                                    <div>
-                                        <p style={{ color: 'whitesmoke', margin: '0px' }}>Buttons will go here...</p>
+                                <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding: '8px 4px 0px 4px' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
+                                        <div>
+                                            <a style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' /></span></a>
+                                        </div>
+                                        <div>
+                                            <a style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faHandHoldingUsd} size='2x' opacity='.5' /></span></a>
+                                        </div>
+                                        <div>
+                                            <a style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faCity} size='2x' opacity='.5' /></span></a>
+                                        </div>
+                                        <div>
+                                            <a style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faMeteor} size='2x' opacity='.5' /></span></a>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p style={{ color: 'whitesmoke', margin: '0px' }}>Submit button will go here</p>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '125px', height: '35px', borderRadius: '1em', background: 'rgb(102 2 0 / 50%)' }}>
+                                        <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', color: 'whitesmoke', margin: '0px' }}>Drop this Loot</p>
                                     </div>
                                 </span>
                             </div>
