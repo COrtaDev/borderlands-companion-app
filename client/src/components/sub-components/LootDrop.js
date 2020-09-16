@@ -3,19 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDollar, faRetweet, faBomb, faExternalLinkAlt, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
 const imgUrl = "https://vignette.wikia.nocookie.net/borderlands/images/f/ff/Zane_1.png/revision/latest/scale-to-width-down/120?cb=20190925154035";
 const itemUrl = "https://vignette.wikia.nocookie.net/borderlands/images/e/ed/Seein%27_Dead_infoboxpic.jpg";
-const message = "Who knew this would be so hard to find...";
+// const message = "Who knew this would be so hard to find...";
 const prefix = "Dastardly";
 const item = "Seein' Dead";
-const level = 50;
-const name = "Zane F. Flynt";
+// const level = 50;
+// const name = "Zane F. Flynt";
 const handle = "zFerocityFlynt";
 const timestamp = "1:56PM | Sep 9, 2020"
 
 const LootDrop = (props) => {
-    console.log(props)
-    const { loot, item_info } = props.loot;
-    console.log(loot[0])
-    console.log(item_info)
+    const { userName } = props;
+    const { message, level, loot_item } = props.loot;
+    console.log(props.loot)
+    // const { loot, item_info } = props.loot;
+    // console.log(loot[0])
+    // console.log(item_info)
 
     return (
         <>
@@ -30,7 +32,7 @@ const LootDrop = (props) => {
                     <div>
                         <div style={{ display: 'flex', flexDirection: "column", color: 'whitesmoke', fontFamily: 'Helvetica', }}>
                             <p>
-                                <strong style={{ fontSize: '27px', textShadow: '1px 1px 4px rgb(254 254 206 / 33%)', WebkitTextStroke: '1px rgb(0 0 0 / 75%)' }}>{name}</strong><br></br>
+                                <strong style={{ fontSize: '27px', textShadow: '1px 1px 4px rgb(254 254 206 / 33%)', WebkitTextStroke: '1px rgb(0 0 0 / 75%)' }}>{userName}</strong><br></br>
                                 <small style={{ color: '#d3d2ab', fontSize: '16px', opacity: '0.6' }}>@{handle}</small> <small style={{ opacity: '0.85' }}>{timestamp}</small>
                             </p>
                             <p style={{ fontSize: '18px', fontWeight: '500', letterSpacing: '.02rem', }}>{message}</p>

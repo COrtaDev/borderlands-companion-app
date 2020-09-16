@@ -9,23 +9,25 @@ import LootDrop from './sub-components/LootDrop';
 const Feed = (props) => {
     const dispatch = useDispatch();
     const token = getCookieValue(ACCESS_TOKEN);
-    // const [feedUpdated, setFeedUpdated] = useState();
-    // const { userId, username } = useSelector(state => state.auth);
     const { loot } = useSelector(state => state.lootDrops);
-    const { userId, username } = props;
+    const { userId, userName } = props;
+
     useEffect(() => {
         if (!userId) return;
         dispatch(getLootDrops(userId))
-    }, [userId])
+    }, [userId, userName])
 
     if (!token) { return <Redirect to="/landing"></Redirect> };
     // From the feed we will render the Loot Drop components.
     if (loot) {
+
+        console.log(loot)
         //begin rendering loot components for the feed
+        const lootDropComponents = loot.loot.map((loot) => <LootDrop key={loot.id} loot={loot} userName={userName} />)
         return (
             <>
-                <h1>Welcome to your feed Vault Hunter!</h1>
-                <LootDrop loot={loot} />
+                <h1>Welcome to your feed Vault Hunter {userName}!</h1>
+                {lootDropComponents}
             </>
         );
     } else {
