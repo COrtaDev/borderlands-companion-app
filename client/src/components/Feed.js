@@ -17,7 +17,7 @@ const Feed = (props) => {
         dispatch(getLootDrops(userId))
     }, [userId, userName])
 
-    if (!token) { return <Redirect to="/landing"></Redirect> };
+    if (!token) { return <Redirect to="/"></Redirect> };
     // From the feed we will render the Loot Drop components.
     if (loot) {
 

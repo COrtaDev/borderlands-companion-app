@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
 import Login from './sub-components/Login';
