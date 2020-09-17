@@ -53,7 +53,7 @@ const LootDropMockup = () => {
                         <nav id='icons'>
                             <div style={{ display: "flex", justifyContent: "space-between", padding: '10px', }}>
                                 <a href='/comments/add/<id>' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)' }}><span><FontAwesomeIcon icon={faCommentDollar} size='2x' opacity='.5' /></span></a>
-                                <a hreh='/users/retweets/<id>' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)' }}><span><FontAwesomeIcon icon={faRetweet} size='2x' opacity='.5' /></span></a>
+                                <a href='/users/retweets/<id>' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)' }}><span><FontAwesomeIcon icon={faRetweet} size='2x' opacity='.5' /></span></a>
                                 <a href='/bombs' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)' }}><span><FontAwesomeIcon icon={faBomb} size='2x' opacity='.5' /></span></a>
                                 <a href='/share' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)' }}><span><FontAwesomeIcon icon={faExternalLinkAlt} size='2x' opacity='.5' /></span></a>
                             </div>

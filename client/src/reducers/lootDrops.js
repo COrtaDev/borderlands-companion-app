@@ -5,7 +5,8 @@ const lootDrops = (state = {}, action) => {
         case LOOT_DROPS: {
             return {
                 ...state,
-                loot: action.loot
+                loot: action.loot,
+                lootDrops: action.lootDrops
             }
         }
         default:

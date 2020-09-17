@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, SIGN_IN } from '../../actions/auth';
 import { loginUrl } from '../../config';
 // loginUrl = 'http://localhost:5000/api/users/login'

@@ -45,7 +45,7 @@ const LootDrop = (props) => {
                                 padding: '0px 1px 1px 1px', textShadow: '1px 1px 1px rgb(254 254 206 / 40%)', WebkitTextStroke: '1px rgb(0 0 0 / 30%)'
                             }}>
                                 {} {item_name} LVL {level}<br></br>
-                                <a href={itemUrl} target='_blank'><img src={imgUrl} style={{ width: '550px', borderRadius: '1rem', border: '1px solid rgb(230 228 224 / 50%)', boxShadow: ' 0px 0px 7px 0px rgba(217, 171, 17, 0.40)' }} alt=''></img></a>
+                                <a href={itemUrl} target='_blank' rel='noreferrer noopener'><img src={imgUrl} style={{ width: '550px', borderRadius: '1rem', border: '1px solid rgb(230 228 224 / 50%)', boxShadow: ' 0px 0px 7px 0px rgba(217, 171, 17, 0.40)' }} alt=''></img></a>
                             </p>
                         </div>
                         <nav id='icons'>
