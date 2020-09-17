@@ -1,22 +1,19 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { hasAccessToken, getCookieValue, ACCESS_TOKEN } from './actions/auth';
+import { hasAccessToken } from './actions/auth';
 import Landing from './components/Landing';
 import Portal from './components/Portal';
 import PortalModal from './components/modals/PortalModal';
 import LogoutButton from './components/sub-components/LogoutButton';
 import LootDropMockup from './components/sub-components/LootDropMockup';
 import Home from './components/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
     const dispatch = useDispatch();
-    const token = getCookieValue(ACCESS_TOKEN);
     const { userId, userName } = useSelector(state => state.auth);
-    // console.log(userId)
-    if (!userId) {
-        dispatch(hasAccessToken())
-    }
+    if (!userId) { dispatch(hasAccessToken()) }
     return (
         <BrowserRouter>
             <nav>

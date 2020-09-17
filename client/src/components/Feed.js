@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { ACCESS_TOKEN, getCookieValue, SIGN_IN } from '../actions/auth';
+import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
 import { getLootDrops } from '../actions/lootDrops';
-
 import LootDrop from './sub-components/LootDrop';
 
 const Feed = (props) => {
@@ -11,30 +10,24 @@ const Feed = (props) => {
     const token = getCookieValue(ACCESS_TOKEN);
     const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
+    console.log(loot)
 
     useEffect(() => {
-        if (!userId) return;
+        if (!userId || loot) return;
         dispatch(getLootDrops(userId))
-    }, [userId, userName])
+    });
 
     if (!token) { return <Redirect to="/"></Redirect> };
     // From the feed we will render the Loot Drop components.
-    if (loot) {
-
+    if (!loot) {return null;}
+    else {
         console.log(loot)
         //begin rendering loot components for the feed
         const lootDropComponents = loot.loot.map((loot) => <LootDrop key={loot.id} loot={loot} userName={userName} />)
+        // dispatch()
         return (
             <>
-                {/* <h1>Welcome to your feed Vault Hunter {userName}!</h1> */}
                 {lootDropComponents}
-            </>
-        );
-    } else {
-        return (
-            <>
-                <h1>Welcome to your feed Vault Hunter!</h1>
-                <p>You have no Loot yet...</p>
             </>
         );
     }
