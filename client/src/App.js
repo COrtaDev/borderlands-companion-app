@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hasAccessToken, getCookieValue, ACCESS_TOKEN } from './actions/auth';
 import Landing from './components/Landing';
 import Portal from './components/Portal';
-import Feed from './components/Feed';
+import PortalModal from './components/modals/PortalModal';
 import LogoutButton from './components/sub-components/LogoutButton';
 import LootDropMockup from './components/sub-components/LootDropMockup';
 import Home from './components/Home';
@@ -25,6 +25,7 @@ const App = () => {
                     <li><NavLink to="/portal" activeclass="active">Login/Signup Portal</NavLink></li>
                     <li><NavLink to="/home" activeclass="active">Home</NavLink></li>
                     <li><NavLink to="/lootdrop" activeclass="active">Loot Drop</NavLink></li>
+                    <li><NavLink to="/portalmodal" activeclass="active">Portal Modal</NavLink></li>
                     <LogoutButton />
                 </ul>
             </nav>
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/portal" component={Portal} />
                 <Route path="/home"><Home userId={userId} userName={userName} /></Route>
                 <Route path="/lootdrop"><LootDropMockup userId={userId} userName={userName} /></Route>
+                <Route path="/portalmodal" component={PortalModal}></Route>
             </Switch>
         </BrowserRouter>
     );
