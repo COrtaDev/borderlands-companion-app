@@ -10,13 +10,13 @@ const LootDrop = (props) => {
     const { userName } = props;
     const { message, level, created_at, likes, comments } = props.loot;
     const { item_name } = props.loot.loot_item
-    const { imgUrl } = props.loot.item_info;
+    const { imgUrl, itemUrl } = props.loot.item_info;
 
     return (
         <>
             <article id='main' style={{
                 display: 'flex ', flexDirection: 'column', alignItems: 'left', boxShadow: 'inset 0px 0px 22px 0px rgba(217, 171, 17, 0.35)',
-                width: 'max-content', border: '1px solid rgb(230 228 224 / 50%)', borderRadius: '1rem', background: 'black', padding: '20px 20px 0px 20px'
+                width: 'max-content', border: '1px solid rgb(230 228 224 / 50%)', borderRadius: '1rem', background: 'black', padding: '20px 20px 0px 20px', marginBottom: '2px'
             }}>
                 <article id='top' style={{ display: 'flex', flexDirection: "row", justifyContent: 'flex-start', width: 'auto', }}>
                     <figure style={{ margin: '0px 20px 0px 0px' }}>
@@ -45,7 +45,7 @@ const LootDrop = (props) => {
                                 padding: '0px 1px 1px 1px', textShadow: '1px 1px 1px rgb(254 254 206 / 40%)', WebkitTextStroke: '1px rgb(0 0 0 / 30%)'
                             }}>
                                 {} {item_name} LVL {level}<br></br>
-                                <img src={imgUrl} style={{ width: '550px', borderRadius: '1rem', border: '1px solid rgb(230 228 224 / 50%)', boxShadow: ' 0px 0px 7px 0px rgba(217, 171, 17, 0.40)' }} alt=''></img>
+                                <a href={itemUrl} target='_blank'><img src={imgUrl} style={{ width: '550px', borderRadius: '1rem', border: '1px solid rgb(230 228 224 / 50%)', boxShadow: ' 0px 0px 7px 0px rgba(217, 171, 17, 0.40)' }} alt=''></img></a>
                             </p>
                         </div>
                         <nav id='icons'>
