@@ -21,7 +21,7 @@ const App = () => {
         <BrowserRouter>
             <nav>
                 <ul>
-                    <li><NavLink to="/landing" activeclass="active">Landing</NavLink></li>
+                    <li><NavLink to="/" activeclass="active">Landing</NavLink></li>
                     <li><NavLink to="/portal" activeclass="active">Login/Signup Portal</NavLink></li>
                     <li><NavLink to="/home" activeclass="active">Home</NavLink></li>
                     <li><NavLink to="/lootdrop" activeclass="active">Loot Drop</NavLink></li>
@@ -29,7 +29,7 @@ const App = () => {
                 </ul>
             </nav>
             <Switch>
-                <Route exact path="/landing" component={Landing} />
+                <Route exact path="/" component={Landing} />
                 <Route path="/portal" component={Portal} />
                 <Route path="/home"><Home userId={userId} userName={userName} /></Route>
                 <Route path="/lootdrop"><LootDropMockup userId={userId} userName={userName} /></Route>
