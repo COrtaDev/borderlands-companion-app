@@ -16,16 +16,7 @@ export const PortalModalSplash = (props) => {
         </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>You loot awaits!</h4>
-                <br></br>
-                <br></br>
-                <br></br>
-                <p>
-                    Some such content
-                </p>
-                <br></br>
-                <br></br>
-                <br></br>
+                <Login />
             </Modal.Body>
             <Modal.Footer>
                 {/* <Button onClick={props.onLogin}>Login</Button>
