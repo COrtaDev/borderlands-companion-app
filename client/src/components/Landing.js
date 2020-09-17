@@ -86,7 +86,7 @@ export const Landing = () => {
     const [modalShow, setModalShow] = useState(false);
     const [modalLogin, setModalLogin] = useState(false);
     const [modalSignup, setModalSignup] = useState(false);
-    const [modalBack, setModalBack] = useState(false);
+    // These function handle how the portal modal behaves
     const handleHide = () => {
         setModalShow(false)
         setModalLogin(false)
