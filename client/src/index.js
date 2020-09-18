@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import LoadingIndicator from './components/sub-components/LoadingIndicator';
+
 
 const store = configureStore();
 window.store = store;
@@ -13,6 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
+      <LoadingIndicator />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

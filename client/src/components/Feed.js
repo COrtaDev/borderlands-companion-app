@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, componentDidMount } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
 import { getLootDrops } from '../actions/lootDrops';
 import LootDrop from './sub-components/LootDrop';
-import waitingDialog from 'bootstrap-waitingfor';
+// import waitingDialog from 'bootstrap-waitingfor';
+import { trackPromise } from 'react-promise-tracker';
 
 const Feed = (props) => {
     const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const Feed = (props) => {
 
     useEffect(() => {
         if (loot || !userId) return;
-        dispatch(getLootDrops(userId))
+        // dispatch(getLootDrops(userId))
+        trackPromise(dispatch(getLootDrops(userId)))
     });
 
     if (!token) { return <Redirect to="/"></Redirect> };

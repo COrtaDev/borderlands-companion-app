@@ -11,7 +11,7 @@ I am telling you this so you can understand strange behavior if you forget and u
 */
     return (
         <>
-            <header style={{ background: 'black', borderRadius: '0em 0em 1em 1em', boxShadow: 'inset 0px -8px 22px 0px rgba(217, 171, 17, 0.35)', border: '1px solid rgb(230 228 224 / 50%)' }}>
+            <header style={{ background: 'black',width:'596px', borderRadius: '0em 0em 1em 1em', boxShadow: 'inset 0px -8px 22px 0px rgba(217, 171, 17, 0.35)', border: '1px solid rgb(230 228 224 / 50%)' }}>
                 <div>
                     <div style={{ borderBottom: '1px solid rgba(245, 245, 245, .4 )', }}>
                         <p style={{ color: 'whitesmoke', fontFamily: 'helvetica', fontSize: '20px', margin: '10px' }}>Home</p>
