@@ -4,17 +4,19 @@ import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
 import { getLootDrops } from '../actions/lootDrops';
 import LootDrop from './sub-components/LootDrop';
-import waitingDialog from 'bootstrap-waitingfor';
+// import waitingDialog from 'bootstrap-waitingfor';
+import { trackPromise } from 'react-promise-tracker';
 
 const Feed = (props) => {
     const dispatch = useDispatch();
     const token = getCookieValue(ACCESS_TOKEN);
     const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
-    
+
     useEffect(() => {
         if (loot || !userId) return;
-        dispatch(getLootDrops(userId))
+        // dispatch(getLootDrops(userId))
+        trackPromise(dispatch(getLootDrops(userId)))
     });
 
     if (!token) { return <Redirect to="/"></Redirect> };
