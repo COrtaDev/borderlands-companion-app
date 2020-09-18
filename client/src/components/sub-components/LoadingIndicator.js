@@ -4,7 +4,13 @@ import Loader from 'react-loader-spinner';
 
 const LoadingIndicator = (props) => {
     const { promiseInProgress } = usePromiseTracker();
-
+/*
+    Ideally I need to play with this more tomorrow:
+    I would love to have it display as a modal, such that it covers EVERYTHING
+    while the promise is returning from the fetch call...
+    Otherwise, I will need too either play around and wrap components that are higher up the component tree
+    with the promise tracker or change something else about how/where the loader is being rendered...
+*/
     return (
         promiseInProgress &&
         // <h1>HEY SOME ASYNC ALL IN PROGRESS YA DIGUS!!!</h1>
