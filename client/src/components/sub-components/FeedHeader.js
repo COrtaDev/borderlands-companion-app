@@ -1,14 +1,23 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMeteor, faDiceD20, faCity, faIndustry, faHandHoldingUsd, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
+import {
+    faMeteor,
+    faDiceD20,
+    faCity,
+    // faIndustry,
+    faHandHoldingUsd,
+    // faSearchLocation
+} from '@fortawesome/free-solid-svg-icons';
 import ReactTooltip from 'react-tooltip';
 import '../styles/feedheader.css';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 const FeedHeader = () => {
-
     /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
     I am telling you this so you can understand strange behavior if you forget and use the site as normal
+    ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~
+    this component is getting out of control... MAJOR refactor needed... LOLWTF is this...
+    start buy pulling out repetitive code blocks, defining them in sub-compoments as component functions and moving this component into the "Main Components" directory. It'll be worth the effort...
     */
     return (
         <>
