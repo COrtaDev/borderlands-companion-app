@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeteor, faDiceD20, faCity, faIndustry, faHandHoldingUsd, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 import ReactTooltip from 'react-tooltip';
-// import
+import '../styles/feedheader.css';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 const FeedHeader = () => {
 
@@ -30,20 +30,53 @@ const FeedHeader = () => {
                             <div>
                                 <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding: '8px 4px 0px 4px' }}>
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
-                                        <div id='item-type'  data-tip data-for='itemType'>
+                                        <div id='item-type' data-tip data-for='itemType'>
                                             <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
                                                 <FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' />
-                                                <ReactTooltip id='itemType' place='bottom' effect='solid'>Select Item Type</ReactTooltip></span>
+                                                <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemType' place='bottom' effect='float'
+                                                    overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
+                                                        left = -35;
+                                                        top = 24;
+                                                        return { top, left }
+                                                    }}>
+                                                    <div style={{ minWidth: 'max-content' }}>Item Type</div></ReactTooltip></span>
                                             </a>
                                         </div>
-                                        <div id='item-name'>
-                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faHandHoldingUsd} size='2x' opacity='.5' /></span></a>
+                                        <div id='item-name' data-tip data-for='itemName'>
+                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                                <FontAwesomeIcon icon={faHandHoldingUsd} size='2x' opacity='.5' />
+                                                <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemName' place='bottom' effect='float'
+                                                    overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
+                                                        left = -35;
+                                                        top = 24;
+                                                        return { top, left }
+                                                    }}>
+                                                    <div style={{ minWidth: 'max-content' }}>Item Name</div></ReactTooltip></span>
+                                            </a>
                                         </div>
-                                        <div id='item-manufacturer'>
-                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faCity} size='2x' opacity='.5' /></span></a>
+                                        <div id='item-manufacturer' data-tip data-for='itemManufacturer'>
+                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                                <FontAwesomeIcon icon={faCity} size='2x' opacity='.5' />
+                                                <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemManufacturer' place='bottom' effect='float'
+                                                    overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
+                                                        left = -55;
+                                                        top = 24;
+                                                        return { top, left }
+                                                    }}>
+                                                    <div style={{ minWidth: 'max-content' }}>Item Manufacturer</div></ReactTooltip></span>
+                                            </a>
                                         </div>
-                                        <div id='item-elements'>
-                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span><FontAwesomeIcon icon={faMeteor} size='2x' opacity='.5' /></span></a>
+                                        <div id='item-elements' data-tip data-for='itemElement'>
+                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                                <FontAwesomeIcon icon={faMeteor} size='2x' opacity='.5' />
+                                                <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemElement' place='bottom' effect='float'
+                                                    overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
+                                                        left = -45;
+                                                        top = 24;
+                                                        return { top, left }
+                                                    }}>
+                                                    <div style={{ minWidth: 'max-content' }}>Item Element</div></ReactTooltip></span>
+                                            </a>
                                         </div>
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '125px', height: '35px', borderRadius: '1em', background: 'rgb(102 2 0 / 50%)' }}>
