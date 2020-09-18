@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
-import app
-from app.models import db
+from app import app, db
 from app.models.users import User
 from app.models.loot import Loot
 from app.models.likes import Like
 from app.models.comments import Comment
+from app.models.loot_drops import Loot_Drop
 load_dotenv()
 
 
