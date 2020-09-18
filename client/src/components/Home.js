@@ -7,7 +7,7 @@ const Home = (props) => {
 
     return (
         <>
-            <div id='columns' style={{ background: 'black', display:'flex', flexDirection:'row', justifyContent: 'center' }}>
+            <div id='columns' style={{ background: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                 <span style={{ display: 'flex', flexDirection: 'row' }}>
                     <div id='left' style={{ width: '275px', color: 'whitesmoke' }}>Side nav goes here</div>
                     <div id='center' style={{ width: 'auto', background: 'rgb(238 150 40 / 75%)' }}>
