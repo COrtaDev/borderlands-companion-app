@@ -1,13 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faMeteor,
-    faDiceD20,
-    faCity,
-    // faIndustry,
-    faHandHoldingUsd,
-    // faSearchLocation
-} from '@fortawesome/free-solid-svg-icons';
+import { faMeteor, faDiceD20, faCity, faHandHoldingUsd, } from '@fortawesome/free-solid-svg-icons';
 import ReactTooltip from 'react-tooltip';
 import '../styles/feedheader.css';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
