@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, componentDidMount } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
@@ -11,7 +11,9 @@ const Feed = (props) => {
     const token = getCookieValue(ACCESS_TOKEN);
     const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
+    componentDidMount(
 
+    )
     useEffect(() => {
         if (loot || !userId) return;
         dispatch(getLootDrops(userId))
