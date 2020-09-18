@@ -1,10 +1,9 @@
-import React, { useEffect, componentDidMount } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN, getCookieValue } from '../actions/auth';
 import { getLootDrops } from '../actions/lootDrops';
 import LootDrop from './sub-components/LootDrop';
-// import waitingDialog from 'bootstrap-waitingfor';
 import { trackPromise } from 'react-promise-tracker';
 
 const Feed = (props) => {
