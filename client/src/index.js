@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+// import Loader from 'react-loader-spinner';
+
 
 const store = configureStore();
 window.store = store;

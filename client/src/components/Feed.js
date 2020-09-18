@@ -11,9 +11,7 @@ const Feed = (props) => {
     const token = getCookieValue(ACCESS_TOKEN);
     const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
-    componentDidMount(
-
-    )
+    
     useEffect(() => {
         if (loot || !userId) return;
         dispatch(getLootDrops(userId))
