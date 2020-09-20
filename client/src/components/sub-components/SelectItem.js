@@ -1,8 +1,9 @@
 // this will render a form similar to how we did in login/ signup
 import React, { useState, } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
-const SelectItem = () => {
+import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
+import { SET_ITEM_TYPE } from '../../actions/lootDrops';
+const SelectItem = (props) => {
     const dispatch = useDispatch();
 
     const [weaponType, setWeaponType] = useState("Weapon")
@@ -17,6 +18,7 @@ const SelectItem = () => {
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
     // const { selectItemType } = props;
     console.log(itemType)
+    console.log(props)
     // const [itemType, setItemType]=useState()
     // I would like to render toggle buttons for the user to click the type of item they wish to drop
     // the items are weapon type, class mod, grenade, sheild, or artifact then confirm to close the modal
@@ -31,85 +33,82 @@ const SelectItem = () => {
 
     // We invoked, we would like to change all buttons to grey, enable confirm button and make it blue
     const changeButtons = () => {
-        const confirmButton = document.getElementById('confirm-item')
-        setWeaponButtonVariant('secondary')
-        setShieldButtonVariant('secondary')
-        setGrenadeButtonVariant('secondary')
-        setArtifactButtonVariant('secondary')
-        setClassButtonVariant('secondary')
-        confirmButton.removeAttribute('disabled')
-        setConfirmButtonVariant('primary')
+        // const confirmButton = document.getElementById('confirm-item');
+        setWeaponType("Weapon");
+        setClassModType("Class Mod");
+        setWeaponButtonVariant('secondary');
+        setShieldButtonVariant('secondary');
+        setGrenadeButtonVariant('secondary');
+        setArtifactButtonVariant('secondary');
+        setClassButtonVariant('secondary');
+        // confirmButton.removeAttribute('disabled');
+        setConfirmButtonVariant('primary');
     }
     const handleWeaponSelect = (e) => {
-        setWeaponType(e)
-        changeButtons()
-        setWeaponButtonVariant('success')
-        setItemType(e)
+        changeButtons();
+        setWeaponType(`Weapon: ${e}`);
+        setWeaponButtonVariant('success');
+        setItemType(e);
     }
     const handleShieldSelect = (e) => {
-        changeButtons()
-        setShieldButtonVariant('success')
-        setItemType('Shield')
+        changeButtons();
+        setShieldButtonVariant('success');
+        setItemType('Shield');
     }
     const handleGrenadeSelect = (e) => {
-        changeButtons()
-        setGrenadeButtonVariant('success')
-        setItemType('Grenade')
+        changeButtons();
+        setGrenadeButtonVariant('success');
+        setItemType('Grenade');
     }
     const handleArtifactSelect = (e) => {
-        changeButtons()
-        setArtifactButtonVariant('success')
-        setItemType('Artifact')
+        changeButtons();
+        setArtifactButtonVariant('success');
+        setItemType('Artifact');
     }
     const handleClassSelect = (e) => {
-        setClassModType(e)
-        changeButtons()
-        setClassButtonVariant('success')
-        setItemType(e)
+        changeButtons();
+        setClassModType(`${e} Class Mod`);
+        setClassButtonVariant('success');
+        setItemType(e);
     }
     const handleSelectItem = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        console.log(itemType)
+        if (!itemType) return window.alert("Please Select an Item Type!")
+        dispatch({ type: SET_ITEM_TYPE, itemType: itemType })
+        // console.log(itemType)
         console.log('I want to confirm this is happening')
+        props.onHide();
 
     }
     return (
         <>
-            <ButtonGroup vertical>
 
+            <ButtonGroup vertical>
                 <DropdownButton as={ButtonGroup} variant={weaponButtonVariant}
                     title={weaponType} id="bg-nested-dropdown"
                     className="weapon-type" onSelect={handleWeaponSelect}>
-
                     <Dropdown.Item eventKey="Pistol">Pistol</Dropdown.Item>
                     <Dropdown.Item eventKey="SMG">SMG</Dropdown.Item>
                     <Dropdown.Item eventKey="Shotgun">Shotgun</Dropdown.Item>
                     <Dropdown.Item eventKey="AR">AR</Dropdown.Item>
                     <Dropdown.Item eventKey="Sniper">Sniper</Dropdown.Item>
                     <Dropdown.Item eventKey="RPG">RPG</Dropdown.Item>
-
                 </DropdownButton>
-
                 <Button variant={shieldButtonVariant} onClick={handleShieldSelect}>Shield</Button>
                 <Button variant={grenadeButtonVariant} onClick={handleGrenadeSelect}>Grenade Mod</Button>
                 <Button variant={artifactButtonVariant} onClick={handleArtifactSelect}>Artifact</Button>
-
                 <DropdownButton as={ButtonGroup} variant={classButtonVariant}
                     title={classModType} id="bg-nested-dropdown"
                     className="class-type" onSelect={handleClassSelect}>
-
                     <Dropdown.Item eventKey="Amara">Amara</Dropdown.Item>
                     <Dropdown.Item eventKey="Fl4k">Fl4k</Dropdown.Item>
                     <Dropdown.Item eventKey="Moze">Moze</Dropdown.Item>
                     <Dropdown.Item eventKey="Zane">Zane</Dropdown.Item>
-
                 </DropdownButton>
-
+                <Button id='confirm-item' variant={confirmButtonVariant} onClick={handleSelectItem}>Confirm</Button>
             </ButtonGroup>
             <br></br>
-            <Button id='confirm-item' variant={confirmButtonVariant}
-                onClick={handleSelectItem} disabled>Confirm</Button>
+            {/* <Button type='submit' id='confirm-item' variant={confirmButtonVariant} onSubmit={handleSelectItem} disabled>Confirm</Button> */}
+
         </>
     )
 }

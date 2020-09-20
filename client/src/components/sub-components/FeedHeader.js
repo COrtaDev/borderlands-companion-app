@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeteor, faDiceD20, faCity, faHandHoldingUsd, } from '@fortawesome/free-solid-svg-icons';
+
 import ReactTooltip from 'react-tooltip';
 import '../styles/feedheader.css';
+
 import SelectItemModal from '../modals/SelectItemModal';
+
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
+
 const FeedHeader = (props) => {
+    const { itemType } = useSelector(state => state.lootDrops);
     const [modalShow, setModalShow] = useState(false)
-    // const [itemType, setItemType] = useState(null)
-    // const showModal = () => {
-    //     setModalShow(true)
-    // }
+    console.log(itemType)
+
 
     /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
@@ -51,6 +55,7 @@ const FeedHeader = (props) => {
                                                     }}>
                                                     <div style={{ minWidth: 'max-content' }}>Item Type</div></ReactTooltip></span>
                                             </a>
+                                            {/* <span stype={{position: 'absolute' }}>{itemType}</span> */}
                                         </div>
                                         <div id='item-name' data-tip data-for='itemName'>
                                             <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
@@ -94,6 +99,9 @@ const FeedHeader = (props) => {
                                     </div>
                                 </span>
                             </div>
+                            <span>
+                                <div style={{width:'fit-content', background:'rgb(238 150 40 / 80%)', borderRadius:'.3em', padding:'0px 3px'}}>{itemType}</div>
+                            </span>
                         </div>
                     </article>
                 </div>
