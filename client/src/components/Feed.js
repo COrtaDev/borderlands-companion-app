@@ -14,7 +14,6 @@ const Feed = (props) => {
 
     useEffect(() => {
         if (loot || !userId) return;
-        // dispatch(getLootDrops(userId))
         trackPromise(dispatch(getLootDrops(userId)))
     });
 

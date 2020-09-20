@@ -5,7 +5,6 @@ import { Modal, Button } from 'react-bootstrap';
 import SelectItem from '../sub-components/SelectItem';
 
 const SelectItemModal = (props) => {
-    console.log(props)
     return (
         <>
             <Modal {...props} size='sm' aria-labelledby='contained-modal-title-vcenter' centered>
@@ -16,14 +15,9 @@ const SelectItemModal = (props) => {
                 </Modal.Header>
                 <Modal.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p>Choose one:</p>
-                    <SelectItem />
+                    <SelectItem {...props}/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button id='confirm-item' onClick={props.onSignup} disabled>Confirm</Button>
-                    <Button onClick={props.onBack}>Go Back</Button>
-                </Modal.Footer>
             </Modal>
-
         </>
     )
 }

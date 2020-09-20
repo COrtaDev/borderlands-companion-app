@@ -1,13 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Feed from './Feed';
 import FeedHeader from './sub-components/FeedHeader';
 import SideNav from '../components/sub-components/SideNav';
-import SelectItemModal from '../components/modals/SelectItemModal';
 
 const Home = (props) => {
     const { userId, userName } = props;
-    // const [modalShow, setModalShow] = useState(false);
-    // console.log(modalShow)
     return (
         <>
             <div id='columns' style={{ background: 'black', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
@@ -24,10 +21,6 @@ const Home = (props) => {
                     <div id='right' style={{ width: '275px' }}></div>
                 </span>
             </div>
-            {/* <SelectItemModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}>
-            </SelectItemModal> */}
         </>
     )
 }
