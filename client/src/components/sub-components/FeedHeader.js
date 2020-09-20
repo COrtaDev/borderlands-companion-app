@@ -40,8 +40,8 @@ const FeedHeader = (props) => {
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
                                         <div id='item-type' data-tip data-for='itemType'>
                                             <a onClick={() => {
-                                                console.log("I want to show the modal now", props)
-                                                // setModalShow(true)
+                                                console.log("I want to show the modal now", modalShow)
+                                                setModalShow(true)
                                                 console.log("is the modal shown", modalShow)
                                             }} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
                                                     {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
@@ -101,7 +101,10 @@ const FeedHeader = (props) => {
                     </article>
                 </div>
             </header>
-
+            <SelectItemModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}>
+            </SelectItemModal>
         </>
     )
 }
