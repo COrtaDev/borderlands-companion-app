@@ -34,6 +34,7 @@ const FeedHeader = () => {
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
                                         <div id='item-type' data-tip data-for='itemType'>
                                             <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                                {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
                                                 <FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' />
                                                 <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemType' place='bottom' effect='float'
                                                     overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
