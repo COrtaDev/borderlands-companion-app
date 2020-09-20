@@ -15,11 +15,11 @@ const SelectItemModal = (props) => {
                         </Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <p>Please select the type of item:</p>
-                    <SelectItem></SelectItem>
+                    <p>Choose one:</p>
+                    <SelectItem />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={props.onSignup}>Confirm</Button>
+                    <Button id='confirm-item' onClick={props.onSignup} disabled>Confirm</Button>
                     <Button onClick={props.onBack}>Go Back</Button>
                 </Modal.Footer>
             </Modal>
