@@ -7,6 +7,7 @@ import SelectItemModal from '../modals/SelectItemModal';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 const FeedHeader = (props) => {
     const [modalShow, setModalShow] = useState(false)
+    // const [itemType, setItemType] = useState(null)
     // const showModal = () => {
     //     setModalShow(true)
     // }
@@ -39,20 +40,16 @@ const FeedHeader = (props) => {
                                 <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding: '8px 4px 0px 4px' }}>
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
                                         <div id='item-type' data-tip data-for='itemType'>
-                                            <a onClick={() => {
-                                                console.log("I want to show the modal now", modalShow)
-                                                setModalShow(true)
-                                                console.log("is the modal shown", modalShow)
-                                            }} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
-                                                    {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
-                                                    <FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' />
-                                                    <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemType' place='bottom' effect='float'
-                                                        overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
-                                                            left = -35;
-                                                            top = 24;
-                                                            return { top, left }
-                                                        }}>
-                                                        <div style={{ minWidth: 'max-content' }}>Item Type</div></ReactTooltip></span>
+                                            <a onClick={() => setModalShow(true)} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                                {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
+                                                <FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' />
+                                                <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemType' place='bottom' effect='float'
+                                                    overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
+                                                        left = -35;
+                                                        top = 24;
+                                                        return { top, left }
+                                                    }}>
+                                                    <div style={{ minWidth: 'max-content' }}>Item Type</div></ReactTooltip></span>
                                             </a>
                                         </div>
                                         <div id='item-name' data-tip data-for='itemName'>
@@ -101,10 +98,7 @@ const FeedHeader = (props) => {
                     </article>
                 </div>
             </header>
-            <SelectItemModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}>
-            </SelectItemModal>
+            <SelectItemModal show={modalShow} onHide={() => setModalShow(false)} />
         </>
     )
 }

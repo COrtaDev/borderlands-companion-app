@@ -1,14 +1,22 @@
 // this will render a form similar to how we did in login/ signup
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
 const SelectItem = () => {
+    const dispatch = useDispatch();
+
     const [weaponType, setWeaponType] = useState("Weapon")
     const [classModType, setClassModType] = useState("Class Mod")
+    const [itemType, setItemType] = useState(null)
+
     const [weaponButtonVariant, setWeaponButtonVariant] = useState("danger")
     const [shieldButtonVariant, setShieldButtonVariant] = useState("danger")
     const [grenadeButtonVariant, setGrenadeButtonVariant] = useState("danger")
     const [artifactButtonVariant, setArtifactButtonVariant] = useState("danger")
     const [classButtonVariant, setClassButtonVariant] = useState("danger")
+    const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
+    // const { selectItemType } = props;
+    console.log(itemType)
     // const [itemType, setItemType]=useState()
     // I would like to render toggle buttons for the user to click the type of item they wish to drop
     // the items are weapon type, class mod, grenade, sheild, or artifact then confirm to close the modal
@@ -20,8 +28,9 @@ const SelectItem = () => {
     // the dropdow buttons must go back to default state.
 
     // Once the user confirms the selection the itemType is dispatched to the store
+
+    // We invoked, we would like to change all buttons to grey, enable confirm button and make it blue
     const changeButtons = () => {
-        // We invoked, we would like to change all buttons to grey
         const confirmButton = document.getElementById('confirm-item')
         setWeaponButtonVariant('secondary')
         setShieldButtonVariant('secondary')
@@ -29,30 +38,42 @@ const SelectItem = () => {
         setArtifactButtonVariant('secondary')
         setClassButtonVariant('secondary')
         confirmButton.removeAttribute('disabled')
+        setConfirmButtonVariant('primary')
     }
     const handleWeaponSelect = (e) => {
         setWeaponType(e)
         changeButtons()
         setWeaponButtonVariant('success')
+        setItemType(e)
+    }
+    const handleShieldSelect = (e) => {
+        changeButtons()
+        setShieldButtonVariant('success')
+        setItemType('Shield')
+    }
+    const handleGrenadeSelect = (e) => {
+        changeButtons()
+        setGrenadeButtonVariant('success')
+        setItemType('Grenade')
+    }
+    const handleArtifactSelect = (e) => {
+        changeButtons()
+        setArtifactButtonVariant('success')
+        setItemType('Artifact')
     }
     const handleClassSelect = (e) => {
         setClassModType(e)
         changeButtons()
         setClassButtonVariant('success')
+        setItemType(e)
     }
-    const handleShieldSelect=(e)=>{
-        changeButtons()
-        setShieldButtonVariant('success')
-    }
-    const handleGrenadeSelect=(e)=>{
-        changeButtons()
-        setGrenadeButtonVariant('success')
-    }
-    const handleArtifactSelect=(e)=>{
-        changeButtons()
-        setArtifactButtonVariant('success')
-    }
+    const handleSelectItem = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        console.log(itemType)
+        console.log('I want to confirm this is happening')
 
+    }
     return (
         <>
             <ButtonGroup vertical>
@@ -86,6 +107,9 @@ const SelectItem = () => {
                 </DropdownButton>
 
             </ButtonGroup>
+            <br></br>
+            <Button id='confirm-item' variant={confirmButtonVariant}
+                onClick={handleSelectItem} disabled>Confirm</Button>
         </>
     )
 }
