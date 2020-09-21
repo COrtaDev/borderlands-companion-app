@@ -35,18 +35,23 @@ export const Landing = () => {
     // what we need to do is render the first modal then based if they clicked login or signup we should render those modals next.
     return (
         <>
-            <span>
-                <div><h1>Welcome to the BL3 Compaion App!</h1></div>
-                {/* <a href='/portal'><button>Proceed to Login/Sign up</button></a> */}
-                <Button variant='primary' onClick={() => setModalShow(true)}>Go to login/signup portal</Button>
-            </span>
-            <PortalModal
-                show={modalShow} login={modalLogin} signup={modalSignup}
-                onHide={() => handleHide()}
-                onLogin={() => handleLogin()}
-                onSignup={() => handleSignup()}
-                onBack={handleBack}>
-            </PortalModal>
+            <div style={{ height: 'auto%', width: '100%' }}>
+                <span>
+                    {/* <div><h1>Welcome to the BL3 Compaion App!</h1></div> */}
+                    <a onClick={() => setModalShow(true)}>
+                        <img src="https://splitwise-clone.s3.us-east-2.amazonaws.com/favicon/Krieg's_Mind_BL3.png" style={{ height: '100%', width: '100%' }}></img>
+                    </a>
+                    {/* <a href='/portal'><button>Proceed to Login/Sign up</button></a> */}
+                    {/* <Button variant='primary' onClick={() => setModalShow(true)}>Go to login/signup portal</Button> */}
+                </span>
+                <PortalModal
+                    show={modalShow} login={modalLogin} signup={modalSignup}
+                    onHide={() => handleHide()}
+                    onLogin={() => handleLogin()}
+                    onSignup={() => handleSignup()}
+                    onBack={handleBack}>
+                </PortalModal>
+            </div>
         </>
     )
 }

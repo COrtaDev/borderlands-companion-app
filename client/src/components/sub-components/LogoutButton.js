@@ -2,6 +2,7 @@ import React from 'react'
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { Redirect } from 'react-router-dom';
+import { Button } from 'react-bootstrap'
 import { ACCESS_TOKEN, LOG_OUT, getCookieValue } from '../../actions/auth';
 
 export const LogoutButton = () => {
@@ -16,6 +17,6 @@ export const LogoutButton = () => {
     };
 
     if (!token) { return null; }
-    else { return (<li><button id='logout' type='button' onClick={logOut}>Log Out</button></li>) }
+    else { return (<><Button variant="dark" id='logout' type='button' onClick={logOut}>Log Out</Button></>) }
 }
 export default LogoutButton;

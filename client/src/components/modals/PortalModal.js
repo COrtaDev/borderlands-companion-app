@@ -47,7 +47,7 @@ const PortalModal = (props) => {
     } else {
         return (
             <>
-                <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+                <Modal {...props} size='sm' aria-labelledby='contained-modal-title-vcenter' centered>
                     <Modal.Header closeButton style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', background: 'black', color: 'whitesmoke' }}>
                         <Modal.Title id='contained-modal-title-vcenter'>
                             Borderlands 3 Companion App
@@ -55,7 +55,7 @@ const PortalModal = (props) => {
                     </Modal.Header>
                     <Modal.Body>
                         <h4>You loot awaits!</h4>
-                        <br></br>
+                        {/* <br></br>
                         <br></br>
                         <br></br>
                         <p>
@@ -63,7 +63,7 @@ const PortalModal = (props) => {
                             </p>
                         <br></br>
                         <br></br>
-                        <br></br>
+                        <br></br> */}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={props.onLogin}>Login</Button>

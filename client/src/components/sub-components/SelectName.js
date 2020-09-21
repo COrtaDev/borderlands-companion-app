@@ -34,7 +34,7 @@ const CustomToggle = forwardRef(({ children, onClick }, ref) => {
 const CustomMenu = forwardRef(
     ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
         const [value, setValue] = useState('');
-        console.log(value)
+        // console.log(value)
         return (
             <div
                 ref={ref}
@@ -74,7 +74,7 @@ const SelectName = (props) => {
     const handleSelectName = (e) => {
         if (!itemName) return window.alert("Please Select an Item Name!")
         dispatch({ type: SET_ITEM_NAME, itemName: itemName })
-        console.log(itemName)
+        // console.log(itemName)
         props.onHide();
     }
 
@@ -87,7 +87,7 @@ const SelectName = (props) => {
     let DropdownItems = [];
     if (itemType) {
         const potentialItems = items.filter((item) => item.type === itemType)
-        console.log(potentialItems)
+        // console.log(potentialItems)
         DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
     } else {
         DropdownItems = items.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
