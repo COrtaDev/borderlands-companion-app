@@ -1,7 +1,8 @@
 import React, { useState, forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
-import { items } from '../modal-assets/items';
+// import { items } from '../modal-assets/items';
+import { items } from '../modal-assets/elements';
 import { SET_ITEM_NAME } from '../../actions/lootDrops';
 import '../styles/selectname.css';
 

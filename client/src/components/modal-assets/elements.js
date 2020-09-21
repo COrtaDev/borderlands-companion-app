@@ -1963,7 +1963,7 @@ const elements =
             "element": "Any"
         }
     ]
-export const more = elements.map((item) => {
+export const items = elements.map((item) => {
     let items = {
         id: item.id,
         name: item.name,
@@ -1976,7 +1976,7 @@ export const more = elements.map((item) => {
     if (item.element.includes("N")) items.possibleElements.push("None")
     if (item.element.includes("C")) items.possibleElements.push("Corrosive")
     if (item.element.includes("O")) items.possibleElements.push("Cryo")
-    // if (item.element.includes("Any")) items.possibleElements.push("Any")
+    if (item.element.includes("R")) items.possibleElements.push("Radiation")
     if (item.element.includes("None")) items.possibleElements.push("None")
     return (items)
 })
