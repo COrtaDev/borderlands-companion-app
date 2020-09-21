@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
 import { items } from '../modal-assets/items';
 import { SET_ITEM_NAME } from '../../actions/lootDrops';
@@ -64,6 +64,7 @@ Here we go about rendering a dropdown with all the names of items with a filter 
 */
 const SelectName = (props) => {
     const dispatch = useDispatch();
+    const { itemType } = useSelector(state => state.lootDrops)
     const [itemName, setItemName] = useState(null)
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
     const [dropdownButtonVariant, setDropdownButtonVariant] = useState("danger")
@@ -82,8 +83,14 @@ const SelectName = (props) => {
         setDropdownButtonVariant('primary')
         setConfirmButtonVariant('success')
     }
-
-    const DrowdownItems = items.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
+    let DropdownItems = [];
+    if (itemType) {
+        const potentialItems = items.filter((item) => item.type === itemType)
+        console.log(potentialItems)
+        DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
+    } else {
+        DropdownItems = items.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
+    }
     return (
         <>
             <ButtonGroup vertical>
@@ -97,7 +104,7 @@ const SelectName = (props) => {
                 </Dropdown.Toggle>
                     {/* We will map the Dropdown.Item components for each item in the items array */}
                     <Dropdown.Menu as={CustomMenu}>
-                        {DrowdownItems}
+                        {DropdownItems}
                     </Dropdown.Menu>
                 </DropdownButton>
                 <Button id='confirm-item' variant={confirmButtonVariant} onClick={handleSelectName}>Confirm</Button>
