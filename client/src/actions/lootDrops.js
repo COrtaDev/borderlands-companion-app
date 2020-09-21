@@ -1,6 +1,7 @@
 import { lootDropsUrl } from '../config';
 export const LOOT_DROPS = 'LOOT_DROPS';
 export const SET_ITEM_TYPE = 'SET_ITEM_TYPE';
+export const SET_ITEM_NAME = 'SET_ITEM_NAME';
 
 export const getLootDrops = (userId) => async (dispatch) => {
     const res = await fetch(`${lootDropsUrl}/${userId}`);

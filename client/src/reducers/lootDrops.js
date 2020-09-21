@@ -1,4 +1,4 @@
-import { LOOT_DROPS, SET_ITEM_TYPE } from '../actions/lootDrops';
+import { LOOT_DROPS, SET_ITEM_TYPE, SET_ITEM_NAME } from '../actions/lootDrops';
 
 const lootDrops = (state = {}, action) => {
     switch (action.type) {
@@ -6,13 +6,21 @@ const lootDrops = (state = {}, action) => {
             return {
                 ...state,
                 loot: action.loot,
-                lootDrops: action.lootDrops
+                // lootDrops: action.lootDrops
             }
         }
-        case SET_ITEM_TYPE:{
-            return{
+        case SET_ITEM_TYPE: {
+            return {
                 ...state,
-                itemType: action.itemType
+                itemType: action.itemType,
+                itemTypeWithHashtag: `#${action.itemType}`,
+            }
+        }
+        case SET_ITEM_NAME: {
+            return {
+                ...state,
+                itemName: action.itemName,
+                itemNameWithHashtag: `#${action.itemName}`,
             }
         }
         default:
