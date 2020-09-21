@@ -77,11 +77,9 @@ const SelectItem = (props) => {
         // console.log(itemType)
         console.log('I want to confirm this is happening')
         props.onHide();
-
     }
     return (
         <>
-
             <ButtonGroup vertical>
                 <DropdownButton as={ButtonGroup} variant={weaponButtonVariant}
                     title={weaponType} id="bg-nested-dropdown"
@@ -107,8 +105,6 @@ const SelectItem = (props) => {
                 <Button id='confirm-item' variant={confirmButtonVariant} onClick={handleSelectItem}>Confirm</Button>
             </ButtonGroup>
             <br></br>
-            {/* <Button type='submit' id='confirm-item' variant={confirmButtonVariant} onSubmit={handleSelectItem} disabled>Confirm</Button> */}
-
         </>
     )
 }

@@ -7,12 +7,14 @@ import ReactTooltip from 'react-tooltip';
 import '../styles/feedheader.css';
 
 import SelectItemModal from '../modals/SelectItemModal';
+import SelectNameModal from '../modals/SelectNameModal';
 
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 
 const FeedHeader = (props) => {
     const { itemType } = useSelector(state => state.lootDrops);
-    const [modalShow, setModalShow] = useState(false)
+    const [itemModalShow, setItemModalShow] = useState(false)
+    const [nameModalShow, setNameModalShow] = useState(false)
     console.log(itemType)
 
 
@@ -44,8 +46,8 @@ const FeedHeader = (props) => {
                                 <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding: '8px 4px 0px 4px' }}>
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '35%' }}>
                                         <div id='item-type' data-tip data-for='itemType'>
-                                            <a onClick={() => setModalShow(true)} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
-                                                {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
+                                            {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
+                                            <a onClick={() => setItemModalShow(true)} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
                                                 <FontAwesomeIcon icon={faDiceD20} size='2x' opacity='.5' />
                                                 <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemType' place='bottom' effect='float'
                                                     overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
@@ -55,10 +57,10 @@ const FeedHeader = (props) => {
                                                     }}>
                                                     <div style={{ minWidth: 'max-content' }}>Item Type</div></ReactTooltip></span>
                                             </a>
-                                            {/* <span stype={{position: 'absolute' }}>{itemType}</span> */}
                                         </div>
                                         <div id='item-name' data-tip data-for='itemName'>
-                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                            {/* clicking here will render a modal that allows you to select the type of item you wish to drop */}
+                                            <a onClick={() => setNameModalShow(true)} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
                                                 <FontAwesomeIcon icon={faHandHoldingUsd} size='2x' opacity='.5' />
                                                 <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemName' place='bottom' effect='float'
                                                     overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
@@ -100,13 +102,14 @@ const FeedHeader = (props) => {
                                 </span>
                             </div>
                             <span>
-                                <div style={{width:'fit-content', background:'rgb(238 150 40 / 80%)', borderRadius:'.3em', padding:'0px 3px'}}>{itemType}</div>
+                                <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemType}</div>
                             </span>
                         </div>
                     </article>
                 </div>
             </header>
-            <SelectItemModal show={modalShow} onHide={() => setModalShow(false)} />
+            <SelectItemModal show={itemModalShow} onHide={() => setItemModalShow(false)} />
+            <SelectNameModal show={nameModalShow} onHide={() => setNameModalShow(false)} />
         </>
     )
 }
