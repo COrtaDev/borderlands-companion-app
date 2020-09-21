@@ -5,7 +5,7 @@ import { items } from '../modal-assets/items';
 import { SET_ITEM_NAME } from '../../actions/lootDrops';
 import '../styles/selectname.css';
 
-//I need to define a Custom Toggle as a Dropdown with a Custom Menu
+//We define a Custom Toggle as a Dropdown with a Custom Menu
 const CustomToggle = forwardRef(({ children, onClick }, ref) => {
     return (
         // The forwardRef is important!!
@@ -38,7 +38,6 @@ const CustomMenu = forwardRef(
             <div
                 ref={ref}
                 style={style}
-                // style={{ paddingTop: '0px' }}
                 className={className}
                 aria-labelledby={labeledBy}
             >
@@ -59,6 +58,10 @@ const CustomMenu = forwardRef(
         );
     },
 );
+
+/*
+Here we go about rendering a dropdown with all the names of items with a filter where you can narrow your search
+*/
 const SelectName = (props) => {
     const dispatch = useDispatch();
     const [itemName, setItemName] = useState(null)
@@ -79,7 +82,7 @@ const SelectName = (props) => {
         setDropdownButtonVariant('primary')
         setConfirmButtonVariant('success')
     }
-    
+
     const DrowdownItems = items.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
     return (
         <>

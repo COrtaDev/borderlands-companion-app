@@ -5,35 +5,19 @@ import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap'
 import { SET_ITEM_TYPE } from '../../actions/lootDrops';
 const SelectItem = (props) => {
     const dispatch = useDispatch();
-
     const [weaponType, setWeaponType] = useState("Weapon")
     const [classModType, setClassModType] = useState("Class Mod")
     const [itemType, setItemType] = useState(null)
-
     const [weaponButtonVariant, setWeaponButtonVariant] = useState("danger")
     const [shieldButtonVariant, setShieldButtonVariant] = useState("danger")
     const [grenadeButtonVariant, setGrenadeButtonVariant] = useState("danger")
     const [artifactButtonVariant, setArtifactButtonVariant] = useState("danger")
     const [classButtonVariant, setClassButtonVariant] = useState("danger")
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
-    // const { selectItemType } = props;
-    console.log(itemType)
-    console.log(props)
-    // const [itemType, setItemType]=useState()
-    // I would like to render toggle buttons for the user to click the type of item they wish to drop
-    // the items are weapon type, class mod, grenade, sheild, or artifact then confirm to close the modal
-
-    // I would like the choice selected to appear in the body of the dropdown button
-    // I would also like the confirm button to become active once the user has made a valid selection
-
     // When the user changes the selection, the UI must update.
     // the dropdow buttons must go back to default state.
-
-    // Once the user confirms the selection the itemType is dispatched to the store
-
-    // We invoked, we would like to change all buttons to grey, enable confirm button and make it blue
     const changeButtons = () => {
-        // const confirmButton = document.getElementById('confirm-item');
+        // When invoked, we would like to change all buttons to grey, enable confirm button and make it blue
         setWeaponType("Weapon");
         setClassModType("Class Mod");
         setWeaponButtonVariant('secondary');
@@ -41,9 +25,10 @@ const SelectItem = (props) => {
         setGrenadeButtonVariant('secondary');
         setArtifactButtonVariant('secondary');
         setClassButtonVariant('secondary');
-        // confirmButton.removeAttribute('disabled');
         setConfirmButtonVariant('primary');
     }
+    // We would like the choice selected to appear in the body of the dropdown button
+    // We would also like the confirm button to become active once the user has made a valid selection
     const handleWeaponSelect = (e) => {
         changeButtons();
         setWeaponType(`Weapon: ${e}`);
@@ -72,13 +57,14 @@ const SelectItem = (props) => {
         setItemType(e);
     }
     const handleSelectItem = (e) => {
+        // Once the user confirms the selection the itemType is dispatched to the store
         if (!itemType) return window.alert("Please Select an Item Type!")
         dispatch({ type: SET_ITEM_TYPE, itemType: itemType })
-        // console.log(itemType)
-        console.log('I want to confirm this is happening')
         props.onHide();
     }
     return (
+        //We would like to render toggle buttons for the user to click the type of item they wish to drop
+        // the items are weapon type, class mod, grenade, sheild, or artifact then confirm to close the modal
         <>
             <ButtonGroup vertical>
                 <DropdownButton as={ButtonGroup} variant={weaponButtonVariant}

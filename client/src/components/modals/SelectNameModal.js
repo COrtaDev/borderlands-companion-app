@@ -1,10 +1,10 @@
 // This will be the modal that will render the form.
 // Depending on what icon is pressed, will render a different verson of the modal.
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import SelectName from '../sub-components/SelectName';
-
 const SelectNameModal = (props) => {
+    // This modal allows us to select the name of the item we wish to use in our loot drop
     return (
         <>
             <Modal {...props} size='sm' aria-labelledby='contained-modal-title-vcenter' centered>
