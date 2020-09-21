@@ -16,7 +16,7 @@ const SelectNameModal = (props) => {
                 <Modal.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <p>Select Item Name</p>
                     <p>Choose name:</p>
-                    <SelectName />
+                    <SelectName {...props} />
                 </Modal.Body>
             </Modal>
         </>

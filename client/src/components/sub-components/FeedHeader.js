@@ -12,11 +12,9 @@ import SelectNameModal from '../modals/SelectNameModal';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 
 const FeedHeader = (props) => {
-    const { itemType } = useSelector(state => state.lootDrops);
+    const { itemTypeWithHashtag, itemNameWithHashtag } = useSelector(state => state.lootDrops);
     const [itemModalShow, setItemModalShow] = useState(false)
     const [nameModalShow, setNameModalShow] = useState(false)
-    console.log(itemType)
-
 
     /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
@@ -102,7 +100,8 @@ const FeedHeader = (props) => {
                                 </span>
                             </div>
                             <span>
-                                <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemType}</div>
+                                <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemTypeWithHashtag}</div>
+                                <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemNameWithHashtag}</div>
                             </span>
                         </div>
                     </article>
