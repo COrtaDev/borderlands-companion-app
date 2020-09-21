@@ -1,10 +1,10 @@
-// This will be the modal that will render the form.
+// This is the modal that will render the form.
 // Depending on what icon is pressed, will render a different verson of the modal.
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import SelectItem from '../sub-components/SelectItem';
-
 const SelectItemModal = (props) => {
+    // This modal allows us to select the type of item we would like to use in out loot drop
     return (
         <>
             <Modal {...props} size='sm' aria-labelledby='contained-modal-title-vcenter' centered>

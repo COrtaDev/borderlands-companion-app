@@ -8,14 +8,15 @@ import '../styles/feedheader.css';
 
 import SelectItemModal from '../modals/SelectItemModal';
 import SelectNameModal from '../modals/SelectNameModal';
+import SelectManufacturerModal from '../modals/SelectManufacturerModal';
 
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 
 const FeedHeader = (props) => {
-    const { itemTypeWithHashtag, itemNameWithHashtag } = useSelector(state => state.lootDrops);
+    const { itemTypeWithHashtag, itemNameWithHashtag, itemManufacturerWithHashtag } = useSelector(state => state.lootDrops);
     const [itemModalShow, setItemModalShow] = useState(false)
     const [nameModalShow, setNameModalShow] = useState(false)
-
+    const [manufacturerModalShow, setManufacturerModalShow] = useState(false)
     /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
     I am telling you this so you can understand strange behavior if you forget and use the site as normal
@@ -70,7 +71,7 @@ const FeedHeader = (props) => {
                                             </a>
                                         </div>
                                         <div id='item-manufacturer' data-tip data-for='itemManufacturer'>
-                                            <a href='/home' style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
+                                            <a onClick={() => setManufacturerModalShow(true)} style={{ color: 'whitesmoke', filter: 'drop-shadow(1px 1px 1px #ffffcd)', }}><span>
                                                 <FontAwesomeIcon icon={faCity} size='2x' opacity='.5' />
                                                 <ReactTooltip style={{ padding: '8px' }} backgroundColor='rgb(102 2 0)' id='itemManufacturer' place='bottom' effect='float'
                                                     overridePosition={({ left, top }, currentEvent, currentTarget, node) => {
@@ -102,6 +103,7 @@ const FeedHeader = (props) => {
                             <span>
                                 <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemTypeWithHashtag}</div>
                                 <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemNameWithHashtag}</div>
+                                <div style={{ width: 'fit-content', background: 'rgb(238 150 40 / 80%)', borderRadius: '.3em', padding: '0px 3px' }}>{itemManufacturerWithHashtag}</div>
                             </span>
                         </div>
                     </article>
@@ -109,6 +111,7 @@ const FeedHeader = (props) => {
             </header>
             <SelectItemModal show={itemModalShow} onHide={() => setItemModalShow(false)} />
             <SelectNameModal show={nameModalShow} onHide={() => setNameModalShow(false)} />
+            <SelectManufacturerModal show={manufacturerModalShow} onHide={() => setManufacturerModalShow(false)} />
         </>
     )
 }
