@@ -30,7 +30,7 @@ with app.app_context():
                   hashed_password='hashMEpasswordMATEY')
     alissa = User(username='Alissa', email='alissa@aa.io',
                   hashed_password='hashMEpasswordMATEY')
-    demouser = User(username='DemoUser', email='DemoUserEmail@demo.com',
+    demouser = User(username='McRad', email='DemoUserEmail@demo.com',
                     hashed_password='$2b$14$tf1vv3O/asmJFhpMDspZJOLv2Rlz6AwZhWyLh9XRXRpZ4Gd5hmsbG')
 
     loot1 = Loot(item_name="Seein' Dead", type="Class Mod", elemental_types=['None'], manufacturers=[

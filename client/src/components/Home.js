@@ -18,7 +18,9 @@ const Home = (props) => {
                         <div id='divider' style={{ height: '8px', margin: '0em 1em' }}></div>
                         <Feed userId={userId} userName={userName} />
                     </div>
-                    <div id='right' style={{ width: '275px' }}></div>
+                    <div id='right' style={{ width: '275px', paddingLeft: "10px" }}>
+                        <iframe src="https://discord.com/widget?id=454684422390808577&amp;theme=dark&amp;username=Corta.dev" width="100%" height="400px" allowtransparency="true" frameborder="0"></iframe>
+                    </div>
                 </span>
             </div>
         </>

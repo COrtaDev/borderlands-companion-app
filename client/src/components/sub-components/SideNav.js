@@ -8,9 +8,6 @@ const SideNav = () => {
     return (
         <>
             <aside id='sideNav' class='menu'>
-                <p>
-                    This will probably hold my icon...
-                </p>
                 <ul class='list'>
                     <div class='menu menu-item'>
                         <li id='list-item'>
@@ -54,7 +51,7 @@ const SideNav = () => {
                             </a>
                         </li>
                     </div>
-                    <div class='menu menu-item'><li id='list-item'><a class='list list-item'>New Loot Drop Button</a></li></div>
+                    {/* <div class='menu menu-item'><li id='list-item'><a class='list list-item'>New Loot Drop Button</a></li></div> */}
                 </ul>
             </aside>
         </>

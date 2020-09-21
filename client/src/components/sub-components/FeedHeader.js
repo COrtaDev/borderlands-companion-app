@@ -34,7 +34,7 @@ const FeedHeader = (props) => {
     this component is getting out of control... MAJOR refactor needed... LOLWTF is this...
     start buy pulling out repetitive code blocks, defining them in sub-compoments as component functions and moving this component into the "Main Components" directory. It'll be worth the effort...
     */
-    console.log(message)
+    // console.log(message)
     const newLootDrop = async (itemName, message) => {
         const res = await fetch(`${lootDropsUrl}/${userId}`, {
             method: "post",
@@ -44,7 +44,7 @@ const FeedHeader = (props) => {
         /*Here we check to see if we get a 200 response, we then store the generate and auth token
         or the user so they do not have to log backin if they leave the page and return later*/
         if (res.ok) {
-            return <Redirect to='/home' />
+            window.location.reload()
         };
     }
     const handleNewLootDrop = (e) => {

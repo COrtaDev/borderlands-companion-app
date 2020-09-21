@@ -21,7 +21,7 @@ const Feed = (props) => {
     // From the feed we will render the Loot Drop components.
     if (!loot) { return null; }
     else {
-        console.log(loot)
+        // console.log(loot)
         //begin rendering loot components for the feed
         const lootDropComponents = loot.loot.map((loot) => <LootDrop key={loot.id} loot={loot} userName={userName} />)
         return (

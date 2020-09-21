@@ -69,8 +69,8 @@ def get_loot_drops(id):
 
 
 def fetch_additional_info(item_name, all=False):
-    if item_name == 'Fastball':
-        item_name = 'Fastball (Borderlands 3)'
+    if item_name == 'Fastball' or item_name == 'Black Hole':
+        item_name = item_name + ' (Borderlands 3)'
     item_wikia = wikia.page("Borderlands", item_name)
     item_page_url = item_wikia.url
     item_img_url = item_wikia.images[0]

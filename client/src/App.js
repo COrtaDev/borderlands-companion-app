@@ -2,10 +2,8 @@ import React from "react";
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { hasAccessToken } from './actions/auth';
-// import Portal from './components/Portal';
-// import ItemDropdown from './components/sub-components/ItemDropdown'
-// import PortalModal from './components/modals/PortalModal';
-// import LootDropMockup from './components/sub-components/LootDropMockup';
+import { Navbar } from 'react-bootstrap';
+// import {elements} from './components/modal-assets'
 import Landing from './components/Landing';
 import LogoutButton from './components/sub-components/LogoutButton';
 import Home from './components/Home';
@@ -17,22 +15,21 @@ const App = () => {
     if (!userId) { dispatch(hasAccessToken()) }
     return (
         <BrowserRouter>
-            <nav>
-                <ul>
-                    {/* <li><NavLink to="/customtoggle" activeclass="active">custom toggle</NavLink></li> */}
-                    {/* <li><NavLink to="/portalmodal" activeclass="active">Portal Modal</NavLink></li> */}
-                    {/* <li><NavLink to="/lootdrop" activeclass="active">Loot Drop</NavLink></li> */}
-                    <li><NavLink to="/" activeclass="active">Landing</NavLink></li>
-                    <li><NavLink to="/home" activeclass="active">Home</NavLink></li>
-                    <LogoutButton />
-                </ul>
-            </nav>
+            <Navbar bg="dark" variant="dark" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'unset' }}>
+                <Navbar.Brand href="#home">
+                    <img
+                        alt=""
+                        src="https://splitwise-clone.s3.us-east-2.amazonaws.com/favicon/apple-icon-152x152.png"
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />{' '}BL3 Companion
+                </Navbar.Brand>
+                <LogoutButton style={{ position: 'right' }} />
+            </Navbar>
             <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route path="/home"><Home userId={userId} userName={userName} /></Route>
-                {/* <Route path="/customtoggle" component={ItemDropdown} /> */}
-                {/* <Route path="/lootdrop"><LootDropMockup userId={userId} userName={userName} /></Route> */}
-                {/* <Route path="/portalmodal" component={PortalModal}></Route> */}
             </Switch>
         </BrowserRouter>
     );
