@@ -1,3 +1,4 @@
+// const fs = require('fs');
 const elements =
     [
         {
@@ -1980,4 +1981,10 @@ export const items = elements.map((item) => {
     if (item.element.includes("None")) items.possibleElements.push("None")
     return (items)
 })
+// const data = JSON.stringify(items)
+// fs.writeFile('loot.txt', data, function (err) {
+//     if (err) return console.log(err);
+//     console.log("loot enabled")
+
+// });
 // console.log(more)

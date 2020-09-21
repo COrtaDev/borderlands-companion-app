@@ -29,13 +29,10 @@ const SelectElement = (props) => {
     if (itemName) {
         const item = items.filter((item) => item.name === itemName)
         const [elements] = item
-        console.log(item)
-        console.log(elements)
         DropdownItems = elements.possibleElements.map((element) => <Dropdown.Item key={element} eventKey={element}>{element}</Dropdown.Item>)
     } else {
         DropdownItems = allElements.map((element, i) => <Dropdown.Item key={i} eventKey={element} >{element}</Dropdown.Item>)
     }
-    // }
     return (
         <>
             <ButtonGroup vertical>

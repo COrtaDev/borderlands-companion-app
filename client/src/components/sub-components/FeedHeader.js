@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeteor, faDiceD20, faCity, faHandHoldingUsd, } from '@fortawesome/free-solid-svg-icons';
 
 import ReactTooltip from 'react-tooltip';
 import '../styles/feedheader.css';
-
+import { lootDropsUrl } from '../../config';
 import SelectItemModal from '../modals/SelectItemModal';
 import SelectNameModal from '../modals/SelectNameModal';
 import SelectManufacturerModal from '../modals/SelectManufacturerModal';
@@ -14,7 +15,14 @@ import SelectElementModal from '../modals/SelectElementModal';
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 
 const FeedHeader = (props) => {
-    const { itemTypeWithHashtag, itemNameWithHashtag, itemManufacturerWithHashtag, itemElementWithHashtag } = useSelector(state => state.lootDrops);
+    const {
+        itemTypeWithHashtag, itemType,
+        itemNameWithHashtag, itemName,
+        itemManufacturerWithHashtag, itemManufacturer,
+        itemElementWithHashtag, itemElement,
+    } = useSelector(state => state.lootDrops);
+    const { userId } = useSelector(state => state.auth)
+    const [message, setMessage] = useState('')
     const [itemModalShow, setItemModalShow] = useState(false)
     const [nameModalShow, setNameModalShow] = useState(false)
     const [manufacturerModalShow, setManufacturerModalShow] = useState(false)
@@ -26,6 +34,31 @@ const FeedHeader = (props) => {
     this component is getting out of control... MAJOR refactor needed... LOLWTF is this...
     start buy pulling out repetitive code blocks, defining them in sub-compoments as component functions and moving this component into the "Main Components" directory. It'll be worth the effort...
     */
+    console.log(message)
+    const newLootDrop = async (itemName, message) => {
+        const res = await fetch(`${lootDropsUrl}/${userId}`, {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ itemName, message }),
+        });
+        /*Here we check to see if we get a 200 response, we then store the generate and auth token
+        or the user so they do not have to log backin if they leave the page and return later*/
+        if (res.ok) {
+            return <Redirect to='/home' />
+        };
+    }
+    const handleNewLootDrop = (e) => {
+        if (!itemType || !itemName || !itemManufacturer || !itemElement || !message) return window.alert("Not yet VH!\nYou need to fill out the entire lootdrop!")
+        e.preventDefault()
+        newLootDrop(itemName, message)
+        // if (!itemName) window.alert("Please enter a Item Name!")
+        // if (!itemManufacturer) window.alert("Please enter a Item Manufacturer!")
+        // if (!itemElement) window.alert("Please enter a Item Element!")
+    }
+    const handleMessage = (e) => {
+        e.preventDefault();
+        setMessage(e.target.value)
+    }
     return (
         <>
             <header style={{ background: 'black', width: '596px', borderRadius: '0em 0em 1em 1em', boxShadow: 'inset 0px -8px 22px 0px rgba(217, 171, 17, 0.35)', border: '1px solid rgb(230 228 224 / 50%)' }}>
@@ -41,7 +74,7 @@ const FeedHeader = (props) => {
                         </div>
                         <div style={{ width: '100%', boxSizing: 'border-box', padding: '5px' }}>
                             <div style={{ borderBottom: '1px solid rgba(245, 245, 245, .4 )', }}>
-                                <input style={{ width: '100%', height: '35px', boxSizing: 'border-box', background: 'black', border: 'unset' }} type="text" placeholder="Share your loot drop..."></input>
+                                <input style={{ color: 'whitesmoke', width: '100%', height: '35px', boxSizing: 'border-box', background: 'black', border: 'unset' }} type="text" placeholder="Share your loot drop..." onChange={handleMessage}></input>
                             </div>
                             <div>
                                 <span style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', padding: '8px 4px 0px 4px' }}>
@@ -97,9 +130,11 @@ const FeedHeader = (props) => {
                                             </a>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '125px', height: '35px', borderRadius: '1em', background: 'rgb(102 2 0 / 50%)' }}>
-                                        <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', color: 'whitesmoke', margin: '0px' }}>Drop this Loot</p>
-                                    </div>
+                                    <a onClick={handleNewLootDrop}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '125px', height: '35px', borderRadius: '1em', background: 'rgb(102 2 0 / 50%)' }}>
+                                            <p style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', alignContent: 'center', color: 'whitesmoke', margin: '0px' }}>Drop this Loot</p>
+                                        </div>
+                                    </a>
                                 </span>
                             </div>
                             <span>
@@ -118,5 +153,6 @@ const FeedHeader = (props) => {
             <SelectElementModal show={elementModalShow} onHide={() => setElementModalShow(false)} />
         </>
     )
+
 }
 export default FeedHeader;

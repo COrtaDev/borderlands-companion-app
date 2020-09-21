@@ -21,9 +21,9 @@ class Loot(db.Model):
     #     db.Integer, db.ForeignKey('manufacturers.id'), nullable=False)
     # We have decided to change manufacturers for the same reasons as elemental types, some items may spawn
     # with one or many different manufacuters so we can simple seed them as arrays and map them where they need to go
-    manufacturers = db.Column(db.ARRAY(db.String), nullable=False)
-    splash_dmg = db.Column(db.Boolean, nullable=False)
-    world_drop = db.Column(db.Boolean, nullable=False)
+    manufacturers = db.Column(db.ARRAY(db.String))
+    splash_dmg = db.Column(db.Boolean,)
+    world_drop = db.Column(db.Boolean,)
     dropped_from = db.Column(db.String)
     reward_for = db.Column(db.String)
     location = db.Column(db.String)
