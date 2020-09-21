@@ -43,7 +43,7 @@ const SelectItem = (props) => {
     const handleGrenadeSelect = (e) => {
         changeButtons();
         setGrenadeButtonVariant('success');
-        setItemType('Grenade');
+        setItemType('Grenade Mod');
     }
     const handleArtifactSelect = (e) => {
         changeButtons();

@@ -12,4 +12,3 @@ export const getLootDrops = (userId) => async (dispatch) => {
         dispatch({ type: LOOT_DROPS, loot: data })
     } else { return Error('Request Failed'); }
 }
-

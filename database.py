@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import json
 from app import app, db
 from app.models.users import User
 from app.models.loot import Loot
@@ -7,6 +8,11 @@ from app.models.comments import Comment
 from app.models.loot_drops import Loot_Drop
 load_dotenv()
 
+f = open("loot.txt", "r")
+loot_data = f.read()
+loot_list = json.loads(loot_data)
+loot_seeds = [Loot(item_name=loot['name'], type=loot['type'], elemental_types=loot['possibleElements'],)
+              for loot in loot_list]
 
 with app.app_context():
     db.drop_all()
@@ -60,9 +66,10 @@ with app.app_context():
     db.session.add(soonmi)
     db.session.add(alissa)
     db.session.add(demouser)
-    db.session.add(loot1)
-    db.session.add(loot2)
+    # db.session.add(loot1)
+    # db.session.add(loot2)
     db.session.flush()
+    db.session.add_all(loot_seeds)
     db.session.add(loot_drop1)
     db.session.add(loot_drop2)
     db.session.flush()

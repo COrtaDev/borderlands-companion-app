@@ -61,32 +61,32 @@ export const manufacturers = [
     },
     {
         "id": 13,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Atlas"
     },
     {
         "id": 14,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Pangolin"
     },
     {
         "id": 15,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Hyperion"
     },
     {
         "id": 16,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Tediore"
     },
     {
         "id": 17,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Torgue"
     },
     {
         "id": 18,
-        "type": "Grenade",
+        "type": "Grenade Mod",
         "manufacturer": "Vladolf"
     },
     {

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_ITEM_MANUFACTURER } from '../../actions/lootDrops';
 import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
 import { manufacturers } from '../modal-assets/manufacturers';
-// import { SET_ITEM_TYPE } from '../../actions/lootDrops';
+import { possibleGrenadeManufacturers } from '../modal-assets/grenades';
 const SelectManufacturer = (props) => {
     const dispatch = useDispatch();
-    let { itemType } = useSelector(state => state.lootDrops);
+    let { itemType, itemName } = useSelector(state => state.lootDrops);
     const [itemManufacturer, setItemManufacturer] = useState(null)
     const [manufacturerButtonVariant, setManufacturerButtonVariant] = useState("danger")
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
@@ -24,12 +24,15 @@ const SelectManufacturer = (props) => {
         props.onHide();
     }
     let DropdownItems = [];
-    if (itemType) {
+    if (itemType === "Grenade Mod" && itemName !== '') {
+        const grenade = possibleGrenadeManufacturers.filter((grenade) => grenade.name === itemName);
+        const [manufacturers] = grenade;
+        DropdownItems = manufacturers.possibleManufacturers.map((grenade) => <Dropdown.Item key={grenade} eventKey={grenade}>{grenade}</Dropdown.Item>)
+    } else if (itemType && itemType !== "Grenade Mod") {
         const potentialItems = manufacturers.filter((item) => item.type === itemType)
-        console.log(potentialItems)
         DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer}>{item.manufacturer}</Dropdown.Item>)
     } else {
-        DropdownItems = manufacturers.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer} >{item.namanufacturerme}</Dropdown.Item>)
+        DropdownItems = manufacturers.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer} >{item.manufacturer}</Dropdown.Item>)
     }
     return (
         <>
