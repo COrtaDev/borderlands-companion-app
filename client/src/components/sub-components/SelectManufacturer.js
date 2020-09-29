@@ -28,10 +28,10 @@ const SelectManufacturer = (props) => {
         const grenade = possibleGrenadeManufacturers.filter((grenade) => grenade.name === itemName);
         const [manufacturers] = grenade;
         DropdownItems = manufacturers.possibleManufacturers.map((grenade) => <Dropdown.Item key={grenade} eventKey={grenade}>{grenade}</Dropdown.Item>)
-    } else if (itemType && itemType !== "Grenade Mod") {
-        const potentialItems = manufacturers.filter((item) => item.type === itemType)
-        DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer}>{item.manufacturer}</Dropdown.Item>)
     } else {
+        // const potentialItems = manufacturers.filter((item) => item.type === itemType)
+        // DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer}>{item.manufacturer}</Dropdown.Item>)
+        // } else {
         DropdownItems = manufacturers.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer} >{item.manufacturer}</Dropdown.Item>)
     }
     return (
