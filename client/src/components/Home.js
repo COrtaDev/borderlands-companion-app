@@ -19,7 +19,7 @@ const Home = (props) => {
                         <Feed userId={userId} userName={userName} />
                     </div>
                     <div id='right' style={{ width: '275px', paddingLeft: "10px" }}>
-                        <iframe src="https://discord.com/widget?id=454684422390808577&amp;theme=dark&amp;username=Corta.dev" width="100%" height="400px" allowtransparency="true" frameborder="0"></iframe>
+                        <iframe src="https://discord.com/widget?id=454684422390808577&amp;theme=dark&amp;username=Corta.dev" width="100%" height="400px" allowtransparency="true" frameBorder="0"></iframe>
                     </div>
                 </span>
             </div>
