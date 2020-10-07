@@ -1,5 +1,5 @@
 const fs = require('fs');
-export const allManufacturers =
+const allManufacturers =
     [
         {
             "id": 1,
@@ -2309,7 +2309,7 @@ const more = allManufacturers.map((item) => {
         if (item.manufacturer.includes("P")) items.possibleManufacturers.push("Pangolin");
         if (item.manufacturer.includes("T")) items.possibleManufacturers.push("Torgue");
     } else {
-        items.possibleManufacturers.push(items.possibleManufacturers.push(item.manufacturer));
+        items.possibleManufacturers.push((item.manufacturer));
     }
     if (item.element.includes("Any")) items.possibleElements.push("Any")
     if (item.element.includes("S")) items.possibleElements.push("Shock")
@@ -2322,27 +2322,27 @@ const more = allManufacturers.map((item) => {
     return (items);
 })
 
-const items = allManufacturers.map((item) => {
-    let items = {
-        id: item.id,
-        name: item.name,
-        type: item.type,
-        possibleElements: []
-    }
-    if (item.element.includes("Any")) items.possibleElements.push("Any")
-    if (item.element.includes("S")) items.possibleElements.push("Shock")
-    if (item.element.includes("F")) items.possibleElements.push("Fire")
-    if (item.element.includes("N")) items.possibleElements.push("None")
-    if (item.element.includes("C")) items.possibleElements.push("Corrosive")
-    if (item.element.includes("O")) items.possibleElements.push("Cryo")
-    if (item.element.includes("R")) items.possibleElements.push("Radiation")
-    if (item.element.includes("None")) items.possibleElements.push("None")
-    return (items)
-})
-const data = JSON.stringify(items)
+// const items = allManufacturers.map((item) => {
+//     let items = {
+//         id: item.id,
+//         name: item.name,
+//         type: item.type,
+//         possibleElements: []
+//     }
+//     if (item.element.includes("Any")) items.possibleElements.push("Any")
+//     if (item.element.includes("S")) items.possibleElements.push("Shock")
+//     if (item.element.includes("F")) items.possibleElements.push("Fire")
+//     if (item.element.includes("N")) items.possibleElements.push("None")
+//     if (item.element.includes("C")) items.possibleElements.push("Corrosive")
+//     if (item.element.includes("O")) items.possibleElements.push("Cryo")
+//     if (item.element.includes("R")) items.possibleElements.push("Radiation")
+//     if (item.element.includes("None")) items.possibleElements.push("None")
+//     return (items)
+// })
+const data = JSON.stringify(more)
 fs.writeFile('loot.txt', data, function (err) {
     if (err) return console.log(err);
     console.log("loot enabled")
 
 });
-console.log(items)
+console.log(more)
