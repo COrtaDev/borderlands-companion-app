@@ -1,14 +1,13 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_ITEM_MANUFACTURER } from '../../actions/lootDrops';
+import { SET_ITEM_MANUFACTURER, filterManufacturers } from '../../actions/lootDrops';
 import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
 import { manufacturers } from '../modal-assets/manufacturers';
 import { possibleGrenadeManufacturers } from '../modal-assets/grenades';
 
 const SelectManufacturer = (props) => {
-    
     const dispatch = useDispatch();
-    let { itemType, itemName } = useSelector(state => state.lootDrops);
+    let { itemType, itemName, itemElement } = useSelector(state => state.lootDrops);
     const [itemManufacturer, setItemManufacturer] = useState(null)
     const [manufacturerButtonVariant, setManufacturerButtonVariant] = useState("danger")
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
@@ -25,24 +24,13 @@ const SelectManufacturer = (props) => {
         dispatch({ type: SET_ITEM_MANUFACTURER, itemManufacturer: itemManufacturer })
         props.onHide();
     }
-    let DropdownItems = [];
-    if (itemType === "Grenade Mod" && itemName !== '') {
-        const grenade = possibleGrenadeManufacturers.filter((grenade) => grenade.name === itemName);
-        const [manufacturers] = grenade;
-        DropdownItems = manufacturers.possibleManufacturers.map((grenade) => <Dropdown.Item key={grenade} eventKey={grenade}>{grenade}</Dropdown.Item>)
-    } else {
-        // const potentialItems = manufacturers.filter((item) => item.type === itemType)
-        // DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer}>{item.manufacturer}</Dropdown.Item>)
-        // } else {
-        DropdownItems = manufacturers.map((item) => <Dropdown.Item key={item.id} eventKey={item.manufacturer} >{item.manufacturer}</Dropdown.Item>)
-    }
     return (
         <>
             <ButtonGroup vertical>
                 <DropdownButton as={ButtonGroup} variant={manufacturerButtonVariant}
                     title={`${itemType} Manufacturers`} id="bg-nested-dropdown"
                     className="weapon-type" onSelect={handleManufacturerSelect}>
-                    {DropdownItems}
+                    {filterManufacturers(itemType, itemName, itemElement)}
                 </DropdownButton>
                 <Button id='confirm-item' variant={confirmButtonVariant} onClick={handleSelectManufacturer}>Confirm</Button>
             </ButtonGroup>
