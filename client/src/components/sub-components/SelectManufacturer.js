@@ -4,7 +4,9 @@ import { SET_ITEM_MANUFACTURER } from '../../actions/lootDrops';
 import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
 import { manufacturers } from '../modal-assets/manufacturers';
 import { possibleGrenadeManufacturers } from '../modal-assets/grenades';
+
 const SelectManufacturer = (props) => {
+    
     const dispatch = useDispatch();
     let { itemType, itemName } = useSelector(state => state.lootDrops);
     const [itemManufacturer, setItemManufacturer] = useState(null)

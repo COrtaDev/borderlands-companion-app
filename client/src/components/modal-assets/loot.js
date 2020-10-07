@@ -327,4 +327,4 @@ export const loot =
         { "id": 325, "name": "Tran-fusion", "possibleManufacturers": ["Atlas", "Hyperion", "Tediore"], "possibleElements": ["None"], "type": "Grenade Mod" },
         { "id": 326, "name": "Ultraball", "possibleManufacturers": ["Torgue"], "possibleElements": ["None", "None"], "type": "Grenade Mod" },
         { "id": 327, "name": "Widowmaker", "possibleManufacturers": ["Hyperion", "Vladof", "Tediore", "Torgue"], "possibleElements": ["None"], "type": "Grenade Mod" }
-    ]
+    ];
