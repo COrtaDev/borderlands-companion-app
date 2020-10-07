@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_ITEM_MANUFACTURER, filterManufacturers } from '../../actions/lootDrops';
-import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
-import { manufacturers } from '../modal-assets/manufacturers';
-import { possibleGrenadeManufacturers } from '../modal-assets/grenades';
+import { Button, DropdownButton, ButtonGroup, } from 'react-bootstrap';
 
 const SelectManufacturer = (props) => {
     const dispatch = useDispatch();
