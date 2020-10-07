@@ -1,10 +1,9 @@
-import React, { useState, forwardRef, createRef, useRef } from 'react';
+import React, { useState, forwardRef, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
-// import { items } from '../modal-assets/items';
-import { items } from '../modal-assets/elements';
-import { loot } from '../modal-assets/loot';
-import { SET_ITEM_NAME } from '../../actions/lootDrops';
+// import { items } from '../modal-assets/elements';
+// import { loot } from '../modal-assets/loot';
+import { SET_ITEM_NAME, filterNames } from '../../actions/lootDrops';
 import '../styles/selectname.css';
 
 //We define a Custom Toggle as a Dropdown with a Custom Menu
@@ -66,12 +65,11 @@ Here we go about rendering a dropdown with all the names of items with a filter 
 */
 const SelectName = (props) => {
     const dispatch = useDispatch();
-    const { itemType } = useSelector(state => state.lootDrops)
+    const { itemType, itemElement, itemManufacturer } = useSelector(state => state.lootDrops)
     const [itemName, setItemName] = useState(null)
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
     const [dropdownButtonVariant, setDropdownButtonVariant] = useState("danger")
     const [title, setTitle] = useState('Select item name')
-
     const childRef = useRef(null);
 
     const handleSelectName = (e) => {
@@ -80,16 +78,15 @@ const SelectName = (props) => {
         // console.log(itemName)
         props.onHide();
     }
-
     const handleSelect = (e) => {
         setTitle(e)
         setItemName(e)
         setDropdownButtonVariant('primary')
         setConfirmButtonVariant('success')
     }
-    let DropdownItems = [];
-    let potentialLoot = loot;
-    console.log(potentialLoot);
+    // let DropdownItems = [];
+    // let potentialLoot = loot;
+    // console.log(potentialLoot);
     /*
     Here we have reached a point where we need to filter the possible names based on the state of the app.
     Depending on if the user has made selections in the previous modals, the list of potential names will be limited by:
@@ -98,14 +95,20 @@ const SelectName = (props) => {
         - itemElement
     For now I plan on brute force filtering the list of potential names by checking the state to see if a selection has been made elseware in the app...
     */
-    if (itemType) {
-        //If the user has made a selection of itemType we aught to filter based on that
-        const potentialItems = items.filter((item) => item.type === itemType)
-        // console.log(potentialItems)
-        DropdownItems = potentialItems.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
-    } else {
-        DropdownItems = items.map((item) => <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>)
-    }
+    // if (itemType) {
+    //     //If the user has made a selection of itemType we aught to filter based on that
+    //     const potentialItems = items.filter((item) => item.type === itemType);
+    //     // console.log(potentialItems)
+    //     DropdownItems = potentialItems.map(
+    //         (item) =>
+    //             <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>
+    //     );
+    // } else {
+    //     DropdownItems = items.map(
+    //         (item) =>
+    //             <Dropdown.Item key={item.id} eventKey={item.name} value={item.name} >{item.name}</Dropdown.Item>
+    //     );
+    // }
     return (
         <>
             <ButtonGroup vertical>
@@ -116,7 +119,9 @@ const SelectName = (props) => {
                     id="bg-nested-dropdown">
                     <Dropdown.Toggle ref={childRef} as={CustomToggle} id="dropdown-custom-components" />
                     {/* We will map the Dropdown.Item components for each item in the items array */}
-                    <Dropdown.Menu ref={childRef} as={CustomMenu}>{DropdownItems}</Dropdown.Menu>
+                    <Dropdown.Menu ref={childRef} as={CustomMenu}>
+                        {filterNames(itemType, itemElement, itemManufacturer)}
+                    </Dropdown.Menu>
                 </DropdownButton>
                 <Button id='confirm-item' variant={confirmButtonVariant} onClick={handleSelectName}>Confirm</Button>
             </ButtonGroup>
