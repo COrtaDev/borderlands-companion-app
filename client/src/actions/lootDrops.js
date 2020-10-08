@@ -21,33 +21,55 @@ export const getLootDrops = (userId) => async (dispatch) => {
 
 export const filterManufacturers = (itemType, itemName, itemElement) => {
     /*
-    This action will be responsible for checking state and seeing if
-    the user has selected an itemName, itemType, or itemElement and
-    filtering the available choices that will render in the modal.
+    This action will be responsible for checking state and seeing if the user has selected an itemName,
+     itemType, or itemElement and filtering the available choices that will render in the modal.
     */
     let DropdownItems = [];
     if (itemName) {
-        const filteredManufacturers = loot.filter((lootItem) => lootItem.name === itemName);
-        DropdownItems = filteredManufacturers.map(
-            (manufacturer) =>
-                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+        const [filteredManufacturers] = loot.filter((lootItem) => lootItem.name === itemName);
+        // console.log(filteredManufacturers);
+        let { possibleManufacturers } = filteredManufacturers;
+        // console.log(possibleManufacturers);
+        DropdownItems = possibleManufacturers.map(
+            (manufacturer, i) =>
+                <Dropdown.Item key={i} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
         return DropdownItems
     } else if (itemType && !itemElement) {
-        const filteredManufacturers = loot.filter((lootItem) => lootItem.type === itemType);
-        DropdownItems = filteredManufacturers.map(
-            (manufacturer) =>
-                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+        const filteredManufacturers = loot.filter(
+            (lootItem) => lootItem.type === itemType || lootItem.type.includes(itemType));
+        console.log(filteredManufacturers);
+        // We won't need to array destructure because we most likely will have many returns
+        // We will need to create a new Set() of manufacturers to ensure there are no duplicates.
+        let manufacturerSet = new Set();
+        filteredManufacturers.map(
+            (item) => manufacturerSet.add(...item.possibleManufacturers));
+        // We then coerce the Set object into an array using the spread opperator.
+        let possibleManufacturers = [...manufacturerSet];
+        // console.log(possibleManufacturers);
+        DropdownItems = possibleManufacturers.map(
+            (manufacturer, i) =>
+                <Dropdown.Item key={i} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
+        return DropdownItems;
     } else if (!itemType && itemElement) {
         const filteredManufacturers = loot.filter((lootItem) => lootItem.possibleElements.includes(itemElement));
-        DropdownItems = filteredManufacturers.map(
-            (manufacturer) =>
-                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+        // console.log(filteredManufacturers);
+        // We will need to create a new Set() of manufacturers to ensure there are no duplicates.
+        let manufacturerSet = new Set();
+        filteredManufacturers.map(
+            (item) => manufacturerSet.add(...item.possibleManufacturers));
+        // We then coerce the Set object into an array using the spread opperator.
+        let possibleManufacturers = [...manufacturerSet];
+        // console.log(possibleManufacturers);
+        DropdownItems = possibleManufacturers.map(
+            (manufacturer, i) =>
+                <Dropdown.Item key={i} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
+        return DropdownItems;
     } else if (itemType && itemElement) {
         const filteredManufacturers = loot.filter(
             (lootItem) => lootItem.type === itemType && lootItem.possibleElements.includes(itemElement));
@@ -62,6 +84,7 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
                 <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
+        return DropdownItems;
     } else {
         // If no previous selections are found in state, we want to map all possible manufacturers
         DropdownItems = manufacturers.map(
@@ -69,8 +92,8 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
                 <Dropdown.Item key={item.id} eventKey={item.manufacturer}>
                     {item.manufacturer}</Dropdown.Item>
         );
+        return DropdownItems;
     }
-    return DropdownItems
 }
 
 export const filterNames = (itemType, itemElement, itemManufacturer) => {
