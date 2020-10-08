@@ -35,11 +35,11 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
                 <Dropdown.Item key={i} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
-        return DropdownItems
+        return DropdownItems;
     } else if (itemType && !itemElement) {
         const filteredManufacturers = loot.filter(
             (lootItem) => lootItem.type === itemType || lootItem.type.includes(itemType));
-        console.log(filteredManufacturers);
+        // console.log(filteredManufacturers);
         // We won't need to array destructure because we most likely will have many returns
         // We will need to create a new Set() of manufacturers to ensure there are no duplicates.
         let manufacturerSet = new Set();
@@ -73,15 +73,17 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
     } else if (itemType && itemElement) {
         const filteredManufacturers = loot.filter(
             (lootItem) => lootItem.type === itemType && lootItem.possibleElements.includes(itemElement));
+        // console.log(filteredManufacturers);
         // We will need to create a new Set() of manufacturers to ensure there are no duplicates.
         let manufacturerSet = new Set();
         filteredManufacturers.map(
             (item) => manufacturerSet.add(...item.possibleManufacturers));
         // We then coerce the Set object into an array using the spread opperator.
         let possibleManufacturers = [...manufacturerSet];
+        // console.log(possibleManufacturers);
         DropdownItems = possibleManufacturers.map(
-            (manufacturer) =>
-                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+            (manufacturer, i) =>
+                <Dropdown.Item key={i} eventKey={manufacturer}>
                     {manufacturer}</Dropdown.Item>
         );
         return DropdownItems;
@@ -98,9 +100,8 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
 
 export const filterNames = (itemType, itemElement, itemManufacturer) => {
     /*
-    This action will be responsible for checking state and seeing if
-    the user has selected an itemType, itemElement, itemManufacturer and
-    filtering the available choices that will render in the modal.
+    This action will be responsible for checking state and seeing if the user has selected an itemType,
+    itemElement, itemManufacturer and filtering the available choices that will render in the modal.
     */
     let DropdownItems = [];
     if (itemType || itemElement || itemManufacturer) {
@@ -123,7 +124,6 @@ export const filterNames = (itemType, itemElement, itemManufacturer) => {
                     {item.name}</Dropdown.Item>
         );
     }
-
     return DropdownItems;
 }
 
