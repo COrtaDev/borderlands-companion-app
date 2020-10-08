@@ -26,20 +26,37 @@ export const filterManufacturers = (itemType, itemName, itemElement) => {
     filtering the available choices that will render in the modal.
     */
     let DropdownItems = [];
-    if (itemName || itemType || itemElement) {
-        const filteredManufacturers = loot.filter(
-            (lootItem) =>
-                lootItem.name === itemName ||
-                lootItem.type === itemType ||
-                lootItem.possibleElements.includes(itemElement)
+    if (itemName) {
+        const filteredManufacturers = loot.filter((lootItem) => lootItem.name === itemName);
+        DropdownItems = filteredManufacturers.map(
+            (manufacturer) =>
+                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+                    {manufacturer}</Dropdown.Item>
         );
+        return DropdownItems
+    } else if (itemType && !itemElement) {
+        const filteredManufacturers = loot.filter((lootItem) => lootItem.type === itemType);
+        DropdownItems = filteredManufacturers.map(
+            (manufacturer) =>
+                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+                    {manufacturer}</Dropdown.Item>
+        );
+    } else if (!itemType && itemElement) {
+        const filteredManufacturers = loot.filter((lootItem) => lootItem.possibleElements.includes(itemElement));
+        DropdownItems = filteredManufacturers.map(
+            (manufacturer) =>
+                <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
+                    {manufacturer}</Dropdown.Item>
+        );
+    } else if (itemType && itemElement) {
+        const filteredManufacturers = loot.filter(
+            (lootItem) => lootItem.type === itemType && lootItem.possibleElements.includes(itemElement));
         // We will need to create a new Set() of manufacturers to ensure there are no duplicates.
         let manufacturerSet = new Set();
         filteredManufacturers.map(
             (item) => manufacturerSet.add(...item.possibleManufacturers));
         // We then coerce the Set object into an array using the spread opperator.
         let possibleManufacturers = [...manufacturerSet];
-        // Finally, we map over that array to create our React components tailored to our user's selection.
         DropdownItems = possibleManufacturers.map(
             (manufacturer) =>
                 <Dropdown.Item key={manufacturer} eventKey={manufacturer}>
@@ -84,5 +101,34 @@ export const filterNames = (itemType, itemElement, itemManufacturer) => {
         );
     }
 
+    return DropdownItems;
+}
+
+export const filterElements = (itemType, itemName, itemManufacturer) => {
+    /*
+    This action will be responsible for checking state and seeing if
+    the user has selected an itemType, itemName, itemManufacturer and
+    filtering the available choices that will render in the modal.
+    */
+    let DropdownItems = [];
+    const allElements = ["Shock", "Fire", "Corrosive", "Cryo", "Radiation", "Any", "None",]
+    //might need a Set to remove dupes of None None
+    if (itemType || itemName || itemManufacturer) {
+        const filteredElements = loot.filter(
+            (lootItem) =>
+                lootItem.type === itemType ||
+                lootItem.name === itemName ||
+                lootItem.possibleManufacturers.includes(itemManufacturer)
+        );
+        console.log(filteredElements);
+        let elementSet = new Set();
+        filteredElements.map(
+            (item) => elementSet.add(...item.possibleElements));
+        let possibleElements = [...elementSet];
+        console.log(possibleElements);
+        DropdownItems = possibleElements.map((element, i) => <Dropdown.Item key={i} eventKey={element} >{element}</Dropdown.Item>)
+    } else {
+        DropdownItems = allElements.map((element, i) => <Dropdown.Item key={i} eventKey={element} >{element}</Dropdown.Item>)
+    }
     return DropdownItems;
 }
