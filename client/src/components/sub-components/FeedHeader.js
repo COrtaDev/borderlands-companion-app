@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMeteor, faDiceD20, faCity, faHandHoldingUsd, } from '@fortawesome/free-solid-svg-icons';
 
 import ReactTooltip from 'react-tooltip';
-import '../styles/feedheader.css';
+import '../styles/FeedHeader.css';
 import { lootDropsUrl } from '../../config';
 import SelectItemModal from '../modals/SelectItemModal';
 import SelectNameModal from '../modals/SelectNameModal';
