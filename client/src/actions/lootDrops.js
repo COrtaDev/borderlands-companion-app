@@ -156,7 +156,11 @@ export const filterNames = (itemType, itemElement, itemManufacturer) => {
     itemElement, itemManufacturer and filtering the available choices that will render in the modal.*/
     let DropdownItems = [];
     if (itemType) {
-        const filteredNames = loot.filter((lootItem) => lootItem.type === itemType);
+        const filteredNames = loot.filter(
+            (lootItem) =>
+                lootItem.type === itemType ||
+                lootItem.type.includes(itemType)
+        );
         console.log(filteredNames);
         DropdownItems = filteredNames.map(
             (item) =>
@@ -247,30 +251,77 @@ export const filterElements = (itemType, itemName, itemManufacturer) => {
     itemName, itemManufacturer andfiltering the available choices that will render in the modal.*/
     let DropdownItems = [];
     const allElements = ["Shock", "Fire", "Corrosive", "Cryo", "Radiation", "Any", "None",]
-    //might need a Set to remove dupes of None None
     if (itemName) {
+        const [filteredElements] = loot.filter((lootItem) => lootItem.name === itemName);
+        let { possibleElements } = filteredElements;
+        let elementSet = [...new Set(possibleElements)];
+        DropdownItems = elementSet.map(
+            (element, i) =>
+                <Dropdown.Item key={i} eventKey={element} >
+                    {element}</Dropdown.Item>)
+        return DropdownItems;
+    }
+    else if (itemType && !itemManufacturer) {
         const filteredElements = loot.filter(
             (lootItem) =>
                 lootItem.type === itemType ||
-                lootItem.name === itemName ||
-                lootItem.possibleManufacturers.includes(itemManufacturer)
+                lootItem.type.includes(itemType)
         );
-        console.log(filteredElements);
         let elementSet = new Set();
         filteredElements.map(
-            (item) => elementSet.add(...item.possibleElements));
+            (item) =>
+                elementSet.add(...item.possibleElements)
+        );
         let possibleElements = [...elementSet];
-        console.log(possibleElements);
-        DropdownItems = possibleElements.map((element, i) => <Dropdown.Item key={i} eventKey={element} >{element}</Dropdown.Item>)
+        DropdownItems = possibleElements.map(
+            (element, i) =>
+                <Dropdown.Item key={i} eventKey={element} >
+                    {element}</Dropdown.Item>
+        );
+        return DropdownItems;
     }
-    else if (itemType || itemName || itemManufacturer) {
+    else if (!itemType && itemManufacturer) {
+        const filteredElements = loot.filter(
+            (lootItem) =>
+                lootItem.possibleManufacturers.includes(itemManufacturer)
+        );
+        let elementSet = new Set();
+        filteredElements.map(
+            (item) =>
+                elementSet.add(...item.possibleElements)
+        );
+        let possibleElements = [...elementSet];
+        DropdownItems = possibleElements.map(
+            (element, i) =>
+                <Dropdown.Item key={i} eventKey={element} >
+                    {element}</Dropdown.Item>
+        );
+        return DropdownItems;
     }
-    else if (itemType || itemName || itemManufacturer) {
-    }
-    else if (itemType || itemName || itemManufacturer) {
+    else if (itemType && itemManufacturer) {
+        const filteredElements = loot.filter(
+            (lootItem) =>
+                (lootItem.type === itemType ||
+                    lootItem.type.includes(itemType)) &&
+                lootItem.possibleManufacturers.includes(itemManufacturer)
+        );
+        let elementSet = new Set();
+        filteredElements.map(
+            (item) =>
+                elementSet.add(...item.possibleElements)
+        );
+        let possibleElements = [...elementSet];
+        DropdownItems = possibleElements.map(
+            (element, i) =>
+                <Dropdown.Item key={i} eventKey={element} >
+                    {element}</Dropdown.Item>)
+        return DropdownItems;
     }
     else {
-        DropdownItems = allElements.map((element, i) => <Dropdown.Item key={i} eventKey={element} >{element}</Dropdown.Item>)
+        DropdownItems = allElements.map(
+            (element, i) =>
+                <Dropdown.Item key={i} eventKey={element} >
+                    {element}</Dropdown.Item>)
+        return DropdownItems;
     }
-    return DropdownItems;
 }
