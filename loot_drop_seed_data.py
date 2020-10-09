@@ -2,7 +2,6 @@ from random import randint
 from faker import Faker
 from app.models.loot_drops import Loot_Drop
 fake = Faker()
-
 zane_loot_lines = [
     "Look at the shinies!",
     "Let's go for that one!",
@@ -121,6 +120,11 @@ def rand_loot_drop(id):
         46, 144), ext_word_list=loot_lines), loot_id=randint(1, 327), level=randint(50, 65))
 
 
-loot_drop_seeds = [rand_loot_drop(id) for id in range(1, 21) for _ in range(3)]
+# Here we can control the number of drops per user.
+# My intial seeding of users is 20 background users and 1 demo user,
+# which accounts for the upper bound limit of 21 (non-inclusive such that the demo user will have no pre-seeded drops...)
+drops_per_user = 3
+loot_drop_seeds = [rand_loot_drop(id) for id in range(
+    1, 21) for _ in range(drops_per_user)]
 # print(loot_drop_seeds)
 # print(len(loot_drop_seeds))
