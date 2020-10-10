@@ -1,5 +1,5 @@
 from app import app
-from ..models.loot import Loot
+from app.models.loot import Loot
 
 loot_seeds = [Loot(item_name=loot['name'], type=loot['type'], manufacturers=['possibleManufacturers'],
                    elemental_types=loot['possibleElements'],) for loot in loot_list]
