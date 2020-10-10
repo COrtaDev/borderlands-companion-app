@@ -1,6 +1,6 @@
 from random import randint
 from faker import Faker
-from app import Loot_Drop
+from app.models import Loot_Drop
 fake = Faker()
 zane_loot_lines = [
     "Look at the shinies!",
