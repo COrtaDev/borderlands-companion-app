@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_ITEM_MANUFACTURER, filterManufacturers } from '../../actions/lootDrops';
+import { SET_ITEM_MANUFACTURER } from '../../actions/lootDrops';
+import { filterManufacturers } from '../../actions/filterManufacturers';
 import { Button, DropdownButton, ButtonGroup, } from 'react-bootstrap';
 
 const SelectManufacturer = (props) => {

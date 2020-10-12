@@ -59,6 +59,12 @@ const FeedHeader = (props) => {
         e.preventDefault();
         setMessage(e.target.value)
     }
+    const itemProps = {
+        itemType: itemType,
+        itemName: itemName,
+        itemManufacturer: itemManufacturer,
+        itemElement: itemElement,
+    };
     return (
         <>
             <header style={{ background: 'black', width: '596px', borderRadius: '0em 0em 1em 1em', boxShadow: 'inset 0px -8px 22px 0px rgba(217, 171, 17, 0.35)', border: '1px solid rgb(230 228 224 / 50%)' }}>
@@ -147,7 +153,7 @@ const FeedHeader = (props) => {
                     </article>
                 </div>
             </header>
-            <SelectItemModal show={itemModalShow} onHide={() => setItemModalShow(false)} />
+            <SelectItemModal itemProps={itemProps} show={itemModalShow} onHide={() => setItemModalShow(false)} />
             <SelectNameModal show={nameModalShow} onHide={() => setNameModalShow(false)} />
             <SelectManufacturerModal show={manufacturerModalShow} onHide={() => setManufacturerModalShow(false)} />
             <SelectElementModal show={elementModalShow} onHide={() => setElementModalShow(false)} />
