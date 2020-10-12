@@ -1,10 +1,15 @@
-// this will render a form similar to how we did in login/ signup
-import React, { useState, } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
 import { SET_ITEM_TYPE } from '../../actions/lootDrops';
+import { filterTypes, handleButtonTypes } from '../../actions/filterTypes';
+
 const SelectItem = (props) => {
+    console.log(props.itemProps)
     const dispatch = useDispatch();
+    let { itemName = null, itemManufacturer = null, itemElement = null } = props.itemProps;
+    console.log(itemName, itemManufacturer, itemElement);
+    // let { itemName, itemManufacturer, itemElement } = useSelector(state => state.lootDrops);
     const [weaponType, setWeaponType] = useState("Weapon")
     const [classModType, setClassModType] = useState("Class Mod")
     const [itemType, setItemType] = useState(null)
@@ -62,6 +67,11 @@ const SelectItem = (props) => {
         dispatch({ type: SET_ITEM_TYPE, itemType: itemType })
         props.onHide();
     }
+    // console.log(itemName, itemManufacturer, itemElement);
+    // console.log(filterTypes(itemName, itemManufacturer, itemElement));
+    // if (itemName){
+    handleButtonTypes(itemName, itemManufacturer, itemElement);
+    // }
     return (
         //We would like to render toggle buttons for the user to click the type of item they wish to drop
         // the items are weapon type, class mod, grenade, sheild, or artifact then confirm to close the modal
@@ -70,12 +80,13 @@ const SelectItem = (props) => {
                 <DropdownButton as={ButtonGroup} variant={weaponButtonVariant}
                     title={weaponType} id="bg-nested-dropdown"
                     className="weapon-type" onSelect={handleWeaponSelect}>
-                    <Dropdown.Item eventKey="Pistol">Pistol</Dropdown.Item>
+                    {filterTypes(itemName, itemManufacturer, itemElement)}
+                    {/* <Dropdown.Item eventKey="Pistol">Pistol</Dropdown.Item>
                     <Dropdown.Item eventKey="SMG">SMG</Dropdown.Item>
                     <Dropdown.Item eventKey="Shotgun">Shotgun</Dropdown.Item>
                     <Dropdown.Item eventKey="AR">AR</Dropdown.Item>
                     <Dropdown.Item eventKey="Sniper">Sniper</Dropdown.Item>
-                    <Dropdown.Item eventKey="RPG">RPG</Dropdown.Item>
+                    <Dropdown.Item eventKey="RPG">RPG</Dropdown.Item> */}
                 </DropdownButton>
                 <Button variant={shieldButtonVariant} onClick={handleShieldSelect}>Shield</Button>
                 <Button variant={grenadeButtonVariant} onClick={handleGrenadeSelect}>Grenade Mod</Button>

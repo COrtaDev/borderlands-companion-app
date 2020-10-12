@@ -1,9 +1,8 @@
 import React, { useState, forwardRef, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
-// import { items } from '../modal-assets/elements';
-// import { loot } from '../modal-assets/loot';
-import { SET_ITEM_NAME, filterNames } from '../../actions/lootDrops';
+import { SET_ITEM_NAME } from '../../actions/lootDrops';
+import { filterNames } from '../../actions/filterNames';
 import '../styles/selectname.css';
 
 //We define a Custom Toggle as a Dropdown with a Custom Menu
