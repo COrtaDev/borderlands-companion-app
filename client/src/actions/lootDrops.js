@@ -161,7 +161,6 @@ export const filterNames = (itemType, itemElement, itemManufacturer) => {
                 lootItem.type === itemType ||
                 lootItem.type.includes(itemType)
         );
-        console.log(filteredNames);
         DropdownItems = filteredNames.map(
             (item) =>
                 <Dropdown.Item key={item.id} eventKey={item.name}>
