@@ -19,7 +19,6 @@ export const loginUser = (email, password) => async (dispatch) => {
         });
         setCookie
             .then(console.log("fucking dispatch you whore!"),
-                dispatch({ type: SIGN_IN, token: data.token, user: data.user }))
-        // .then(window.location = `http://localhost:3000/feed/${data.user.id}`);
-        // .then(window.location.reload());
+                dispatch({ type: SIGN_IN, token: data.token, user: data.user }));
     }
+}

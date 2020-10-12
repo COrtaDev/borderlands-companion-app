@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_ITEM_ELEMENT } from '../../actions/lootDrops';
-import {filterElements} from  '../../actions/filterElements';
+import { filterElements } from '../../actions/filterElements';
 import { Button, DropdownButton, ButtonGroup, } from 'react-bootstrap';
 
 const SelectElement = (props) => {
     const dispatch = useDispatch();
-    let { itemType, itemName, itemManufacturer } = useSelector(state => state.lootDrops);
+    let { itemType=null, itemName=null, itemManufacturer=null } = useSelector(state => state.lootDrops);
     const [itemElement, setItemElement] = useState(null)
     const [elementButtonVariant, setElementButtonVariant] = useState("danger")
     const [confirmButtonVariant, setConfirmButtonVariant] = useState("secondary")
@@ -19,10 +19,12 @@ const SelectElement = (props) => {
     }
     const handleSelectElement = (e) => {
         // Once the user confirms the selection the itemType is dispatched to the store
-        if (!itemElement) return window.alert("Please Select an Item Manufacturer!")
+        if (!itemElement) return window.alert("Please Select an Item Element!")
         dispatch({ type: SET_ITEM_ELEMENT, itemElement: itemElement })
         props.onHide();
     }
+    // console.log(possibleItems)
+    // console.log(itemType, itemName, itemManufacturer, itemElement, possibleItems)
     return (
         <>
             <ButtonGroup vertical>

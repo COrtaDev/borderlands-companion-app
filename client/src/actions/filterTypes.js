@@ -11,8 +11,7 @@ const itemTypes = {
   artifact: "Artifact",
   classMods: ["Amara", "Fl4k", "Moze", "Zane"],
 };
-const handleType = (type, ButtonGroupItems, filteredTypes, props) => {
-  console.log(props)
+const handleType = (type, ButtonGroupItems, filteredTypes) => {
   if (itemTypes.weapons.includes(type)) {
     ButtonGroupItems = filteredTypes.map(
       (item) =>
