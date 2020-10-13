@@ -5,9 +5,9 @@ import { SET_ITEM_TYPE } from '../../actions/lootDrops';
 import { filterTypes, handleButtonTypes } from '../../actions/filterTypes';
 
 const SelectItem = (props) => {
-    console.log(props.itemProps)
+    // console.log(props.itemprops)
     const dispatch = useDispatch();
-    let { itemName = null, itemManufacturer = null, itemElement = null } = props.itemProps;
+    let { itemName = null, itemManufacturer = null, itemElement = null } = props.itemprops;
     console.log(itemName, itemManufacturer, itemElement);
     // let { itemName, itemManufacturer, itemElement } = useSelector(state => state.lootDrops);
     const [weaponType, setWeaponType] = useState("Weapon")
@@ -66,6 +66,14 @@ const SelectItem = (props) => {
         if (!itemType) return window.alert("Please Select an Item Type!")
         dispatch({ type: SET_ITEM_TYPE, itemType: itemType })
         props.onHide();
+    }
+    const buttonState = {
+        weaponButtonVariant: weaponButtonVariant,
+        shieldButtonVariant: shieldButtonVariant,
+        grenadeButtonVariant: grenadeButtonVariant,
+        artifactButtonVariant: artifactButtonVariant,
+        classButtonVariant: classButtonVariant,
+        confirmButtonVariant: confirmButtonVariant,
     }
     // console.log(itemName, itemManufacturer, itemElement);
     // console.log(filterTypes(itemName, itemManufacturer, itemElement));

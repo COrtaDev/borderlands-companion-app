@@ -9,6 +9,7 @@ export const SET_ITEM_TYPE = 'SET_ITEM_TYPE';
 export const SET_ITEM_NAME = 'SET_ITEM_NAME';
 export const SET_ITEM_MANUFACTURER = 'SET_ITEM_MANUFACTURER';
 export const SET_ITEM_ELEMENT = 'SET_ITEM_ELEMENT';
+export const SET_POSSIBLE_ITEMS = 'SET_POSSIBLE_ITEMS';
 
 export const getLootDrops = (userId) => async (dispatch) => {
     // We would like to paginate the number of loot drops returned here to optimize the user experience.

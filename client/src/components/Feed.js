@@ -9,7 +9,7 @@ import { trackPromise } from 'react-promise-tracker';
 const Feed = (props) => {
     const dispatch = useDispatch();
     const token = getCookieValue(ACCESS_TOKEN);
-    const { loot, itemName, itemType, itemManufacturer, itemElement } = useSelector(state => state.lootDrops);
+    const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
 
     useEffect(() => {

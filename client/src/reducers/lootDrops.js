@@ -1,9 +1,11 @@
+import {loot}from '../components/modal-assets/loot';
 import {
     LOOT_DROPS,
     SET_ITEM_TYPE,
     SET_ITEM_NAME,
     SET_ITEM_MANUFACTURER,
     SET_ITEM_ELEMENT,
+    SET_POSSIBLE_ITEMS,
 } from '../actions/lootDrops';
 
 const lootDrops = (state = {}, action) => {
@@ -41,6 +43,12 @@ const lootDrops = (state = {}, action) => {
                 ...state,
                 itemElement: action.itemElement,
                 itemElementWithHashtag: `#${action.itemElement}`,
+            }
+        }
+        case SET_POSSIBLE_ITEMS:{
+            return{
+                ...state,
+                possibleItems: action.possibleItems=loot
             }
         }
         default:
