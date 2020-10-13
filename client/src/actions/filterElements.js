@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, } from 'react-bootstrap';
-import { SET_POSSIBLE_ITEMS } from './lootDrops';
+// import { SET_POSSIBLE_ITEMS } from './lootDrops';
 import { loot } from '../components/modal-assets/loot';
 
 

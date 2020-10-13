@@ -10,7 +10,7 @@ import SelectItemModal from '../modals/SelectItemModal';
 import SelectNameModal from '../modals/SelectNameModal';
 import SelectManufacturerModal from '../modals/SelectManufacturerModal';
 import SelectElementModal from '../modals/SelectElementModal';
-import { loot } from '../modal-assets/loot';
+// import { loot } from '../modal-assets/loot';
 
 const imgUrl = 'https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524'
 
@@ -22,7 +22,7 @@ const FeedHeader = (props) => {
         itemElementWithHashtag, itemElement = null,
     } = useSelector(state => state.lootDrops);
     const { userId } = useSelector(state => state.auth)
-    const [possibleItems, setPossibleItems] = useState(loot);
+    // const [possibleItems, setPossibleItems] = useState(loot);
     const [message, setMessage] = useState('')
     const [itemModalShow, setItemModalShow] = useState(false)
     const [nameModalShow, setNameModalShow] = useState(false)
@@ -55,15 +55,7 @@ const FeedHeader = (props) => {
         e.preventDefault();
         setMessage(e.target.value)
     };
-    // const possibleItems = loot.slice();
-    // const itemProps = {
-    //     itemType: itemType,
-    //     itemName: itemName,
-    //     itemManufacturer: itemManufacturer,
-    //     itemElement: itemElement,
-    //     possibleItems: possibleItems
-    // };
-    // console.log(itemProps);
+
     return (
         <>
             <header style={{ background: 'black', width: '596px', borderRadius: '0em 0em 1em 1em', boxShadow: 'inset 0px -8px 22px 0px rgba(217, 171, 17, 0.35)', border: '1px solid rgb(230 228 224 / 50%)' }}>
