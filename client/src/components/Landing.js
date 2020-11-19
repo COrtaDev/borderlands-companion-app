@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Landing = () => {
     const token = getCookieValue(ACCESS_TOKEN);
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState(true);
     const [modalLogin, setModalLogin] = useState(false);
     const [modalSignup, setModalSignup] = useState(false);
     // These function handle how the portal modal behaves
@@ -30,6 +30,7 @@ export const Landing = () => {
         setModalLogin(true)
         setModalSignup(false)
     }
+    // const delay = window.setTimeout(setModalShow(true), 750)
 
     if (token) { return <Redirect to="/home"></Redirect>; };
     // what we need to do is render the first modal then based if they clicked login or signup we should render those modals next.
