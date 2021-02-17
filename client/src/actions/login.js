@@ -13,6 +13,7 @@ export const loginUser = (email, password) => async (dispatch) => {
         const data = await res.json();
         console.log(data.user);
         const token = await data.token.slice(2, data.token.length - 1);
+        console.log(token)
         const cookie = `${ACCESS_TOKEN}=${token}`;
         const setCookie = new Promise((resolve, reject) => {
             resolve(document.cookie = cookie);

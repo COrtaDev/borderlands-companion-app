@@ -27,7 +27,7 @@ const LootDrop = (props) => {
   const { item_name } = props.loot.loot_item;
   const { imgUrl, itemUrl } = props.loot.item_info;
   console.log(imgUrl);
-  
+
 //   const stringaling =
 //     "https://static.wikia.nocookie.net/borderlands/images/3/37/BL3_AAA_%28L50_S506%29.png/revision/latest?cb=20190917191716";
   return (
@@ -164,6 +164,11 @@ const LootDrop = (props) => {
                 <a href={itemUrl} target="_blank" rel="noreferrer noopener">
                   <img
                     src={imgUrl}
+                    srcSet={imgUrl}
+                    referrerPolicy={'origin'}
+                    // crossOrigin={'use-credentials'}
+                    loading={'lazy'}
+                    decoding={'async'}
                     style={{
                       width: "550px",
                       borderRadius: "1rem",

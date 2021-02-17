@@ -60,7 +60,7 @@ def login():
 def restore():
     auth_header = request.headers['Authorization']
     validated = validate_jwt(request)
-    # print(validated)
+    print(validated,"THIS IS VALLEYDATED")
     if (validated):
         return jsonify(validated)
     else:

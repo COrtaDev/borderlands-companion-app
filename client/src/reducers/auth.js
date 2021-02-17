@@ -5,8 +5,9 @@ const defaultState = { loggedOut: true }
 const auth = (state = defaultState, action) => {
     switch (action.type) {
         case SIGN_IN: {
+            console.log(action)
             return {
-                // ...state,
+                ...state,
                 token: action.token,
                 userId: action.user.id,
                 email: action.user.email,

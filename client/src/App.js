@@ -12,16 +12,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const dispatch = useDispatch();
   const { userId, userName, loggedOut } = useSelector((state) => state.auth);
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [logdOut, setLogdOut] = useState(null);
+  const [id, setId] = useState(userId);
+  const [name, setName] = useState(userName);
+  const [logdOut, setLogdOut] = useState(loggedOut);
+  console.log(loggedOut)
   useEffect(() => {
-    if (!id) {
+    if (loggedOut) {
       dispatch(hasAccessToken());
     }
-    setId(userId)
-  }, [id,name,logdOut]);
-  console.log(id);
+    setId(userId);
+    setName(userName);
+    setLogdOut(loggedOut);
+  }, [id, name, logdOut]);
+//   console.log(loggedOut);
   return (
     <BrowserRouter>
       <Navbar
