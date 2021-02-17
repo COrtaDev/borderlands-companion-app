@@ -17,6 +17,7 @@ valid token otherwise we need to get the user logged back in or signed up...
 */
 export const hasAccessToken = () => async (dispatch) => {
     const token = getCookieValue(ACCESS_TOKEN);
+    console.log(token)
     if (!token) return;
     const res = await fetch(`${restoreUrl}`, {
         headers: { Authorization: "Bearer " + token },

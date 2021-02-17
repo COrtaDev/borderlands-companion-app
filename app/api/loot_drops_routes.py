@@ -56,9 +56,9 @@ def get_loot_drops(id):
         item_name = data['itemName']
         item = Loot.query.filter(Loot.item_name == item_name).all()
         loot_item = [loot.to_dict() for loot in item]
-        print(loot_item[0])
+        # print(loot_item[0])
         loot = loot_item[0]
-        print(loot)
+        # print(loot)
         new_drop = Loot_Drop(creator_id=int(id),
                              message=data['message'],
                              loot_id=(loot['id']), level=65)
@@ -74,15 +74,18 @@ def fetch_additional_info(item_name, all=False):
     if item_name == 'Hyperfocus XZ41':
         item_name = 'XZ41'
     item_wikia = wikia.page("Borderlands", item_name)
+    # print(item_wikia)
     item_page_url = item_wikia.url
-    item_img_url = item_wikia.images[0]
-    item_content = item_wikia.content
-    item_summary = item_wikia.summary
+    # print(item_page_url)
+    item_img_url = item_wikia.images
+    # print(item_wikia.images)
+    # item_content = item_wikia.content
+    # item_summary = item_wikia.summary
     item_info = {
         'item_info': {
             'itemUrl': item_page_url,
             'imgUrl': item_img_url,
-            'content': item_content,
-            'summary': item_summary
+            # 'content': item_content,
+            # 'summary': item_summary
         }}
     return item_info

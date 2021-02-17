@@ -11,8 +11,10 @@ const Feed = (props) => {
     const token = getCookieValue(ACCESS_TOKEN);
     const { loot } = useSelector(state => state.lootDrops);
     const { userId, userName } = props;
-
+    // console.log(token)
     useEffect(() => {
+        console.log(loot)
+        console.log(userId)
         if (loot || !userId) return;
         trackPromise(dispatch(getLootDrops(userId)))
     });

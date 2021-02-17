@@ -126,5 +126,5 @@ def rand_loot_drop(id):
 drops_per_user = 3
 loot_drop_seeds = [rand_loot_drop(id) for id in range(
     1, 21) for _ in range(drops_per_user)]
-print(loot_drop_seeds)
-print(len(loot_drop_seeds))
+# print(loot_drop_seeds)
+# print(len(loot_drop_seeds))

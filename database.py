@@ -8,7 +8,7 @@ from app.models.comments import Comment
 from app.models.loot_drops import Loot_Drop
 load_dotenv()
 
-f = open("loot.txt", "r")
+f = open("loot-01.txt", "r")
 loot_data = f.read()
 loot_list = json.loads(loot_data)
 loot_seeds = [Loot(item_name=loot['name'], type=loot['type'], elemental_types=loot['possibleElements'],)
