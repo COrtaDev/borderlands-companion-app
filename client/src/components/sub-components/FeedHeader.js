@@ -15,7 +15,7 @@ import SelectItemModal from "../modals/SelectItemModal";
 import SelectNameModal from "../modals/SelectNameModal";
 import SelectManufacturerModal from "../modals/SelectManufacturerModal";
 import SelectElementModal from "../modals/SelectElementModal";
-// import { loot } from '../modal-assets/loot';
+import { loot } from "../modal-assets/loot";
 
 const imgUrl =
   "https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524";
@@ -38,7 +38,7 @@ const FeedHeader = (props) => {
   const [nameModalShow, setNameModalShow] = useState(false);
   const [manufacturerModalShow, setManufacturerModalShow] = useState(false);
   const [elementModalShow, setElementModalShow] = useState(false);
-  // console.log(possibleItems);
+//   console.log(itemType, itemName, itemManufacturer, itemElement);
   /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
     I am telling you this so you can understand strange behavior if you forget and use the site as normal
@@ -59,7 +59,7 @@ const FeedHeader = (props) => {
     }
   };
   const handleNewLootDrop = (e) => {
-    if (!itemType || !itemName || !itemManufacturer || !itemElement || !message)
+    if (!itemName || !message)
       return window.alert(
         "Not yet VH!\nYou need to fill out the entire lootdrop!"
       );

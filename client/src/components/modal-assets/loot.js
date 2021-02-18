@@ -2,7 +2,7 @@ export const loot =
     [
         { "id": 1, "name": "Carrier", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "AR" },
         { "id": 2, "name": "O.P.Q. System", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "AR" },
-        { "id": 3, "name": "Portals and Shite", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "AR" },
+        // { "id": 3, "name": "Portals and Shite", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "AR" },
         { "id": 4, "name": "Rebel Yell", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "AR" },
         { "id": 5, "name": "Linc", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "Pistol" },
         { "id": 6, "name": "Multi-tap", "possibleManufacturers": ["Atlas"], "possibleElements": ["None"], "type": "Pistol" },

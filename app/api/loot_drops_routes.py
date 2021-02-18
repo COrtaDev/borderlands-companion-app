@@ -73,6 +73,8 @@ def fetch_additional_info(item_name, all=False):
         item_name = item_name + ' (Borderlands 3)'
     if item_name == 'Hyperfocus XZ41':
         item_name = 'XZ41'
+    if item_name == "Techspert":
+        item_name = "Techspert_(class_mod)"
     item_wikia = wikia.page("Borderlands", item_name)
     # print(item_wikia)
     item_page_url = item_wikia.url

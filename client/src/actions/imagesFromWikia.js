@@ -1,20 +1,40 @@
 import wiki from "wikijs";
 
 export const getImgUrls = async (itemName) => {
-  // await mw.loader.using( 'mediawiki.ForeignApi' );
+  let apiEndpoint;
   const fandomWiki = await wiki({
     apiUrl: "http://Borderlands.wikia.com/api.php",
     origin: "*",
   });
-  const page = await fandomWiki.page(itemName);
+  if (exceptionsFound(itemName)) {
+    apiEndpoint = updateItemName(itemName);
+  } else {
+    apiEndpoint = itemName;
+  }
+
+  const page = await fandomWiki.page(apiEndpoint);
   const imgs = await page.images();
-  console.log("imgs: ", imgs);
-  // if (imgs.length > 1) {
-  //   // const findImg = imgs.includes(itemName);
-  //   console.log(imgs[imgs.length - 1]);
-  //   return imgs[imgs.length - 1];
-  // }
+
+  // console.log("imgs: ", imgs);
+
   return imgs;
+};
+
+function exceptionsFound(itemName) {
+  const exceptions = Object.keys(apiEndpoints);
+  if (exceptions.includes(itemName)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function updateItemName(itemName) {
+  return apiEndpoints[itemName];
+}
+const apiEndpoints = {
+  Epicenter: "Epicenter_(grenade_mod)",
+  Techspert: "Techspert_(class_mod)",
 };
 
 export default getImgUrls;

@@ -181,7 +181,7 @@ const LootDrop = (props) => {
                     srcset={imgUrl}
                     referrerPolicy={"no-referrer"}
                     // crossOrigin={'use-credentials'}
-                    loading={"eager"}
+                    loading={"lazy"}
                     // decoding={"async"}
                     style={{
                       width: "550px",
