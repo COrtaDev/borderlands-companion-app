@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentDollar,
@@ -8,6 +8,7 @@ import {
   faSkullCrossbones,
 } from "@fortawesome/free-solid-svg-icons";
 import { getDate } from "../../utils";
+import getImgUrls from "../../actions/imagesFromWikia";
 const avatarUrl =
   "https://vignette.wikia.nocookie.net/borderlands/images/f/ff/Zane_1.png/revision/latest/scale-to-width-down/120?cb=20190925154035";
 // const avatarUrl = "https://vignette.wikia.nocookie.net/borderlands/images/f/ff/Zane_1.png/revision/latest/scale-to-width-down/120?cb=20190925154035";
@@ -26,10 +27,10 @@ const LootDrop = (props) => {
   const { message, level, created_at, likes, comments } = props.loot;
   const { item_name } = props.loot.loot_item;
   const { imgUrl, itemUrl } = props.loot.item_info;
-  console.log(imgUrl);
-
-//   const stringaling =
-//     "https://static.wikia.nocookie.net/borderlands/images/3/37/BL3_AAA_%28L50_S506%29.png/revision/latest?cb=20190917191716";
+  console.log(item_name);
+  useEffect(() => {
+    async () => getImgUrls(item_name);
+  });
   return (
     <>
       <article
@@ -164,11 +165,11 @@ const LootDrop = (props) => {
                 <a href={itemUrl} target="_blank" rel="noreferrer noopener">
                   <img
                     src={imgUrl}
-                    srcSet={imgUrl}
-                    referrerPolicy={'origin'}
+                    srcset={imgUrl}
+                    referrerPolicy={"origin"}
                     // crossOrigin={'use-credentials'}
-                    loading={'lazy'}
-                    decoding={'async'}
+                    loading={"lazy"}
+                    decoding={"async"}
                     style={{
                       width: "550px",
                       borderRadius: "1rem",

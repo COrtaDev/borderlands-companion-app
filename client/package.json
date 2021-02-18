@@ -24,7 +24,9 @@
     "react-scripts": "^3.4.4",
     "react-tooltip": "^4.2.10",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "wikia": "^0.0.4",
+    "wikijs": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
