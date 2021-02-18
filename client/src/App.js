@@ -15,7 +15,7 @@ const App = () => {
   const [id, setId] = useState(userId);
   const [name, setName] = useState(userName);
   const [logdOut, setLogdOut] = useState(loggedOut);
-  console.log(loggedOut)
+  // console.log(loggedOut)
   useEffect(() => {
     if (loggedOut) {
       dispatch(hasAccessToken());

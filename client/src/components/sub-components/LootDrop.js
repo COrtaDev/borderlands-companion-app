@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentDollar,
@@ -23,14 +23,23 @@ const avatarUrl =
 const handle = "zFerocityFlynt";
 
 const LootDrop = (props) => {
+  const [imgUrl, setImgUrl] = useState("");
   const { userName } = props;
   const { message, level, created_at, likes, comments } = props.loot;
   const { item_name } = props.loot.loot_item;
-  const { imgUrl, itemUrl } = props.loot.item_info;
-  console.log(item_name);
+  const { itemUrl } = props.loot.item_info;
+
   useEffect(() => {
-    async () => getImgUrls(item_name);
-  });
+    (async () => {
+      const imgs = await getImgUrls(item_name);
+      if (imgs.length > 1) {
+        setImgUrl(imgs[imgs.length - 1]);
+        return;
+      }
+      setImgUrl(imgs[0]);
+    })();
+  }, [imgUrl]);
+
   return (
     <>
       <article
@@ -59,7 +68,11 @@ const LootDrop = (props) => {
         >
           <figure style={{ margin: "0px 20px 0px 0px" }}>
             <p>
-              <a href="/users/<id>" style={{ color: "whitesmoke" }}>
+              <a
+                className={"specialImageContainer"}
+                href="/users/<id>"
+                style={{ color: "whitesmoke" }}
+              >
                 <img
                   src={avatarUrl}
                   style={{
@@ -166,10 +179,10 @@ const LootDrop = (props) => {
                   <img
                     src={imgUrl}
                     srcset={imgUrl}
-                    referrerPolicy={"origin"}
+                    referrerPolicy={"no-referrer"}
                     // crossOrigin={'use-credentials'}
-                    loading={"lazy"}
-                    decoding={"async"}
+                    loading={"eager"}
+                    // decoding={"async"}
                     style={{
                       width: "550px",
                       borderRadius: "1rem",

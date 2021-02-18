@@ -13,8 +13,8 @@ const Feed = (props) => {
     const { userId, userName } = props;
     // console.log(token)
     useEffect(() => {
-        console.log(loot)
-        console.log(userId)
+        // console.log(loot)
+        // console.log(userId)
         if (loot || !userId) return;
         trackPromise(dispatch(getLootDrops(userId)))
     });
