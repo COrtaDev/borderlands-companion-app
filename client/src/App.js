@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { hasAccessToken } from "./actions/auth";
+import { trackPromise } from "react-promise-tracker";
+import { hasAccessToken, getCookieValue } from "./actions/auth";
+import { getLootDrops, LOOT_DROPS } from "./actions/lootDrops";
 import { Navbar } from "react-bootstrap";
 // import {elements} from './components/modal-assets'
 import Landing from "./components/Landing";
@@ -12,19 +14,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const dispatch = useDispatch();
   const { userId, userName, loggedOut } = useSelector((state) => state.auth);
-  const [id, setId] = useState(userId);
-  const [name, setName] = useState(userName);
-  const [logdOut, setLogdOut] = useState(loggedOut);
-  // console.log(loggedOut)
+  const { lootDrops } = useSelector((state) => state.lootDrops);
+
+  console.log(lootDrops);
   useEffect(() => {
-    if (loggedOut) {
-      dispatch(hasAccessToken());
-    }
-    setId(userId);
-    setName(userName);
-    setLogdOut(loggedOut);
-  }, [id, name, logdOut]);
-//   console.log(loggedOut);
+    (async () => {
+      if (loggedOut) {
+        dispatch(hasAccessToken());
+      }
+      if (userId) {
+        console.log(getCookieValue(LOOT_DROPS));
+        // let loot = getCookieValue(LOOT_DROPS);
+        // console.log(typeof loot);
+        if (lootDrops) return;
+        // if (loot) return;
+        trackPromise(dispatch(getLootDrops(userId)));
+      }
+    })();
+  }, [userId, lootDrops]);
+
   return (
     <BrowserRouter>
       <Navbar
@@ -52,7 +60,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/home">
-          <Home userId={userId} userName={userName} />
+          <Home userId={userId} userName={userName} lootDrops={lootDrops} />
         </Route>
       </Switch>
     </BrowserRouter>

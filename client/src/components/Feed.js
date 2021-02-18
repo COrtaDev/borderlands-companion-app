@@ -6,27 +6,25 @@ import { getLootDrops } from "../actions/lootDrops";
 import LootDrop from "./sub-components/LootDrop";
 import { trackPromise } from "react-promise-tracker";
 
-const Feed = (props) => {
-  const dispatch = useDispatch();
-  const token = getCookieValue(ACCESS_TOKEN);
-  const { loot } = useSelector((state) => state.loot);
-  const { userId, userName } = props;
+const Feed = ({userId, userName, lootDrops}) => {
+  //   const dispatch = useDispatch();
+//   const token = getCookieValue(ACCESS_TOKEN);
+  //   const { lootDrops } = useSelector((state) => state.lootDrops);
+  //   const { userId, userName } = props;
   // console.log(token)
-  useEffect(() => {
-    console.log(loot);
-    // console.log(userId)
-    if (loot || !userId) return;
-    trackPromise(dispatch(getLootDrops(userId)));
-  });
+  console.log(lootDrops);
+//   useEffect(() => {
+//     if (!lootDrops) return;
+//   }, [lootDrops]);
 
-  if (!token) {
-    return <Redirect to="/"></Redirect>;
-  }
-  if (!loot) {
+//   if (!token) {
+//     return <Redirect to="/"></Redirect>;
+//   }
+  if (!lootDrops) {
     return null;
   } else {
-    const lootDropComponents = loot.loot.map((loot) => (
-      <LootDrop key={loot.id} loot={loot} userName={userName} />
+    const lootDropComponents = lootDrops.map((loot) => (
+      <LootDrop key={lootDrops.id} loot={loot} userName={userName} />
     ));
     return <>{lootDropComponents}</>;
   }

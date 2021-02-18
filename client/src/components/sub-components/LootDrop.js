@@ -22,12 +22,14 @@ const avatarUrl =
 // const item = "Seein' Dead";
 const handle = "zFerocityFlynt";
 
-const LootDrop = (props) => {
+const LootDrop = ({loot, userName}) => {
+  // console.log(loot)
+  // console.log(userName)
   const [imgUrl, setImgUrl] = useState("");
-  const { userName } = props;
-  const { message, level, created_at, likes, comments } = props.loot;
-  const { item_name } = props.loot.loot_item;
-  const { itemUrl } = props.loot.item_info;
+  // const { userName } = props;
+  const { message, level, created_at, likes, comments } = loot;
+  const { item_name } = loot.loot_item;
+  const { itemUrl } = loot.item_info;
 
   useEffect(() => {
     (async () => {

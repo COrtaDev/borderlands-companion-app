@@ -13,8 +13,8 @@ const lootDrops = (state = {}, action) => {
         case LOOT_DROPS: {
             return {
                 ...state,
-                loot: action.loot,
-                // lootDrops: action.lootDrops
+                // loot: action.loot,
+                lootDrops: action.lootDrops
             }
         }
         case SET_ITEM_TYPE: {

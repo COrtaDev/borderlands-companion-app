@@ -20,10 +20,10 @@ const Login = () => {
         });
         if (res.ok) {
             const data = await res.json();
-            console.log(data.token);
-            const token = await data.token;
-            console.log(token)
-            const cookie = `${ACCESS_TOKEN}=${token}`;
+            // console.log(data.token);
+            // const token = await data.token;
+            // console.log(token)
+            const cookie = `${ACCESS_TOKEN}=${data.token}`;
             document.cookie = cookie;
             dispatch({ type: SIGN_IN, token: data.token, user: data.user })
         }
