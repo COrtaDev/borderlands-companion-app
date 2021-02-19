@@ -9,7 +9,6 @@ import Landing from "./components/Landing";
 import LogoutButton from "./components/sub-components/LogoutButton";
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
-import LootDrop from "./components/sub-components/LootDrop";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ const App = () => {
         trackPromise(dispatch(getLootDrops(userId)));
       }
     })();
-  }, [userId, lootDrops]);
+  }, [userId, lootDrops, dispatch, loggedOut, lootStorage]);
 
   return (
     <BrowserRouter>

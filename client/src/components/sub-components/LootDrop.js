@@ -40,7 +40,7 @@ const LootDrop = ({ loot, userName }) => {
       }
       setImgUrl(imgs[0]);
     })();
-  }, [imgUrl]);
+  }, [imgUrl, item_name]);
 
   return (
     <>
@@ -180,7 +180,7 @@ const LootDrop = ({ loot, userName }) => {
                 <a href={itemUrl} target="_blank" rel="noreferrer noopener">
                   <img
                     src={imgUrl}
-                    srcset={imgUrl}
+                    srcSet={imgUrl}
                     referrerPolicy={"no-referrer"}
                     // crossOrigin={'use-credentials'}
                     loading={"lazy"}

@@ -11,7 +11,7 @@ const SelectItem = (props) => {
   let { itemName, itemManufacturer, itemElement } = useSelector(
     (state) => state.lootDrops
   );
-//   console.log(itemName, itemManufacturer, itemElement);
+  //   console.log(itemName, itemManufacturer, itemElement);
   const [weaponType, setWeaponType] = useState("Weapon");
   const [classModType, setClassModType] = useState("Class Mod");
   const [itemType, setItemType] = useState(null);
@@ -69,14 +69,14 @@ const SelectItem = (props) => {
     dispatch({ type: SET_ITEM_TYPE, itemType: itemType });
     props.onHide();
   };
-  const buttonState = {
-    weaponButtonVariant: weaponButtonVariant,
-    shieldButtonVariant: shieldButtonVariant,
-    grenadeButtonVariant: grenadeButtonVariant,
-    artifactButtonVariant: artifactButtonVariant,
-    classButtonVariant: classButtonVariant,
-    confirmButtonVariant: confirmButtonVariant,
-  };
+  // const buttonState = {
+  //   weaponButtonVariant: weaponButtonVariant,
+  //   shieldButtonVariant: shieldButtonVariant,
+  //   grenadeButtonVariant: grenadeButtonVariant,
+  //   artifactButtonVariant: artifactButtonVariant,
+  //   classButtonVariant: classButtonVariant,
+  //   confirmButtonVariant: confirmButtonVariant,
+  // };
   // console.log(itemName, itemManufacturer, itemElement);
   // console.log(filterTypes(itemName, itemManufacturer, itemElement));
   // if (itemName){

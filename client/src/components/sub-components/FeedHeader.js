@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +15,7 @@ import SelectItemModal from "../modals/SelectItemModal";
 import SelectNameModal from "../modals/SelectNameModal";
 import SelectManufacturerModal from "../modals/SelectManufacturerModal";
 import SelectElementModal from "../modals/SelectElementModal";
-import { loot } from "../modal-assets/loot";
+// import { loot } from "../modal-assets/loot";
 
 const imgUrl =
   "https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524";
@@ -23,13 +23,13 @@ const imgUrl =
 const FeedHeader = (props) => {
   const {
     itemTypeWithHashtag,
-    itemType = null,
+    // itemType = null,
     itemNameWithHashtag,
     itemName = null,
     itemManufacturerWithHashtag,
-    itemManufacturer = null,
+    // itemManufacturer = null,
     itemElementWithHashtag,
-    itemElement = null,
+    // itemElement = null,
   } = useSelector((state) => state.lootDrops);
   const { userId } = useSelector((state) => state.auth);
   // const [possibleItems, setPossibleItems] = useState(loot);
@@ -38,7 +38,7 @@ const FeedHeader = (props) => {
   const [nameModalShow, setNameModalShow] = useState(false);
   const [manufacturerModalShow, setManufacturerModalShow] = useState(false);
   const [elementModalShow, setElementModalShow] = useState(false);
-//   console.log(itemType, itemName, itemManufacturer, itemElement);
+  //   console.log(itemType, itemName, itemManufacturer, itemElement);
   /*
     In order to cut back on the amount of warnings I am receiving in the console during development, I am entering href='/home' for many of these <a> tags.
     I am telling you this so you can understand strange behavior if you forget and use the site as normal

@@ -1,4 +1,3 @@
-import LootDrop from "../components/sub-components/LootDrop";
 import { lootDropsUrl } from "../config";
 
 export const LOOT_DROPS = "LOOT_DROPS";

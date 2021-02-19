@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, DropdownButton, Dropdown, ButtonGroup, } from 'react-bootstrap';
-import { loot } from '../components/modal-assets/loot';
+import React from "react";
+import { Dropdown } from "react-bootstrap";
+import { loot } from "../components/modal-assets/loot";
 
 // const weaponTypes = ["Pistol", "SMG", "Shotgun", "AR", "Sniper", "RPG"];
 // const classMods = ["Amara", "Fl4k", "Moze", "Zane"]
@@ -13,44 +13,36 @@ const itemTypes = {
 };
 const handleType = (type, ButtonGroupItems, filteredTypes) => {
   if (itemTypes.weapons.includes(type)) {
-    ButtonGroupItems = filteredTypes.map(
-      (item) =>
-        <Dropdown.Item key={item.id} eventKey={item.type}>
-          {item.type}</Dropdown.Item>
-    );
+    ButtonGroupItems = filteredTypes.map((item) => (
+      <Dropdown.Item key={item.id} eventKey={item.type}>
+        {item.type}
+      </Dropdown.Item>
+    ));
     return ButtonGroupItems;
-  }
-  else if (type === "Grenade Mod") {
+  } else if (type === "Grenade Mod") {
     console.log(type);
   }
-}
+};
 export const handleButtonTypes = (itemName, itemManufacturer, itemElement) => {
   if (itemName) {
-    const filteredTypes = loot.filter(
-      (lootItem) =>
-        lootItem.name === itemName
-    );
+    const filteredTypes = loot.filter((lootItem) => lootItem.name === itemName);
     const [possibleTypes] = filteredTypes;
     console.log(possibleTypes.type);
   }
-}
+};
 export const filterTypes = (itemName, itemManufacturer, itemElement) => {
   let ButtonGroupItems = [];
   if (itemName) {
-    const filteredTypes = loot.filter(
-      (lootItem) =>
-        lootItem.name === itemName
-    );
+    const filteredTypes = loot.filter((lootItem) => lootItem.name === itemName);
     const [possibleTypes] = filteredTypes;
     console.log(possibleTypes.type);
     return handleType(possibleTypes.type, ButtonGroupItems, filteredTypes);
-  }
-  else {
-    ButtonGroupItems = itemTypes.weapons.map(
-      (weaponType, i) =>
-        <Dropdown.Item key={i} eventKey={weaponType}>
-          {weaponType}</Dropdown.Item>
-    );
+  } else {
+    ButtonGroupItems = itemTypes.weapons.map((weaponType, i) => (
+      <Dropdown.Item key={i} eventKey={weaponType}>
+        {weaponType}
+      </Dropdown.Item>
+    ));
     return ButtonGroupItems;
   }
-}
+};
