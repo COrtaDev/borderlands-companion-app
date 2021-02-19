@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import { trackPromise } from "react-promise-tracker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentDollar,
@@ -22,7 +23,7 @@ const avatarUrl =
 // const item = "Seein' Dead";
 const handle = "zFerocityFlynt";
 
-const LootDrop = ({loot, userName}) => {
+const LootDrop = ({ loot, userName }) => {
   // console.log(loot)
   // console.log(userName)
   const [imgUrl, setImgUrl] = useState("");
@@ -35,8 +36,7 @@ const LootDrop = ({loot, userName}) => {
     (async () => {
       const imgs = await getImgUrls(item_name);
       if (imgs.length > 1) {
-        setImgUrl(imgs[imgs.length - 1]);
-        return;
+        return setImgUrl(imgs[imgs.length - 1]);
       }
       setImgUrl(imgs[0]);
     })();

@@ -1,33 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { trackPromise } from "react-promise-tracker";
-import { hasAccessToken, getCookieValue } from "./actions/auth";
+import { hasAccessToken } from "./actions/auth";
 import { getLootDrops, LOOT_DROPS } from "./actions/lootDrops";
 import { Navbar } from "react-bootstrap";
-// import {elements} from './components/modal-assets'
 import Landing from "./components/Landing";
 import LogoutButton from "./components/sub-components/LogoutButton";
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LootDrop from "./components/sub-components/LootDrop";
 
 const App = () => {
   const dispatch = useDispatch();
   const { userId, userName, loggedOut } = useSelector((state) => state.auth);
   const { lootDrops } = useSelector((state) => state.lootDrops);
+  const lootStorage = window.sessionStorage;
 
-  console.log(lootDrops);
   useEffect(() => {
     (async () => {
       if (loggedOut) {
         dispatch(hasAccessToken());
       }
       if (userId) {
-        console.log(getCookieValue(LOOT_DROPS));
-        // let loot = getCookieValue(LOOT_DROPS);
-        // console.log(typeof loot);
         if (lootDrops) return;
-        // if (loot) return;
+
+        let lootStored = lootStorage.getItem("lootStored");
+
+        if (JSON.parse(lootStored)) {
+          let totalLootDrops = lootStorage.getItem("totalLootDrops");
+          totalLootDrops = JSON.parse(totalLootDrops);
+
+          let loot = [];
+          for (let i = 0; i < totalLootDrops; i++) {
+            let lootItem = lootStorage.getItem(`lootDrop${i}`);
+            loot.push(JSON.parse(lootItem));
+          }
+
+          return dispatch({ type: LOOT_DROPS, lootDrops: loot });
+        }
         trackPromise(dispatch(getLootDrops(userId)));
       }
     })();

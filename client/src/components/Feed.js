@@ -6,20 +6,7 @@ import { getLootDrops } from "../actions/lootDrops";
 import LootDrop from "./sub-components/LootDrop";
 import { trackPromise } from "react-promise-tracker";
 
-const Feed = ({userId, userName, lootDrops}) => {
-  //   const dispatch = useDispatch();
-//   const token = getCookieValue(ACCESS_TOKEN);
-  //   const { lootDrops } = useSelector((state) => state.lootDrops);
-  //   const { userId, userName } = props;
-  // console.log(token)
-  console.log(lootDrops);
-//   useEffect(() => {
-//     if (!lootDrops) return;
-//   }, [lootDrops]);
-
-//   if (!token) {
-//     return <Redirect to="/"></Redirect>;
-//   }
+const Feed = ({ userId, userName, lootDrops }) => {
   if (!lootDrops) {
     return null;
   } else {

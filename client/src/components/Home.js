@@ -4,8 +4,6 @@ import FeedHeader from "./sub-components/FeedHeader";
 import SideNav from "../components/sub-components/SideNav";
 
 const Home = ({ userId, userName, lootDrops }) => {
-  //   const { userId, userName } = props;
-  console.log(lootDrops);
   return (
     <>
       <div
@@ -31,7 +29,7 @@ const Home = ({ userId, userName, lootDrops }) => {
               id="divider"
               style={{ height: "8px", margin: "0em 1em" }}
             ></div>
-            <Feed userId={userId} userName={userName} lootDrops={lootDrops}/>
+            <Feed userId={userId} userName={userName} lootDrops={lootDrops} />
           </div>
           <div id="right" style={{ width: "275px", paddingLeft: "10px" }}>
             <iframe
