@@ -15,6 +15,7 @@ import SelectItemModal from "../modals/SelectItemModal";
 import SelectNameModal from "../modals/SelectNameModal";
 import SelectManufacturerModal from "../modals/SelectManufacturerModal";
 import SelectElementModal from "../modals/SelectElementModal";
+import { LOOT_DROPS } from "../../actions/lootDrops";
 // import { loot } from "../modal-assets/loot";
 
 const imgUrl =
@@ -59,6 +60,7 @@ const FeedHeader = (props) => {
     if (res.ok) {
       //!We need to make sure that the new loot drop is added to the store and to the sessionStorage...
       lootStorage.setItem("newLootDropAvailable", JSON.stringify(true));
+      dispatch({ type: LOOT_DROPS, newLootAvailable: true });
       // const data = await res.json();
       // console.log(data);
       // window.location.reload();

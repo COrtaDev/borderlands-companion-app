@@ -13,7 +13,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const dispatch = useDispatch();
   const { userId, userName, loggedOut } = useSelector((state) => state.auth);
-  const { lootDrops } = useSelector((state) => state.lootDrops);
+  const { lootDrops, newLootAvailable } = useSelector(
+    (state) => state.lootDrops
+  );
   const lootStorage = window.sessionStorage;
 
   useEffect(() => {
@@ -41,13 +43,12 @@ const App = () => {
         trackPromise(dispatch(getLootDrops(userId)));
       }
     })();
-    if (JSON.parse(lootStorage.getItem("newLootDropAvailable"))) {
-      console.log("you have new loot!");
+    if (newLootAvailable) {
       if (!userId) return;
       dispatch(getLootDrops(userId));
       lootStorage.setItem("newLootDropAvailable", JSON.stringify(false));
     }
-  }, [userId, lootDrops, dispatch, loggedOut, lootStorage]);
+  }, [userId, lootDrops, dispatch, loggedOut, lootStorage, newLootAvailable]);
 
   return (
     <BrowserRouter>
