@@ -12,7 +12,7 @@ export const getLootDrops = (userId) => async (dispatch) => {
   const res = await fetch(`${lootDropsUrl}/${userId}`);
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     const lootStorage = window.sessionStorage;
     lootStorage.setItem("totalLootDrops", JSON.stringify(data.loot.length));
     data.loot.forEach((lootDrop, i) =>
@@ -24,3 +24,5 @@ export const getLootDrops = (userId) => async (dispatch) => {
     return Error("Request Failed");
   }
 };
+
+export const setLootStorage = () => {};

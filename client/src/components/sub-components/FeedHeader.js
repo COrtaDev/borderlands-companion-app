@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMeteor,
@@ -21,6 +21,8 @@ const imgUrl =
   "https://vignette.wikia.nocookie.net/borderlands/images/a/a3/BL3_Fustercluck_Off_Icon.png/revision/latest?cb=20200910175524";
 
 const FeedHeader = (props) => {
+  const dispatch = useDispatch();
+  const lootStorage = window.sessionStorage;
   const {
     itemTypeWithHashtag,
     // itemType = null,
@@ -55,7 +57,11 @@ const FeedHeader = (props) => {
     /*Here we check to see if we get a 200 response, we then store the generate and auth token
         or the user so they do not have to log backin if they leave the page and return later*/
     if (res.ok) {
-      window.location.reload();
+      //!We need to make sure that the new loot drop is added to the store and to the sessionStorage...
+      lootStorage.setItem("newLootDropAvailable", JSON.stringify(true));
+      // const data = await res.json();
+      // console.log(data);
+      // window.location.reload();
     }
   };
   const handleNewLootDrop = (e) => {

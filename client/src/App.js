@@ -41,6 +41,12 @@ const App = () => {
         trackPromise(dispatch(getLootDrops(userId)));
       }
     })();
+    if (JSON.parse(lootStorage.getItem("newLootDropAvailable"))) {
+      console.log("you have new loot!");
+      if (!userId) return;
+      dispatch(getLootDrops(userId));
+      lootStorage.setItem("newLootDropAvailable", JSON.stringify(false));
+    }
   }, [userId, lootDrops, dispatch, loggedOut, lootStorage]);
 
   return (
