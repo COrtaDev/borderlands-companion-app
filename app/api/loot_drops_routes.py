@@ -5,7 +5,7 @@ from app.models.loot_drops import Loot_Drop
 from app.models.likes import Like
 from app.models.comments import Comment
 from collections import Counter
-import wikia
+# import wikia
 loot_drops_routes = Blueprint('loot_drops', __name__)
 
 
@@ -37,16 +37,16 @@ def get_loot_drops(id):
             # we extract the name of the item here for use in the api
             item_name = item['item_name']
             # call to the api and append the data to the queue
-            additional_info.append(fetch_additional_info(item_name))
-            additional_info.append(total_likes)
-            additional_info.append(total_comments)
+            # additional_info.append(fetch_additional_info(item_name))
+            # additional_info.append(total_likes)
+            # additional_info.append(total_comments)
         # loot_drop_list.append(total_likes)
         # Once the queue is full we update it into the loot drop list
-        for loot_drop in loot_drop_list:
+        # for loot_drop in loot_drop_list:
             # We pop the 3 things we pushed into the queue into the lootdrop
-            loot_drop.update(additional_info.pop(0))
-            loot_drop.update(additional_info.pop(0))
-            loot_drop.update(additional_info.pop(0))
+            # loot_drop.update(additional_info.pop(0))
+            # loot_drop.update(additional_info.pop(0))
+            # loot_drop.update(additional_info.pop(0))
         return jsonify(loot=loot_drop_list)
     else:
         data = request.json
@@ -68,26 +68,26 @@ def get_loot_drops(id):
         return jsonify('success!')
 
 
-def fetch_additional_info(item_name, all=False):
-    if item_name == 'Fastball' or item_name == 'Black Hole':
-        item_name = item_name + ' (Borderlands 3)'
-    if item_name == 'Hyperfocus XZ41':
-        item_name = 'XZ41'
-    if item_name == "Techspert":
-        item_name = "Techspert_(class_mod)"
-    item_wikia = wikia.page("Borderlands", item_name)
-    # print(item_wikia)
-    item_page_url = item_wikia.url
-    # print(item_page_url)
-    item_img_url = item_wikia.images
-    # print(item_wikia.images)
-    # item_content = item_wikia.content
-    # item_summary = item_wikia.summary
-    item_info = {
-        'item_info': {
-            'itemUrl': item_page_url,
-            'imgUrl': item_img_url,
-            # 'content': item_content,
-            # 'summary': item_summary
-        }}
-    return item_info
+# def fetch_additional_info(item_name, all=False):
+#     if item_name == 'Fastball' or item_name == 'Black Hole':
+#         item_name = item_name + ' (Borderlands 3)'
+#     if item_name == 'Hyperfocus XZ41':
+#         item_name = 'XZ41'
+#     if item_name == "Techspert":
+#         item_name = "Techspert_(class_mod)"
+#     item_wikia = wikia.page("Borderlands", item_name)
+#     # print(item_wikia)
+#     item_page_url = item_wikia.url
+#     # print(item_page_url)
+#     item_img_url = item_wikia.images
+#     # print(item_wikia.images)
+#     # item_content = item_wikia.content
+#     # item_summary = item_wikia.summary
+#     item_info = {
+#         'item_info': {
+#             'itemUrl': item_page_url,
+#             'imgUrl': item_img_url,
+#             # 'content': item_content,
+#             # 'summary': item_summary
+#         }}
+#     return item_info

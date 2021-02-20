@@ -27,20 +27,27 @@ const LootDrop = ({ loot, userName }) => {
   // console.log(loot)
   // console.log(userName)
   const [imgUrl, setImgUrl] = useState("");
+  const [itemUrl, setItemUrl] = useState("");
   // const { userName } = props;
   const { message, level, created_at, likes, comments } = loot;
   const { item_name } = loot.loot_item;
-  const { itemUrl } = loot.item_info;
+  // const { itemUrl } = loot.item_info;
 
   useEffect(() => {
     (async () => {
-      const imgs = await getImgUrls(item_name);
+      const urls = await getImgUrls(item_name);
+      console.log(urls);
+      const { imgs, itemUrl } = urls;
+      console.log(imgs);
+      console.log(itemUrl);
       if (imgs.length > 1) {
+        setItemUrl(itemUrl);
         return setImgUrl(imgs[imgs.length - 1]);
       }
       setImgUrl(imgs[0]);
+      setItemUrl(itemUrl);
     })();
-  }, [imgUrl, item_name]);
+  }, [imgUrl, itemUrl, item_name]);
 
   return (
     <>
@@ -177,7 +184,7 @@ const LootDrop = ({ loot, userName }) => {
               >
                 {} {item_name} LVL {level}
                 <br></br>
-                <a href={itemUrl} target="_blank" rel="noreferrer noopener">
+                <a href={itemUrl} target="_blank" >
                   <img
                     src={imgUrl}
                     srcSet={imgUrl}

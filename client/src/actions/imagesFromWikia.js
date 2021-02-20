@@ -14,10 +14,11 @@ export const getImgUrls = async (itemName) => {
 
   const page = await fandomWiki.page(apiEndpoint);
   const imgs = await page.images();
+  const itemUrl = await page.url();
 
   // console.log("imgs: ", imgs);
 
-  return imgs;
+  return { imgs: imgs, itemUrl: itemUrl };
 };
 
 function exceptionsFound(itemName) {

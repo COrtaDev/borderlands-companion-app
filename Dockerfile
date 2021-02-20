@@ -5,6 +5,8 @@ COPY . .
 
 # Install Python Dependencies
 RUN ["pip", "install", "-r", "requirements.txt"]
+# # Patch the wikia package
+# RUN ["mv", "/var/www/wikia.py", "/usr/local/lib/python3.8/site-packages/wikia"]
 
 
 # Build our React App
@@ -26,5 +28,8 @@ ENV JWT_SECRET=woBtyUyPhI0iNiCDJsp4Dei-jB6Ep0nORWwTYqpCAQO_Jad9P9SbDr8SdRkz7zZGg
 
 EXPOSE 8000
 
+COPY wikia.py /usr/local/lib/python3.8/site-packages/wikia
+
+RUN rm wikia.py
 # Run flask environment
 CMD gunicorn app:app
