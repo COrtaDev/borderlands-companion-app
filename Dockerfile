@@ -28,8 +28,8 @@ ENV JWT_SECRET=woBtyUyPhI0iNiCDJsp4Dei-jB6Ep0nORWwTYqpCAQO_Jad9P9SbDr8SdRkz7zZGg
 
 EXPOSE 8000
 
-COPY wikia.py /usr/local/lib/python3.8/site-packages/wikia
+# COPY wikia.py /usr/local/lib/python3.8/site-packages/wikia
 
-RUN rm wikia.py
+# RUN rm wikia.py
 # Run flask environment
 CMD gunicorn app:app

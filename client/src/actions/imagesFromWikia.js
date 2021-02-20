@@ -3,7 +3,7 @@ import wiki from "wikijs";
 export const getImgUrls = async (itemName) => {
   let apiEndpoint;
   const fandomWiki = await wiki({
-    apiUrl: "http://Borderlands.wikia.com/api.php",
+    apiUrl: "https://Borderlands.wikia.com/api.php",
     origin: "*",
   });
   if (exceptionsFound(itemName)) {
