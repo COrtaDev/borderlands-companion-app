@@ -2,11 +2,9 @@
 
 A `Twitter` and `Borderlands 3` inspired social media platform dedicated to discussing in-game `loot drops` between users and players.
 
-## Description:
+### Description:
 
-#
-
-Initially planned as an interactive loot table for the video game **_Borderlands 3_**, `BL3 Companion App` is a `Twitter` inspired loot tracker social media platform dedicated to discussing in-game `loot drops`.
+Initially planned as an interactive loot table for the video game **_Borderlands 3_**, `BL3 Companion App` is a hybrid `loot-tracker-social-media-app` dedicated to sharing and discussing in-game `loot drops`.
 
 Much like how `Twitter` enables users to compose and post `Tweets`, `BL3 Companion` enables users to compose and post `Loot Drops`; each of which pertain to a particular `loot item` from the game. Posted `Loot` will appear in the `feed` of their `followers` and the `loot drops` posted by other users they `follow` in the same way it does on `Twitter`.
 
@@ -14,7 +12,7 @@ Users can `like` and `comment` on other users `Loot Drops` and `follow` other us
 
 #
 
-## Recent Updates:
+### Recent Updates:
 
 A list of recent changes and/or modifications...
 
@@ -28,7 +26,7 @@ A list of recent changes and/or modifications...
   >
   > The HTTP **Cross-Origin-Embedder-Policy** (COEP) response header prevents a document from loading any cross-origin resources that don't explicitly grant the document permission (using CORP or CORS).
   >
-  > ## Syntax:
+  > ### Syntax:
   >
   > > ```http
   > > Cross-Origin-Embedder-Policy: unsafe-none | require-corp
@@ -113,23 +111,23 @@ A list of recent changes and/or modifications...
 
 #
 
-## Additional notes:
+### Additional notes:
 
 Potential features and/or changes coming in the future...
 
 #
 
-## We have officially begun a major overhaul of the site!
+## **We have officially begun a major overhaul of the site!**
 
 - We are happy to announce that a major update is currently underway! We hope that these changes bring:
 
-  1. A better user experience,
-  2. Improved functionality,
-  3. A more maintainable code base on the backend...
+  1. **A better user experience,**
+  2. **Improved functionality,**
+  3. **A more maintainable code base on the backend...**
 
   #
 
-  ### Planned changes (_currently under development_):
+  ### **Planned changes (_currently under development_):**
 
   - Complete overhaul of styling and layout using custom `Bulma` templates, allowing for better responsivness and rendering on multiple viewports.
 
@@ -140,25 +138,38 @@ Potential features and/or changes coming in the future...
   - Sidenav with `<BrowserRouter />` and `route configs`.
   - The user will be able to select a new avatar from a predefined list of choices
 
-  ### Potential changes (_not yet under development_):
+  ### **Potential changes (_not yet under development_):**
 
   - A list of all possible `loot items` that can be found in game and references to them generated from FANDOM wikia.
 
-#
+    > We would like the user to be able to browse all in-game items and view `loot drops` relevant to the items they browse. This will enable users to find other users and connect them to each other.
+
+  - Saving State on `Window.closed` events which will enable `sessionStorage` to persist between closing and reopening the browser.
+
+    > We may want to implement saving the last known state of the `app` to `localStorage` just in case the browser is closed and them immediately reopened. This will optimize cases where a user may close and reopen a within a specified range of time. If the state is beyond that specified time, cleared, or otherwise not available, the `app` will need to be loaded as normal.
+
+  - Allow the user to upload a custom avatar image and background for their profile.
+
+    > We would love it if users could upload their own images for avatars and background images. These would be hosted on our AWS bucket and would require our database to handle assignment to users and CORS authentication.
 
 #
 
-- ## Saving State on `Window.closed` events.
-  Allow `sessionStorage` to persist between closing and reopening the browser...
-  #
-  We may want to implement saving the last known state of the `app` to `localStorage` just in case the browser is closed and them immediately reopened. This will optimize cases where a user may close and reopen a within a specified range of time. If the state is beyond that specified time, cleared, or otherwise not available, the `app` will need to be loaded as normal.
-
-#
-
-## Technology Stack:
+### Technology Stack:
 
 Flowchart diagram of the `app`'s technology stack...
 
 #
 
 ![Tech Stack Flowchart](/docs/BL3CompanionApp.png)
+
+**Backend:**
+
+- `PostgreSQL` Database
+- `Flask-SQLAlchemy` API
+
+**Frontend:**
+
+- `React.js`
+- `Redux` (state management)
+- `JavaScript` for handling `sessionStorage`
+- `Sass` for rendered styles.
