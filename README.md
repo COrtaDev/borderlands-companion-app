@@ -2,6 +2,8 @@
 
 A `Twitter` and `Borderlands 3` inspired social media platform dedicated to discussing in-game `loot drops` between users and players.
 
+#
+
 ### Description:
 
 Initially planned as an interactive loot table for the video game **_Borderlands 3_**, `BL3 Companion App` is a hybrid `loot-tracker-social-media-app` dedicated to sharing and discussing in-game `loot drops`.
@@ -66,7 +68,7 @@ A list of recent changes and/or modifications...
 
   Updates will be sent to and parsed by `React`, allowing the relevant components to be rendered or re-rendered as needed. The incoming updates are added to the `Redux` store and then compared to our `sessionStorage` This is done to minimize unecessary `asynchronous` `JavaSript` calls to our `sessionStorage`.
 
-  Example case:
+  ### _Example case:_
 
   > ```jsx
   > //Example use case from within our main React <App /> component.
@@ -138,6 +140,8 @@ Potential features and/or changes coming in the future...
   - Sidenav with `<BrowserRouter />` and `route configs`.
   - The user will be able to select a new avatar from a predefined list of choices
 
+  #
+
   ### **Potential changes (_not yet under development_):**
 
   - A list of all possible `loot items` that can be found in game and references to them generated from FANDOM wikia.
@@ -161,6 +165,8 @@ Flowchart diagram of the `app`'s technology stack...
 #
 
 ![Tech Stack Flowchart](/docs/BL3CompanionApp.png)
+
+#
 
 **Backend:**
 
