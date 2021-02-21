@@ -184,11 +184,11 @@ const LootDrop = ({ loot, userName }) => {
               >
                 {} {item_name} LVL {level}
                 <br></br>
-                <a href={itemUrl} referrerPolicy={"origin"} target="_blank">
+                <a href={itemUrl} referrerPolicy={"no-referrer"} target="_blank">
                   <img
                     src={imgUrl}
                     srcSet={imgUrl}
-                    referrerPolicy={"origin"}
+                    referrerPolicy={"no-referrer"}
                     // crossOrigin={'use-credentials'}
                     loading={"lazy"}
                     // decoding={"async"}
@@ -199,6 +199,7 @@ const LootDrop = ({ loot, userName }) => {
                       boxShadow: " 0px 0px 7px 0px rgba(217, 171, 17, 0.40)",
                     }}
                     alt=""
+                    crossOrigin
                   ></img>
                 </a>
               </p>
