@@ -18,6 +18,15 @@ Users can `like` and `comment` on other users `Loot Drops` and `follow` other us
 
 A list of recent changes and/or modifications...
 
+If you would like to see a wireframe test of the updated UI, please checkout:
+
+- [BL3 Companion App - Test Server](https://bl3companion-testserver.herokuapp.com)
+  - This is still under development, it is a demonstration of the new site's UI responsiveness and controls.
+
+Please checkout the updated repo for more information. Thanks!
+
+- [https://github.com/COrtaDev/bl3-companion-updated](https://github.com/COrtaDev/bl3-companion-updated)
+
 #
 
 - ### Solved an issue with images not being embedded due to COEP blockage.
